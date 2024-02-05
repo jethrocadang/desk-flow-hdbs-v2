@@ -59,7 +59,7 @@ git status
 
 # 3. Push your changes to github !!! Notify the QA or the github manager before pushing !!!
 
-git push origin <branch-name>
+git push origin <branch-name>:testing
 
 
 # 4. Create pull request in github 
