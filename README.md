@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Desk Flow Hot Desk Booking System
 
-First, run the development server:
+Desk Flow is a hot desk booking system built with next.js. This system allows its client company to manage its office spaces by utilizing a a bookings on its office desks spaces.
+
+
+
+## Installation 
+
+Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:jethrocadang/desk-flow-hdbs-v2.git
+
+# Cd to the root folder
+
+cd desk-flow-hdbs-v2.git
+
+# Then install all dependencies listed in package.json
+
+npm install
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This will run on your machine [http://localhost:3000](http://localhost:3000).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
 
-## Learn More
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+#or
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+npx run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+#  1. Create a your branch
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# If your adding a COMPONENT
+
+git checkout -b component/component-name
+
+# If your adding a FEATURE
+
+git checkout -b feature/feature-name
+
+# 2. Add your changes
+
+git add .
+
+# --> You can use git status to check the status.
+
+git status
+
+# 3. Push your changes to github !!! Notify the QA or the github manager before pushing !!!
+
+git push origin <branch-name>
+
+
+# 4. Create pull request in github 
+# 5. BEFORE CREATING OR PUSHING CHECK IF THERE ARE CONFLICTS FIRST by using 
+
+git pull origin main
+
+```
+
+
+# Resources
+
+[next.js](https://nextjs.org/docs)
+[git_cheat_sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+[git_tutorials](https://www.youtube.com/watch?v=RGOj5yH7evk)
+
+
+
+
+
