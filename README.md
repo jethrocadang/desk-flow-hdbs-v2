@@ -14,7 +14,7 @@ git clone git@github.com:jethrocadang/desk-flow-hdbs-v2.git
 
 # Cd to the root folder
 
-cd desk-flow-hdbs-v2.git
+cd desk-flow-hdbs-v2
 
 # Then install all dependencies listed in package.json
 
