@@ -1,7 +1,7 @@
 
 ## Desk Flow Hot Desk Booking System
 
-Desk Flow is a hot desk booking system built with next.js. This system allows its client company to manage its office spaces by utilizing a a bookings on its office desks spaces.
+Desk Flow is a hot desk booking system built with next.js. This system allows client company to manage their office spaces by utilizing desk bookings on their office desks spaces.
 
 
 
@@ -73,7 +73,11 @@ git pull origin main
 # Resources
 
 [next.js](https://nextjs.org/docs)
+<br>
+
 [git_cheat_sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+<br>
+
 [git_tutorials](https://www.youtube.com/watch?v=RGOj5yH7evk)
 
 
