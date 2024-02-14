@@ -20,6 +20,10 @@ cd desk-flow-hdbs-v2
 
 npm install
 
+# Then Pull all the changes in Repository
+
+git pull origin main
+
 ```
 
 ## Usage
