@@ -57,7 +57,11 @@ git add .
 
 git status
 
-# 3. Push your changes to github !!! Notify the QA or the github manager before pushing !!!
+# 3. Commit your Changes
+
+git commit -m "message"
+
+# 4. Push your changes to github !!! Notify the QA or the github manager before pushing !!!
 
 git push origin <branch-name>:testing
 
