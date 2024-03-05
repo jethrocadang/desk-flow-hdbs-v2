@@ -49,19 +49,23 @@ export default function TopNav() {
             <div
               className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
                 // checking if navburger is true or false
-                navbar ? 'p-12 md:p-0 block duration-500 bg-transparent' : 'hidden'
+                navbar ? ' md:p-0 flex justify-center duration-500 bg-transparent' : 'hidden'
               }`}
             >
               <ul className="h-screen md:pr-5 md:h-auto items-center justify-center md:flex duration-300">
                 <li className="pb-6 text-sm font-semibold pt-4 md:px-2 text-center md:hover:bg-transparent">
-                <Button size='large' variant="light"  onClick={() => alert('Primary button clicked')}>
+                <div className='w-28 h-9'>
+                  <Button size='custom' variant="light"  onClick={() => alert('Primary button clicked')}>
                   Sign Up
-                </Button>
+                  </Button>
+                </div>
                 </li>
                 <li className="pb-6 text-sm font-semibold py-4 md:px-2 text-center md:hover:bg-transparent">
-                <Button size='large' variant="primary"  onClick={() => alert('Primary button clicked')}>
-                  Sign In
-                </Button>
+                 <div className='w-28 h-9'>
+                  <Button size='custom' variant="primary"  onClick={() => alert('Primary button clicked')}>
+                  Sign In 
+                  </Button>
+                 </div>
                 </li>
               </ul>
             </div>

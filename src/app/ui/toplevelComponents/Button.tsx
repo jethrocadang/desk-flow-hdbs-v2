@@ -7,13 +7,13 @@ const Button = ({ size, variant, onClick, children}:any) => {
   const getVariantClasses = () => {
     switch (variant) {
       case 'primary':
-        return 'bg-violet-700 text-white hover:bg-white hover:text-indigo-900 hover:border-indigo-600 hover:border duration-200';
+        return 'bg-violet-700 border border-violet-700 text-white hover:bg-white hover:text-indigo-900 hover:border-indigo-600 hover:border duration-200';
       case 'secondary':
         return 'bg-gray-300 text-gray-800 hover:bg-white hover:text-indigo-900 hover:bg-white  hover:border-indigo-600  hover:border duration-200';
       case 'danger':
         return 'bg-red-500 text-white hover:bg-white hover:text-indigo-900 hover:bg-white  hover:border-indigo-600  hover:border duration-200';
       case 'light':
-        return'bg-white border border-indigo-600	 hover:border-0 text-indigo-900 hover:bg-indigo-600 hover:text-white duration-200';
+        return'bg-white border border-indigo-600 hover:border text-indigo-900 hover:bg-indigo-600 hover:text-white duration-200';
       default:
         return 'bg-gray-500 text-white hover:bg-white hover:text-black hover:border-black hover:border duration-200';
     }
