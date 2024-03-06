@@ -31,7 +31,7 @@ export default function Footer() {
                   <h1 className='text-blue-900 font-bold  text-2xl max-md:text-xl'>ABOUT US</h1>
                   <div className='flex flex-col gap-6 mt-6 max-md:gap-4 duration-300'>
                     <Link href="/" className='text-lg text-blue-900 hover:text-blue-500 font-semibold'>DeskFlow</Link>
-                    <Link href="/contacts" className='text-lg text-blue-900 hover:text-blue-500 font-semibold'>Contact Us</Link>
+                    <Link href="/contact" className='text-lg text-blue-900 hover:text-blue-500 font-semibold'>Contact Us</Link>
                     <Link href="/team" className='text-lg text-blue-900 hover:text-blue-500 font-semibold'>Our Team</Link>
                   </div>
                 </div>

@@ -3,8 +3,8 @@ import React from 'react'
 import Link from 'next/link';
 import { useState } from 'react'; 
 import Button from './Button'
-import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
-
+import { IoClose } from "react-icons/io5";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 
 export default function TopNav() {
@@ -30,12 +30,12 @@ export default function TopNav() {
                   {navbar ? (
                     // close nav
                     <div>
-                      <RxCross2 width={40} height={40} />
+                      <IoClose className='text-2xl font-extrabold duration-300'/>
                     </div>
                   ) : (
                    // open nav
                     <div>
-                      <RxHamburgerMenu width={40} height={40} />
+                      <GiHamburgerMenu className='duration-300 text-2xl font-extrabold'/>
                     </div>
                   )}
                 </button>
@@ -49,25 +49,25 @@ export default function TopNav() {
             <div
               className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
                 // checking if navburger is true or false
-                navbar ? ' md:p-0 flex justify-center duration-500 bg-transparent' : 'hidden'
+                navbar ? 'w-full md:p-0 flex justify-center duration-500 bg-transparent' : 'hidden'
               }`}
             >
-              <ul className="h-screen md:pr-5 md:h-auto items-center justify-center md:flex duration-300">
-                <li className="pb-6 text-sm font-semibold pt-4 md:px-2 text-center md:hover:bg-transparent">
-                <div className='w-28 h-9'>
+              <div className="h-screen md:pr-5 md:h-auto items-center justify-center md:flex w-full duration-300">
+                <div className="md:pb-6 w-full text-base md:text-sm font-semibold pt-4 md:px-2 text-center md:hover:bg-transparent">
+                <div className='w-full h-14 md:w-28 md:h-9'>
                   <Button size='custom' variant="light"  onClick={() => alert('Primary button clicked')}>
                   Sign Up
                   </Button>
                 </div>
-                </li>
-                <li className="pb-6 text-sm font-semibold py-4 md:px-2 text-center md:hover:bg-transparent">
-                 <div className='w-28 h-9'>
+                </div>
+                <div className="md:pb-6 w-full text-base md:text-sm font-semibold py-4 md:px-2 text-center md:hover:bg-transparent">
+                 <div className='w-full h-14 md:w-28 md:h-9'>
                   <Button size='custom' variant="primary"  onClick={() => alert('Primary button clicked')}>
                   Sign In 
                   </Button>
                  </div>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>

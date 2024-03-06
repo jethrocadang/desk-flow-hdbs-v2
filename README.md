@@ -73,7 +73,11 @@ git push origin <branch-name>:testing
 # 4. Create pull request in github 
 # 5. BEFORE CREATING OR PUSHING CHECK IF THERE ARE CONFLICTS FIRST by using 
 
-git pull origin main
+git pull origin main 
+
+#or
+
+git pull origin staging 
 
 ```
 
