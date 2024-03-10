@@ -52,15 +52,15 @@ export default function TopNav() {
                 navbar ? 'w-full md:p-0 flex justify-center duration-500 bg-transparent' : 'hidden'
               }`}
             >
-              <div className="h-screen md:pr-5 md:h-auto items-center justify-center md:flex w-full duration-300">
+              <div className="h-screen max-md:mx-5 md:pr-5 md:h-auto items-center justify-center md:flex w-full duration-300">
                 <div className="md:pb-6 w-full text-base md:text-sm font-semibold pt-4 md:px-2 text-center md:hover:bg-transparent">
                 <div className='w-full h-14 md:w-28 md:h-9'>
-                  <Button size='custom' variant="light"  onClick={() => alert('Primary button clicked')}>
+                  <Button size='custom' variant="secondary"  onClick={() => alert('Primary button clicked')}>
                   Sign Up
                   </Button>
                 </div>
                 </div>
-                <div className="md:pb-6 w-full text-base md:text-sm font-semibold py-4 md:px-2 text-center md:hover:bg-transparent">
+                <div className="md:pb-6 w-full  text-base md:text-sm font-semibold py-4 md:px-2 text-center md:hover:bg-transparent">
                  <div className='w-full h-14 md:w-28 md:h-9'>
                   <Button size='custom' variant="primary"  onClick={() => alert('Primary button clicked')}>
                   Sign In 

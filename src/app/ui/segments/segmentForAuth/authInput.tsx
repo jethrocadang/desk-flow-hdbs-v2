@@ -1,5 +1,5 @@
 "use client";
-import React from 'react'
+import React, { useState } from 'react'
 import { MdEmail, MdKey } from "react-icons/md";
 import Link from 'next/link'
 import * as z from 'zod';
@@ -7,6 +7,7 @@ import {useForm} from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox"
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from '@/app/ui/toplevelComponents/Button';
 import { 
   Form, 
@@ -38,8 +39,12 @@ export default function AuthInput() {
       checkBox: true
     }
   });
+
   //  handle for submit
   const handleSubmit = () =>{}
+
+  //to see passs
+  const [showPass, setShowPass] = useState(false);
 
   return (
     <div className='max-md:z-40'>
@@ -74,11 +79,21 @@ export default function AuthInput() {
                   <FormLabel>Password</FormLabel>
                   <div className='relative flex flex-col'>
                     <FormControl>
-                      <Input type="password" placeholder="************" className='pl-12 py-6 border bg-sky-50 border-violet-900' {...field} /> 
+                      <Input 
+                      type={showPass ? "text" : "password"} 
+                      placeholder="************" 
+                      className='pl-12 py-6 border bg-sky-50 border-violet-900' {...field} /> 
                     </FormControl>
                     {/* icons */}
                     <div className='absolute top-2.5 pl-2.5'>
                       <MdKey  className='text-black text-3xl'/>
+                    </div>
+                    <div className='absolute right-0 top-3 pr-4 cursor-pointer'>
+                      { showPass ?
+                        <FaEye onClick={()=> setShowPass(false)}  className='text-black text-2xl'/>
+                        :
+                        <FaEyeSlash onClick={()=> setShowPass(true)}className='text-black text-2xl'/>
+                      }
                     </div>
                   </div>
                   <FormMessage /> {/* display Error Messgae*/}
