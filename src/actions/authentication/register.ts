@@ -6,6 +6,8 @@ import { db } from "@/lib/prisma";
 import { hash } from "bcryptjs";
 import { getUserByEmail } from "@/data/user";
 import { generateToken } from "@/lib/tokens";
+import { sendMail } from "@/lib/mails";
+import { compileEmailTokenTemplate } from "@/lib/templates/compileEmail";
 
 export async function register(values: z.infer<typeof registerSchema>) {
   try {
@@ -40,7 +42,32 @@ export async function register(values: z.infer<typeof registerSchema>) {
     });
 
     // Generate Token and store to db
-    const verificationtoken = generateToken(email)
+    const verificationtoken = await generateToken(email);
+
+    // Join firstname and lastname
+    const fullName = `${firstName} ${lastName}`;
+
+    // Format Date
+    const today = new Date();
+    const formatDate = today.toLocaleDateString("en-US", {
+      month: "long",
+      day: "2-digit",
+      year: "numeric",
+    });
+
+    // Send Token to Email
+    const sendVerificationToken = await sendMail({
+      to: email,
+      name: fullName,
+      subject: "OTP",
+      body: compileEmailTokenTemplate(
+        fullName,
+        verificationtoken.token,
+        formatDate
+      ),
+    });
+
+    console.log(verificationtoken);
   } catch (error) {
     console.log(error);
   }
