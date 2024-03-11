@@ -72,7 +72,7 @@ export default function page() {
                   </div>
 
                   <div className='mt-5 flex justify-center'>
-                  <span className='text-black text-xs'>Already have an account?</span><Link href="/" className='text-xs text-blue-900 hover:text-blue-500 font-semibold'>Sign In</Link>
+                  <span className='text-black text-xs'>Already have an account?</span><Link href={"/signin"} className='text-xs text-blue-900 hover:text-blue-500 font-semibold'>Sign In</Link>
                   </div>
                   <br />
                 </div>
