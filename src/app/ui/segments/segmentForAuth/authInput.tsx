@@ -17,23 +17,13 @@ import {
   FormLabel, 
   FormControl  } from '@/components/ui/form';
 
-
-const formSchema = z.object({
-  // Email datatype asign
-  emailAddress: z.string().email({
-    message:"The email address must include '@'"
-  }),
-  password: z.string().min(12, {
-    message: "Password lenght must be at least 12 characters"
-  }),
-  checkBox: z.boolean().default(false).optional(),
-});
+import { loginSchema } from '@/schemas/userSchema';
 
 export default function AuthInput() {
   // form validation
   //checking for every user passe in form is valid
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues:{
       emailAddress:"",
       checkBox: true
@@ -60,7 +50,7 @@ export default function AuthInput() {
                   <FormLabel>Email</FormLabel>
                   <div className='relative flex flex-col'>
                     <FormControl>
-                      <Input type="email" placeholder="Email" className='pl-12 py-6 border bg-sky-50 border-violet-900' {...field} /> 
+                      <Input placeholder="Email" className='pl-12 py-6 border bg-sky-50 border-violet-900' {...field} /> 
                     </FormControl>
                     {/* icons */}
                     <div className='absolute top-2.5 pl-2.5'>

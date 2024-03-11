@@ -17,37 +17,13 @@ import {
   FormLabel, 
   FormControl  } from '@/components/ui/form';
 
-
-const formSchema = z.object({
-  // Email datatype asign
-  firstName: z.string().min(6, {
-    message: "required"
-  }),
-  lastName: z.string().min(6, {
-    message: "required"
-  }),
-  emailAddress: z.string().email({
-    message:"The email address must include '@'"
-  }),
-  password: z.string().min(12,  {
-    message: "Password must atleast 12 characters"
-  }).refine(data => /[!@#$%^&*]/.test(data), {
-    message: 'Password must contain at least one special character.'
-  }),
-  confirmPassword: z.string().min(12, {
-    message: 'You must confirm your password'
-  })
-}).refine(
-  (data) => data.password === data.confirmPassword, {
-    path: ['confirmPassword'],
-    message: 'Password do not match'
-  });
+import { withConfirmPassSchema } from '@/schemas/userSchema';
 
 export default function SignupInput() {
   // form validation
   //checking for every user passe in form is valid
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof withConfirmPassSchema>>({
+    resolver: zodResolver(withConfirmPassSchema),
     defaultValues:{
       firstName:"",
       lastName:"",
@@ -124,7 +100,7 @@ export default function SignupInput() {
                   <FormLabel>Email</FormLabel>
                   <div className='relative flex flex-col'>
                     <FormControl>
-                      <Input type="email" placeholder="Email" className='pl-12 py-6 border bg-sky-50 border-violet-900' {...field} /> 
+                      <Input placeholder="Email" className='pl-12 py-6 border bg-sky-50 border-violet-900' {...field} /> 
                     </FormControl>
                     {/* icons */}
                     <div className='absolute top-2.5 pl-2.5'>
