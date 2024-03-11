@@ -177,7 +177,7 @@ export default function SignupInput() {
             }}/>
             
             <div className='h-12 mt-5'>
-              <Button size="custom" variant="primary" type="submit">Login</Button>
+              <Button size="custom" variant="primary" type="submit">Sign Up</Button>
             </div>
           </div>
         </form>
