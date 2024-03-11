@@ -2,7 +2,7 @@ import * as z from "zod";
 
 export const loginSchema = z.object({
   // Email datatype asign
-  emailAddress: z.string().email({
+  email: z.string().email({
     message: "The email address must include '@'",
   }),
   password: z.string().min(12, {
@@ -11,7 +11,7 @@ export const loginSchema = z.object({
   checkBox: z.boolean().default(false).optional(),
 });
 
-export const registerschema = z.object({
+export const registerSchema = z.object({
   // Email datatype asign
   firstName: z.string().min(6, {
     message: "required",
@@ -19,7 +19,7 @@ export const registerschema = z.object({
   lastName: z.string().min(6, {
     message: "required",
   }),
-  emailAddress: z.string().email({
+  email: z.string().email({
     message: "The email address must include '@'",
   }),
   password: z
@@ -32,7 +32,7 @@ export const registerschema = z.object({
     }),
 });
 
-export const withConfirmPassSchema = registerschema
+export const withConfirmPassSchema = registerSchema
   .extend({
     confirmPassword: z.string().min(12, {
       message: "You must confirm your password",

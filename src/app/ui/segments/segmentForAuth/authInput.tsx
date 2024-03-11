@@ -25,7 +25,7 @@ export default function AuthInput() {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues:{
-      emailAddress:"",
+      email:"",
       checkBox: true
     }
   });
@@ -43,7 +43,7 @@ export default function AuthInput() {
         <form onSubmit={form.handleSubmit(handleSubmit)}>
             <FormField
             control={form.control} 
-            name="emailAddress" 
+            name="email" 
             render={({field})=>{
                 return <FormItem> 
                   {/* label */}

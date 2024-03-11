@@ -18,6 +18,8 @@ import {
   FormControl  } from '@/components/ui/form';
 
 import { withConfirmPassSchema } from '@/schemas/userSchema';
+import { register } from '@/actions/authentication/register';
+
 
 export default function SignupInput() {
   // form validation
@@ -27,13 +29,17 @@ export default function SignupInput() {
     defaultValues:{
       firstName:"",
       lastName:"",
-      emailAddress:"",
+      email:"",
       password:"",
     }
   });
 
   //  handle for submit
-  const handleSubmit = () =>{}
+  const handleSubmit = async (values: z.infer<typeof withConfirmPassSchema>) => {
+    register(values)
+   }
+
+   
 
   // Tosee pass
   const [showPass, setShowPass] = useState(false);
@@ -93,7 +99,7 @@ export default function SignupInput() {
             {/* Email */}
             <FormField
             control={form.control} 
-            name="emailAddress" 
+            name="email" 
             render={({field})=>{
                 return <FormItem> 
                   {/* label */}
