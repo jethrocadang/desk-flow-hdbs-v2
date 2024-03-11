@@ -7,15 +7,15 @@ const Button = ({ size, variant, onClick, children}:any) => {
   const getVariantClasses = () => {
     switch (variant) {
       case 'primary':
-        return 'bg-violet-700 border border-violet-700 text-white hover:bg-white hover:text-indigo-900 hover:border-indigo-600 hover:border duration-200';
+        return 'bg-[#6358DC] border border-[#6358DC] text-white hover:bg-[#7298EC]  hover:border-[#7298EC] hover:border duration-200';
       case 'secondary':
-        return 'bg-gray-300 text-gray-800 hover:bg-white hover:text-indigo-900 hover:bg-white  hover:border-indigo-600  hover:border duration-200';
+        return 'bg-[#7298EC] border border-[#7298EC] text-white hover:bg-[#6358DC] hover:border-[#6358DC]  hover:border duration-200';
       case 'danger':
-        return 'bg-red-500 text-white hover:bg-white hover:text-indigo-900 hover:bg-white  hover:border-indigo-600  hover:border duration-200';
+        return 'bg-red-500 border border-red-600 text-white hover:bg-white hover:text-white hover:bg-red-300  hover:border-red-500  hover:border duration-200';
       case 'light':
-        return'bg-white border border-indigo-600 hover:border text-indigo-900 hover:bg-indigo-600 hover:text-white duration-200';
+        return'bg-white border border-indigo-600 hover:border text-indigo-900 hover:bg-slate-200 duration-200 hover:text-black';
       default:
-        return 'bg-gray-500 text-white hover:bg-white hover:text-black hover:border-black hover:border duration-200';
+        return 'bg-gray-300 border border-gray-400 text-gray-800 hover:bg-white hover:text-black hover:bg-gray-400  hover:border-gray-400  hover:border duration-200';
     }
   };
   //define the size of the button
