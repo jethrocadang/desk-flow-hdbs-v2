@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Button from "../../toplevelComponents/Button";
 import { verification } from "@/actions/authentication/verification";
 import * as z from "zod";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useToast } from "../../shadcn/use-toast";
 const otpSchema = z
   .array(z.string().regex(/^\d$/, "OTP must be a number"))
@@ -16,6 +16,8 @@ export default function OtpForm() {
 
   // use Toast from shadcn
   const { toast } = useToast();
+
+  // TODO Add form status for buttons
 
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");

@@ -22,6 +22,8 @@ import { withConfirmPassSchema } from "@/schemas/userSchema";
 import { register } from "@/actions/authentication/register";
 
 export default function SignUpForm() {
+    // TODO Add form status for buttons
+
 
   // form validation
   //checking for every user passe in form is valid

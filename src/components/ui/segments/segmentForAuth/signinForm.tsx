@@ -20,6 +20,8 @@ import {
 import { loginSchema } from '@/schemas/userSchema';
 
 export default function SignInForm() {
+    // TODO Add form status for buttons
+
   // form validation
   //checking for every user passe in form is valid
   const form = useForm<z.infer<typeof loginSchema>>({
