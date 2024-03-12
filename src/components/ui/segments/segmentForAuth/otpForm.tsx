@@ -63,7 +63,7 @@ export default function OtpForm() {
         title: "Email Verified!",
         description: "You can now Login",
       }),
-        router.push("/signup");
+        router.push("/signin");
     });
   };
 

@@ -35,7 +35,7 @@ export async function verification(token: string) {
 
   // Update user
   await db.user.update({
-    where: { id: existingUser.id },
+    where: { email: existingUser.email },
     data: {
       emailVerified: new Date(),
       email: existingUser.email,
