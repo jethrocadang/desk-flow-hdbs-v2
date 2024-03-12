@@ -5,21 +5,21 @@ import Link from 'next/link'
 import * as z from 'zod';
 import {useForm} from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/shadcn/input";
+import { Checkbox } from "@/components/ui/shadcn/checkbox"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Button from '@/app/ui/toplevelComponents/Button';
+import Button from '@/components/ui/toplevelComponents/Button';
 import { 
   Form, 
   FormField, 
   FormItem, 
   FormMessage, 
   FormLabel, 
-  FormControl  } from '@/components/ui/form';
+  FormControl  } from '@/components/ui/shadcn/form';
 
 import { loginSchema } from '@/schemas/userSchema';
 
-export default function AuthInput() {
+export default function SignInForm() {
   // form validation
   //checking for every user passe in form is valid
   const form = useForm<z.infer<typeof loginSchema>>({

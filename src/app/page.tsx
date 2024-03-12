@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import TopNav from "@/app/ui/toplevelComponents/TopNav";
-import Header from "@/app/ui/segments/segmentsForHomePage/header";
-import WebDetails from "@/app/ui/segments/segmentsForHomePage/webDetails";
-import Amenities from "@/app/ui/segments/segmentsForHomePage/amenities";
-import Tutorial from "@/app/ui/segments/segmentsForHomePage/tutorial";
-import Benifits from "@/app/ui/segments/segmentsForHomePage/benifits";
-import Footer from "@/app/ui/toplevelComponents/Footer";
+import TopNav from "@/components/ui/toplevelComponents/TopNav";
+import Header from "@/components/ui/segments/segmentsForHomePage/header";
+import WebDetails from "@/components/ui/segments/segmentsForHomePage/webDetails";
+import Amenities from "@/components/ui/segments/segmentsForHomePage/amenities";
+import Tutorial from "@/components/ui/segments/segmentsForHomePage/tutorial";
+import Benifits from "@/components/ui/segments/segmentsForHomePage/benifits";
+import Footer from "@/components/ui/toplevelComponents/Footer";
 
 export default function Home() {
   return (

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import frameSignup from '@/public/img/authImage/frameSignup.png';
 import hotDog from '@/public/img/authImage/hotdog.png';
 import ImageSignup from '@/public/img/authImage/imgSignup.png';
-import OtpInput from '@/app/ui/segments/segmentForAuth/OtpInput';
+import OtpForm from '@/components/ui/segments/segmentForAuth/otpForm';
 import Link from 'next/link'
 import { getUserById } from '@/data/user';
 
@@ -50,7 +50,7 @@ export default function page() {
                   {/* inputs segments folder */}
                   <div className='mt-3 w-full flex flex-col'>
                     {/* segments folder */}
-                    <OtpInput />
+                    <OtpForm />
                   </div>
                   <div className='mt-14 flex justify-center'>
                   <span className='text-black text-xs'>Didn&apos;t get a code?</span><Link href="/" className='text-xs text-blue-900 hover:text-blue-500 font-semibold'>Resend</Link>

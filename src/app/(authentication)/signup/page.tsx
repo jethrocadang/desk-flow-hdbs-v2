@@ -3,10 +3,10 @@ import Image from 'next/image'
 import frameSignup from '@/public/img/authImage/frameSignup.png';
 import hotDog from '@/public/img/authImage/hotdog.png';
 import ImageSignup from '@/public/img/authImage/imgSignup.png';
-import SignupInput from '@/app/ui/segments/segmentForAuth/authSignup';
+import SignUpForm from '@/components/ui/segments/segmentForAuth/signUpForm';
 import Link from 'next/link'
 import { FcGoogle } from "react-icons/fc";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/shadcn/button"
 
 export default function page() {
   return (
@@ -67,7 +67,7 @@ export default function page() {
                   {/* inputs segments folder */}
                   <div className='mt-3 w-full flex flex-col'>
                     {/* Segments Folder */}
-                    <SignupInput />
+                    <SignUpForm />
                   </div>
 
                   <div className='mt-5 flex justify-center'>

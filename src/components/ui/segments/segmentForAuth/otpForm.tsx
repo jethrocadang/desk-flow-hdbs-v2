@@ -8,7 +8,7 @@ import * as z from "zod";
 const otpSchema = z.array(z.string().regex(/^\d$/, "OTP must be a number")).length(6);
 
 
-export default function OtpInput() {
+export default function OtpForm() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   const inputRefs = useRef(

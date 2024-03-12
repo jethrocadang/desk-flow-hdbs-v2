@@ -17,7 +17,7 @@ export default function TopNav() {
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               {/* LOGO or NAME  */}
-              <Link href="#">
+              <Link href="/">
                 <h2 className="text-2xl text-blue-700 font-bold ">
                   Desk<span className="text-blue-500">Flow</span>{" "}
                 </h2>

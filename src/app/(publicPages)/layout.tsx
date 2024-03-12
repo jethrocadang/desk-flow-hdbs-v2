@@ -1,5 +1,5 @@
-import TopNav from "@/app/ui/toplevelComponents/TopNav"
-import Footer from "@/app/ui/toplevelComponents/Footer"
+import TopNav from "@/components/ui/toplevelComponents/TopNav"
+import Footer from "@/components/ui/toplevelComponents/Footer"
 
 export default function DashboardLayout({
   children, // will be a page or nested layout

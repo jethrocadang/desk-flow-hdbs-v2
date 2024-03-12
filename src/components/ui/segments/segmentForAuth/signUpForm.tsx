@@ -5,10 +5,10 @@ import { MdEmail, MdKey } from "react-icons/md";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/shadcn/input";
 import { FiUser } from "react-icons/fi";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Button from "@/app/ui/toplevelComponents/Button";
+import Button from "@/components/ui/toplevelComponents/Button";
 import {
   Form,
   FormField,
@@ -16,12 +16,12 @@ import {
   FormMessage,
   FormLabel,
   FormControl,
-} from "@/components/ui/form";
+} from "@/components/ui/shadcn/form";
 
 import { withConfirmPassSchema } from "@/schemas/userSchema";
 import { register } from "@/actions/authentication/register";
 
-export default function SignupInput() {
+export default function SignUpForm() {
 
   // form validation
   //checking for every user passe in form is valid

@@ -3,10 +3,10 @@ import Image from "next/image";
 import bgImagaAuth from "@/public/img/authImage/bgAuthentication.png";
 import hotDog from "@/public/img/authImage/hotdog.png";
 import ImageAuth from "@/public/img/authImage/authimage.png";
-import AuthInput from "@/app/ui/segments/segmentForAuth/authInput";
+import SignInForm from "@/components/ui/segments/segmentForAuth/signinForm";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/shadcn/button";
 
 export default function page() {
   return (
@@ -88,7 +88,7 @@ export default function page() {
                 {/* inputs segments folder */}
                 <div className="w-full flex flex-col">
                   {/* Segments Folder */}
-                  <AuthInput />
+                  <SignInForm/>
                 </div>
 
                 <div className="mt-5 flex justify-center">
