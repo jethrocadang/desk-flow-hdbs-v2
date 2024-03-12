@@ -7,12 +7,7 @@ import OtpInput from '@/app/ui/segments/segmentForAuth/OtpInput';
 import Link from 'next/link'
 import { getUserById } from '@/data/user';
 
-export default function page({ params }: { params: { id: string } }) {
-
-  const id = params.id
-  const user = getUserById(id)
-
-
+export default function page() {
   return (
     <div>
       <div className='md:relative md:h-screen bg-white w-full '>
