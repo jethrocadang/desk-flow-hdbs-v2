@@ -4,11 +4,16 @@ import { useRef, useState } from "react";
 import Button from "../../toplevelComponents/Button";
 import { verification } from "@/actions/authentication/verification";
 import * as z from "zod";
+import { useRouter } from "next/router";
 
 const otpSchema = z.array(z.string().regex(/^\d$/, "OTP must be a number")).length(6);
 
 
 export default function OtpForm() {
+  //use Router
+
+  const router = useRouter();
+
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   const inputRefs = useRef(
@@ -31,7 +36,7 @@ export default function OtpForm() {
 
   
   // Passing credential into server
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
   
     // Check for empty inputs
@@ -51,7 +56,7 @@ export default function OtpForm() {
 
     // logic checking of otp input
     const enteredOtp = otp.join("");
-    verification(enteredOtp)
+   await verification(enteredOtp).then((success) => {router.push("/signup")})
 
 
 
