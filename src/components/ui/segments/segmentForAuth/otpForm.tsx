@@ -41,6 +41,7 @@ export default function OtpForm() {
       return;
     }
 
+    // validate: input must be numbers
     try {
       otpSchema.parse(otp);
     } catch (validationError) {
@@ -48,7 +49,9 @@ export default function OtpForm() {
       return;
     }
 
+    // logic checking of otp input
     const enteredOtp = otp.join("");
+    verification(enteredOtp)
 
 
 
