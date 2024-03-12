@@ -1,4 +1,3 @@
-"use client";
 import React from 'react'
 import Image from 'next/image'
 import frameSignup from '@/public/img/authImage/frameSignup.png';

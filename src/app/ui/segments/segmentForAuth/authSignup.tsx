@@ -20,8 +20,11 @@ import {
 
 import { withConfirmPassSchema } from "@/schemas/userSchema";
 import { register } from "@/actions/authentication/register";
+import { useRouter } from "next/router";
 
 export default function SignupInput() {
+
+  const route = useRouter();
   // form validation
   //checking for every user passe in form is valid
   const form = useForm<z.infer<typeof withConfirmPassSchema>>({
@@ -35,10 +38,13 @@ export default function SignupInput() {
   });
 
   //  handle for submit
+  // TODO Add toast for handling errors
   const handleSubmit = async (
     values: z.infer<typeof withConfirmPassSchema>
   ) => {
-    register(values);
+     register(values)
+      
+    
   };
 
   // Tosee pass

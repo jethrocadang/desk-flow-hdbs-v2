@@ -1,4 +1,3 @@
-"use client";
 import React from 'react'
 import Image from 'next/image'
 import frameSignup from '@/public/img/authImage/frameSignup.png';
@@ -6,8 +5,14 @@ import hotDog from '@/public/img/authImage/hotdog.png';
 import ImageSignup from '@/public/img/authImage/imgSignup.png';
 import OtpInput from '@/app/ui/segments/segmentForAuth/OtpInput';
 import Link from 'next/link'
+import { getUserById } from '@/data/user';
 
-export default function page() {
+export default function page({ params }: { params: { id: string } }) {
+
+  const id = params.id
+  const user = getUserById(id)
+
+
   return (
     <div>
       <div className='md:relative md:h-screen bg-white w-full '>
