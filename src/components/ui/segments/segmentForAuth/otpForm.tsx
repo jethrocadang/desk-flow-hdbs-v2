@@ -5,14 +5,17 @@ import Button from "../../toplevelComponents/Button";
 import { verification } from "@/actions/authentication/verification";
 import * as z from "zod";
 import { useRouter } from "next/router";
-
-const otpSchema = z.array(z.string().regex(/^\d$/, "OTP must be a number")).length(6);
-
+import { useToast } from "../../shadcn/use-toast";
+const otpSchema = z
+  .array(z.string().regex(/^\d$/, "OTP must be a number"))
+  .length(6);
 
 export default function OtpForm() {
   //use Router
-
   const router = useRouter();
+
+  // use Toast from shadcn
+  const { toast } = useToast();
 
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
@@ -34,11 +37,10 @@ export default function OtpForm() {
     }
   };
 
-  
   // Passing credential into server
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Check for empty inputs
     // TODO Add toast for handling error
     if (otp.some((value) => !value)) {
@@ -56,10 +58,13 @@ export default function OtpForm() {
 
     // logic checking of otp input
     const enteredOtp = otp.join("");
-   await verification(enteredOtp).then((success) => {router.push("/signup")})
-
-
-
+    await verification(enteredOtp).then((success) => {
+      toast({
+        title: "Email Verified!",
+        description: "You can now Login",
+      }),
+        router.push("/signup");
+    });
   };
 
   return (
