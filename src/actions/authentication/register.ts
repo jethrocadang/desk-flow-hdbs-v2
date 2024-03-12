@@ -8,6 +8,7 @@ import { getUserByEmail } from "@/data/user";
 import { generateToken } from "@/lib/tokens";
 import { sendMail } from "@/lib/mails";
 import { compileEmailTokenTemplate } from "@/lib/templates/compileEmail";
+import { redirect } from "next/navigation";
 
 export async function register(values: z.infer<typeof registerSchema>) {
   try {
@@ -61,11 +62,15 @@ export async function register(values: z.infer<typeof registerSchema>) {
       name: fullName,
       subject: "OTP",
       body: compileEmailTokenTemplate(
-        fullName,
+        firstName,
         verificationtoken.token,
         formatDate
       ),
     });
+
+    if (sendVerificationToken.success){
+      redirect("/verify")
+    }
 
     console.log(verificationtoken);
   } catch (error) {

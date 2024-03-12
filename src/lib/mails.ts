@@ -22,7 +22,7 @@ export async function sendMail({
   const transport = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
-    secure: true,
+    secure: false,
     auth: {
       user: SMTP_EMAIL,
       pass: SMTP_PASSWORD,
@@ -47,6 +47,7 @@ export async function sendMail({
       html: body,
     });
     console.log("Email sent successfully:", sendResult);
+    return {success: true}
   } catch (error) {
     console.error("Error sending email:", error);
   }
