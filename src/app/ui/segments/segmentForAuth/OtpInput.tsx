@@ -50,7 +50,6 @@ export default function OtpInput() {
 
     const enteredOtp = otp.join("");
 
-    verification(enteredOtp)
 
 
   };
