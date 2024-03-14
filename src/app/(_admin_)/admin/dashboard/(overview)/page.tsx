@@ -1,7 +1,6 @@
+import { auth } from "auth";
 
-
-export default function Page(){
-return (
-    <div>admin</div>
-)
+export default async function Page() {
+    const session = await auth()
+  return <div>admin {JSON.stringify(session)}</div>;
 }
