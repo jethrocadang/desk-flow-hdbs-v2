@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "../../toplevelComponents/Button";
 import { verification } from "@/actions/authentication/verification";
 import * as z from "zod";
@@ -21,13 +21,14 @@ export default function OtpForm() {
 
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
+  
   const inputRefs = useRef(
     Array(6)
       .fill(null)
       .map(() => useRef(null))
   );
 
-  const handleInputChange = (index, value) => {
+  const handleInputChange = (index: number, value: string) => {
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
@@ -40,7 +41,7 @@ export default function OtpForm() {
   };
 
   // Passing credential into server
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Check for empty inputs

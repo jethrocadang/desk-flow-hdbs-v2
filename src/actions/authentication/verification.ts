@@ -7,6 +7,7 @@ import {
   getVerificationTokenByToken,
 } from "@/data/verificationToken";
 
+
 export async function verification(token: string) {
   // Get token from db by token  
   const verifyToken = await getVerificationTokenByToken(token);
@@ -46,4 +47,7 @@ export async function verification(token: string) {
   await db.verificationToken.delete({ where: { id: verifyToken.id } });
 
   return {success: "Email Verfied"}
+  
 }
+
+//TODO ADD REDIRECT

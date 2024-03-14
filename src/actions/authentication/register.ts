@@ -60,15 +60,17 @@ export async function register(values: z.infer<typeof registerSchema>) {
     });
 
     // Send Token to Email
+    //TODO Fix Handlebar loader
+    //compileEmailTokenTemplate(
+    //firstName,
+    //verificationtoken.token,
+    //formatDate
+    //),
     const sendVerificationToken = await sendMail({
       to: email,
       name: fullName,
       subject: "OTP",
-      body: compileEmailTokenTemplate(
-        firstName,
-        verificationtoken.token,
-        formatDate
-      ),
+      body:`<h1>Your Token: ${verificationtoken.token}</h1>` 
     });
 
 
