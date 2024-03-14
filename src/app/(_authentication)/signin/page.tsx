@@ -3,7 +3,7 @@ import Image from "next/image";
 import bgImagaAuth from "@/public/img/authImage/bgAuthentication.png";
 import hotDog from "@/public/img/authImage/hotdog.png";
 import ImageAuth from "@/public/img/authImage/authimage.png";
-import SignInForm from "@/components/ui/segments/segmentForAuth/signinForm";
+import SignInForm from "@/components/ui/segments/auth/signinForm";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { Button } from "@/components/ui/shadcn/button";

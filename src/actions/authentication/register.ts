@@ -73,6 +73,10 @@ export async function register(values: z.infer<typeof registerSchema>) {
       body:`<h1>Your Token: ${verificationtoken.token}</h1>` 
     });
 
+    if(sendVerificationToken){
+      return {success: "Email sent!"}
+    }
+
 
   } catch (error) {
     console.log(error);

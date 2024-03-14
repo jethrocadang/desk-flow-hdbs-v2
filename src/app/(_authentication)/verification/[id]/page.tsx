@@ -3,7 +3,7 @@ import Image from 'next/image'
 import frameSignup from '@/public/img/authImage/frameSignup.png';
 import hotDog from '@/public/img/authImage/hotdog.png';
 import ImageSignup from '@/public/img/authImage/imgSignup.png';
-import OtpForm from '@/components/ui/segments/segmentForAuth/otpForm';
+import OtpForm from '@/components/ui/segments/auth/otpForm';
 import Link from 'next/link'
 import { getUserById } from '@/data/user';
 

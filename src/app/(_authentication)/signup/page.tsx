@@ -3,7 +3,7 @@ import Image from 'next/image'
 import frameSignup from '@/public/img/authImage/frameSignup.png';
 import hotDog from '@/public/img/authImage/hotdog.png';
 import ImageSignup from '@/public/img/authImage/imgSignup.png';
-import SignUpForm from '@/components/ui/segments/segmentForAuth/signUpForm';
+import SignUpForm from '@/components/ui/segments/auth/signUpForm';
 import Link from 'next/link'
 import { FcGoogle } from "react-icons/fc";
 import { Button } from "@/components/ui/shadcn/button"

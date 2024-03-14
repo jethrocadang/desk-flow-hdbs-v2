@@ -10,10 +10,12 @@ export default {
       async authorize(credentials) {
         const validatedData = loginSchema.safeParse(credentials);
 
+
         if (validatedData.success) {
           const { email, password } = validatedData.data;
 
           const user = await getUserByEmail(email);
+          if(!user || !user.password) return null
 
           const passwordMatch = await compare(password, user.password);
 
@@ -21,6 +23,7 @@ export default {
             return user
           }
         }
+
 
         return null
       },

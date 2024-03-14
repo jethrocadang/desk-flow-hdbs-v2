@@ -2,11 +2,11 @@
 import Image from "next/image";
 import React from "react";
 import TopNav from "@/components/ui/toplevelComponents/TopNav";
-import Header from "@/components/ui/segments/segmentsForHomePage/header";
-import WebDetails from "@/components/ui/segments/segmentsForHomePage/webDetails";
-import Amenities from "@/components/ui/segments/segmentsForHomePage/amenities";
-import Tutorial from "@/components/ui/segments/segmentsForHomePage/tutorial";
-import Benifits from "@/components/ui/segments/segmentsForHomePage/benifits";
+import Header from "@/components/ui/segments/home/header";
+import WebDetails from "@/components/ui/segments/home/webDetails";
+import Amenities from "@/components/ui/segments/home/amenities";
+import Tutorial from "@/components/ui/segments/home/tutorial";
+import Benifits from "@/components/ui/segments/home/benifits";
 import Footer from "@/components/ui/toplevelComponents/Footer";
 
 export default function Home() {

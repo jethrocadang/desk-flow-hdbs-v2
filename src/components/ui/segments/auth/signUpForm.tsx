@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { MdEmail, MdKey } from "react-icons/md";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/shadcn/input";
 import { FiUser } from "react-icons/fi";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 import Button from "@/components/ui/toplevelComponents/Button";
 import {
   Form,
@@ -22,8 +23,9 @@ import { withConfirmPassSchema } from "@/schemas/userSchema";
 import { register } from "@/actions/authentication/register";
 
 export default function SignUpForm() {
-    // TODO Add form status for buttons
-
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   // form validation
   //checking for every user passe in form is valid
@@ -42,9 +44,12 @@ export default function SignUpForm() {
   const handleSubmit = async (
     values: z.infer<typeof withConfirmPassSchema>
   ) => {
-     register(values)
-      
-    
+    startTransition(() => {
+      register(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
+    });
   };
 
   // Tosee pass
@@ -73,6 +78,7 @@ export default function SignUpForm() {
                             <Input
                               placeholder="first name"
                               className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                              disabled={isPending}
                               {...field}
                             />
                           </FormControl>
@@ -101,6 +107,7 @@ export default function SignUpForm() {
                             <Input
                               placeholder="last name"
                               className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                              disabled={isPending}
                               {...field}
                             />
                           </FormControl>
@@ -130,6 +137,7 @@ export default function SignUpForm() {
                         <Input
                           placeholder="Email"
                           className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                          disabled={isPending}
                           {...field}
                         />
                       </FormControl>
@@ -158,6 +166,7 @@ export default function SignUpForm() {
                           type={showPass ? "text" : "password"}
                           placeholder="************"
                           className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                          disabled={isPending}
                           {...field}
                         />
                       </FormControl>
@@ -199,6 +208,7 @@ export default function SignUpForm() {
                           type={showConfirmPass ? "text" : "password"}
                           placeholder="************"
                           className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                          disabled={isPending}
                           {...field}
                         />
                       </FormControl>
@@ -225,9 +235,15 @@ export default function SignUpForm() {
                 );
               }}
             />
-
+            <p>{error}</p>
+            <p>{success}</p>
             <div className="h-12 mt-5">
-              <Button size="custom" variant="primary" type="submit">
+              <Button
+                size="custom"
+                variant="primary"
+                type="submit"
+                disabled={isPending}
+              >
                 Sign Up
               </Button>
             </div>
