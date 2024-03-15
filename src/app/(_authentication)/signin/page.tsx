@@ -5,10 +5,10 @@ import hotDog from "@/public/img/authImage/hotdog.png";
 import ImageAuth from "@/public/img/authImage/authimage.png";
 import SignInForm from "@/components/ui/segments/auth/signinForm";
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import { Button } from "@/components/ui/shadcn/button";
+import { GoogleButton } from "@/components/ui/segments/auth/googleButton";
 
-export default function page() {
+
+export default function Page() {
   return (
     <div>
       <div className="max-md:relative bg-white h-screen w-full ">
@@ -61,14 +61,7 @@ export default function page() {
                   </div>
                 </div>
                 <div className="mt-5">
-                  {/* Button for google */}
-                  <Button
-                    variant="outline"
-                    className="w-full h-12 drop-shadow l rounded-xl border border-slate-400"
-                  >
-                    <FcGoogle className="text-3xl " />
-                    &nbsp;&nbsp;Continue with Google
-                  </Button>
+                  <GoogleButton/>
                 </div>
                 {/* devider */}
                 <div className=" flex w-full justify-center mt-4">

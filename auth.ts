@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
+
 import authConfig from "auth.config";
 import { db } from "@/lib/prisma";
 import { getUserById } from "@/data/user";
@@ -13,6 +14,8 @@ declare module "next-auth" {
   }
 }
 
+
+
 // Auth configuration
 export const {
   handlers: { GET, POST },
@@ -24,15 +27,15 @@ export const {
   session: { strategy: "jwt" },
   callbacks: {
     // Check if Email Verfied, if not "You shall not pass!!!"
-    async signIn({user}){
+    // async signIn({user}){
 
-      const existingUser = getUserById(user.id)
-      if(!existingUser && !(await existingUser).emailVerified){
-        return false
-      }
-    },
+    //   const existingUser = getUserById(user.id)
+    //   if(!existingUser && !(await existingUser).emailVerified){
+    //     return false
+    //   }
+    // },
     // Get session {role}
-    async session({ token, session }) {
+    async session({ token, session}) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }
