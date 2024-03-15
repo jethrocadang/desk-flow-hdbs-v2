@@ -1,5 +1,5 @@
 import Credentials from "next-auth/providers/credentials";
-import Google from "next-auth/providers/google";
+import Google from "@auth/core/providers/google"
 
 import { compare } from "bcryptjs";
 import type { NextAuthConfig } from "next-auth";
