@@ -9,6 +9,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import Spinner from "@/components/ui/toplevelComponents/Spinner";
 import { Input } from "@/components/ui/shadcn/input";
 import { Checkbox } from "@/components/ui/shadcn/checkbox";
 import Button from "@/components/ui/toplevelComponents/Button";
@@ -93,10 +94,18 @@ export default function ForgotPasswordForm() {
             }}
           />
           {error && (
-            <Alert variant="destructive">
+            <Alert variant="destructive" className="mt-5">
               <AlertCircle className="h-4 w-4" />
               <AlertTitle>Error</AlertTitle>
               <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
+          {success && (
+            <Alert className="mt-5">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Success</AlertTitle>
+              <AlertDescription>{success}</AlertDescription>
             </Alert>
           )}
 
@@ -107,7 +116,7 @@ export default function ForgotPasswordForm() {
               type="submit"
               disabled={isPending}
             >
-              Confirm Email
+              {isPending ? <Spinner /> : "Send Email"}
             </Button>
           </div>
         </form>

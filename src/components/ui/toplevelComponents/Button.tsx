@@ -16,7 +16,7 @@ const Button = ({ size, variant, onClick, children}:any) => {
       case 'light':
         return'bg-white border border-indigo-600 hover:border text-indigo-900 hover:bg-slate-200 duration-200 hover:text-black';
       default:
-        return 'bg-gray-300 border border-gray-400 text-gray-800 hover:bg-white hover:text-black hover:bg-gray-400  hover:border-gray-400  hover:border duration-200';
+        return 'bg-gray-300 border border-gray-400 text-gray-800 hover:bg-white hover:text-black hover:bg-gray-400  hover:border-gray-400  hover:border duration-200 disable';
     }
   };
   //define the size of the button
