@@ -1,7 +1,13 @@
-export const publicRoutes = ["/", "/contact", "/team", "/forgotPassword"];
+export const publicRoutes = ["/", "/contact", "/team"];
 
-export const authRoutes = ["/signin", "/signup","/verification"];
+export const authRoutes = [
+  "/signin",
+  "/signup",
+  "/verification",
+  "/forgotPassword",
+  "/resetPassword"
+];
 
 export const apiAuthPrefix = "/api/auth";
 
-export const DEFAULT_LOGIN_REDIRECT = "/user/dashboard"
+export const DEFAULT_LOGIN_REDIRECT = "/user/dashboard";
