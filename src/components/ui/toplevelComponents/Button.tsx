@@ -3,6 +3,7 @@ import React from 'react';
 
 
 const Button = ({ size, variant, onClick, children}:any) => {
+  
   // Define variant classes based on the passed prop
   const getVariantClasses = () => {
     switch (variant) {

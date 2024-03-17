@@ -5,8 +5,20 @@ import { useState } from "react";
 import Button from "./Button";
 import { IoClose } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Spinner from "./Spinner";
 
 export default function TopNav() {
+  //button status
+  const [isLoadingSignin, setIsLoadingSignin] = useState(false);
+  const [isLoadingSignup, setIsLoadingSignup] = useState(false);
+
+  const handleClickSignin = ()=>{
+    setIsLoadingSignin(true);
+  };
+
+  const handleClickSignup = ()=>{
+    setIsLoadingSignup(true);
+  };
   // for burger Navigation
   const [navbar, setNavbar] = useState(false);
   return (
@@ -58,8 +70,11 @@ export default function TopNav() {
                 <div className="md:pb-6 w-full text-base md:text-sm font-semibold pt-4 md:px-2 text-center md:hover:bg-transparent">
                   <div className="w-full h-14 md:w-28 md:h-9">
                     <Link href={"/signup"}>
-                      <Button size="custom" variant="secondary">
-                        Sign Up
+                      <Button size="custom" variant="secondary" disabled={isLoadingSignup} onClick={handleClickSignup}>
+                      {isLoadingSignup ? 
+                        <Spinner />
+                        :
+                      "Sign Up"}
                       </Button>
                     </Link>
                   </div>
@@ -67,8 +82,10 @@ export default function TopNav() {
                 <div className="md:pb-6 w-full  text-base md:text-sm font-semibold py-4 md:px-2 text-center md:hover:bg-transparent">
                   <div className="w-full h-14 md:w-28 md:h-9">
                     <Link href={"/signin"}>
-                      <Button size="custom" variant="primary">
-                        Sign In
+                      <Button size="custom" variant="primary" disabled={isLoadingSignin} onClick={handleClickSignin}>
+                      {isLoadingSignin ? 
+                      <Spinner />:
+                      "Sign In"}
                       </Button>
                     </Link>
                   </div>

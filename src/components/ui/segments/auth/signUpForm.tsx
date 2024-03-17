@@ -21,6 +21,7 @@ import {
 
 import { withConfirmPassSchema } from "@/schemas/userSchema";
 import { register } from "@/actions/authentication/register";
+import Spinner from "../../toplevelComponents/Spinner";
 
 export default function SignUpForm() {
   const [isPending, startTransition] = useTransition();
@@ -235,8 +236,9 @@ export default function SignUpForm() {
                 );
               }}
             />
-            <p>{error}</p>
-            <p>{success}</p>
+            
+            <p className="text-red-700 text-center mt-2">{error}</p>
+            <p className="text-green-600 text-center mt-2">{success}</p>
             <div className="h-12 mt-5">
               <Button
                 size="custom"
@@ -244,7 +246,9 @@ export default function SignUpForm() {
                 type="submit"
                 disabled={isPending}
               >
-                Sign Up
+                {isPending ? 
+                <Spinner /> :
+                "Sign Up"}
               </Button>
             </div>
           </div>

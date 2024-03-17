@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useTransition } from "react";
 import Button from "../../toplevelComponents/Button";
 import { verification } from "@/actions/authentication/verification";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { useToast } from "../../shadcn/use-toast";
+import Spinner from "../../toplevelComponents/Spinner";
 const otpSchema = z
   .array(z.string().regex(/^\d$/, "OTP must be a number"))
   .length(6);
@@ -18,7 +19,7 @@ export default function OtpForm() {
   const { toast } = useToast();
 
   // TODO Add form status for buttons
-
+  const [isPending, startTransition] = useTransition();
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   
@@ -42,31 +43,34 @@ export default function OtpForm() {
 
   // Passing credential into server
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    
+      e.preventDefault();
+      // Check for empty inputs
+      // TODO Add toast for handling error
+      if (otp.some((value) => !value)) {
+        setError("All fields are required.");
+        return;
+      }
 
-    // Check for empty inputs
-    // TODO Add toast for handling error
-    if (otp.some((value) => !value)) {
-      setError("All fields are required.");
-      return;
-    }
+      // validate: input must be numbers
+      try {
+        otpSchema.parse(otp);
+      } catch (validationError) {
+        setError("OTP must contain 6 numeric digits.");
+        return;
+      }
 
-    // validate: input must be numbers
-    try {
-      otpSchema.parse(otp);
-    } catch (validationError) {
-      setError("OTP must contain 6 numeric digits.");
-      return;
-    }
-
-    // logic checking of otp input
-    const enteredOtp = otp.join("");
-    await verification(enteredOtp).then((success) => {
-      toast({
-        title: "Email Verified!",
-        description: "You can now Login",
-      }),
-        router.push("/signin");
+      // logic checking of otp input
+      //kuya jeth diko alm san lalagay transition hehe
+    startTransition( async () =>{
+      const enteredOtp = otp.join("");
+      await verification(enteredOtp).then((success) => {
+        toast({
+          title: "Email Verified!",
+          description: "You can now Login",
+        }),
+          router.push("/signin");
+      });
     });
   };
 
@@ -96,9 +100,12 @@ export default function OtpForm() {
               variant="primary"
               size="custom"
               type="submit"
+              disabled={isPending}
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
             >
-              Verify
+              {isPending ? 
+              <Spinner />:
+              "Verify"}
             </Button>
           </div>
         </div>

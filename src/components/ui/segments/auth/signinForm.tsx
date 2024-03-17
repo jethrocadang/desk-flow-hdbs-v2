@@ -6,7 +6,7 @@ import Link from "next/link";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import Spinner from "@/components/ui/toplevelComponents/Spinner";
 import { Input } from "@/components/ui/shadcn/input";
 import { Checkbox } from "@/components/ui/shadcn/checkbox";
 import Button from "@/components/ui/toplevelComponents/Button";
@@ -69,7 +69,7 @@ export default function SignInForm() {
                     <FormControl>
                       <Input
                         placeholder="Email"
-                        className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                        className={`pl-12 py-6 border bg-sky-50 ${error ? "border-red-700" : "border-violet-900"}`}
                         disabled={isPending}
                         {...field}
                       />
@@ -97,7 +97,7 @@ export default function SignInForm() {
                       <Input
                         type={showPass ? "text" : "password"}
                         placeholder="************"
-                        className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                        className={`pl-12 py-6 border bg-sky-50 ${error ? "border-red-700" : "border-violet-900"}`}
                         disabled={isPending}
                         {...field}
                       />
@@ -158,10 +158,13 @@ export default function SignInForm() {
               Fogot Password?
             </Link>
           </div>
-          <p>{error}</p>
+          <p className="text-red-700 text-center mt-2">{error}</p>
+          <p className="text-green-600 text-center mt-2">{success}</p>
           <div className="h-12 mt-5">
             <Button size="custom" variant="primary" type="submit" disabled={isPending}>
-              Login
+              {isPending ? 
+              <Spinner />:
+              "Login"}
             </Button>
           </div>
         </form>

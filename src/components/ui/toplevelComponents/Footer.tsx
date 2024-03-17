@@ -1,12 +1,18 @@
 'use client';
 
-import React from 'react'
+import React, { useState } from 'react'
 import Image from "next/image";
 import Link from 'next/link'
 import Button from './Button';
 import Bgimage from '@/public/img/footer/bg-footer.png';
+import Spinner from './Spinner';
 
 export default function Footer() {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = ()=>{
+    setIsActive(true);
+  }
   return (
     <div className=' mt-10'>
       <div className='h-96 w-full relative'  >
@@ -16,11 +22,16 @@ export default function Footer() {
           {/* Header */}
           <div>
             <h1 className='text-blue-900 font-bold text-5xl max-lg:text-3xl max-md:text-2xl duration-300'>Unlock Your Productive <br /> Workspace Today! </h1>
-            <div className=' mt-8 text-sm font-semibold text-white'>
-              {/* Custtom button */}
-              <Button size='large' variant="primary"  onClick={() => alert('Primary button clicked')}>
-                Sign Up
-              </Button>
+            <div className="w-28 h-9 mt-8 text-white text-sm font-semibold ">
+              <Link href={"/signup"}>
+                <Button size="custom" variant="primary" disabled={isActive} onClick={handleClick}>   
+                {isActive ? 
+                  <Spinner />
+                    :
+                  "Sign Up"
+                }
+                </Button>
+              </Link>
             </div>
 
             {/* Content Links */}

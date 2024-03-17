@@ -1,11 +1,17 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Button from "@/components/ui/toplevelComponents/Button";
 import headerImage from "@/public/img/homepage/Company-amico1.png";
 import Link from "next/link";
+import Spinner from "../../toplevelComponents/Spinner";
 
 export default function Header() {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = ()=> {
+    setIsActive(true)
+  }
   return (
     <div>
       <div className="bg-white max-lg:my-11 max-md:pt-12">
@@ -26,8 +32,14 @@ export default function Header() {
             </div>
             <div>
               <Link href={"/signin"}>
-                <Button size="large" variant="primary">
-                  Book Now
+                <Button size="large" variant="primary" disabled={isActive} onClick={handleClick}>
+                  {isActive ? 
+                  <div className="mx-7">
+                    <Spinner />
+                  </div>
+                      :
+                    "Book Now"
+                  }
                 </Button>
               </Link>
             </div>
