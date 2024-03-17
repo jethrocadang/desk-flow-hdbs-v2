@@ -47,8 +47,14 @@ export default function ForgotPasswordForm() {
 
   //  handle for submit
   const handleSubmit = (values: z.infer<typeof forgotPasswordSchema>) => {
+    setError("");
+    setSuccess("");
+
     startTransition(() => {
-      forgotPassword(values).then((data) => setError(data.error));
+      forgotPassword(values).then((data) => {
+        setError(data.error);
+        setSuccess(data?.success);
+      });
     });
   };
 
@@ -90,9 +96,7 @@ export default function ForgotPasswordForm() {
             <Alert variant="destructive">
               <AlertCircle className="h-4 w-4" />
               <AlertTitle>Error</AlertTitle>
-              <AlertDescription>
-                {error}
-              </AlertDescription>
+              <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
 

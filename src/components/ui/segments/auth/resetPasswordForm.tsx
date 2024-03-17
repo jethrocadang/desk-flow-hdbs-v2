@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import { useState, useTransition } from "react";
-import { MdEmail, MdKey } from "react-icons/md";
-import * as z from "zod";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
+import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/shadcn/input";
-import { FiUser } from "react-icons/fi";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+import { MdKey } from "react-icons/md";
+import { Input } from "@/components/ui/shadcn/input";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "@/components/ui/toplevelComponents/Button";
 import {
   Form,
@@ -18,37 +18,45 @@ import {
   FormLabel,
   FormControl,
 } from "@/components/ui/shadcn/form";
+import Spinner from "@/components/ui/toplevelComponents/Spinner";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/shadcn/alert";
+import { AlertCircle } from "lucide-react";
 
-import { withConfirmPassSchema } from "@/schemas/userSchema";
-import { register } from "@/actions/authentication/register";
-import Spinner from "../../toplevelComponents/Spinner";
+import { resetPasswordSchema } from "@/schemas/userSchema";
+import { resetPassword } from "@/actions/authentication/resetPassword";
 
 export default function ResetPasswordForm() {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
+
   // form validation
   //checking for every user passe in form is valid
-  const form = useForm<z.infer<typeof withConfirmPassSchema>>({
-    resolver: zodResolver(withConfirmPassSchema),
+  const form = useForm<z.infer<typeof resetPasswordSchema>>({
+    resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
   //  handle for submit
   // TODO Add toast for handling errors
-  const handleSubmit = async (
-    values: z.infer<typeof withConfirmPassSchema>
-  ) => {
+  const handleSubmit = async (values: z.infer<typeof resetPasswordSchema>) => {
+    setError("");
+    setSuccess("");
+
     startTransition(() => {
-      register(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+      resetPassword(values, token).then((data) => {
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };
@@ -148,8 +156,22 @@ export default function ResetPasswordForm() {
               }}
             />
 
-            <p className="text-red-700 text-center mt-2">{error}</p>
-            <p className="text-green-600 text-center mt-2">{success}</p>
+            {error && (
+              <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+
+            {success && (
+              <Alert className="mt-5">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Success</AlertTitle>
+                <AlertDescription>{success}</AlertDescription>
+              </Alert>
+            )}
+
             <div className="h-12 mt-5">
               <Button
                 size="custom"

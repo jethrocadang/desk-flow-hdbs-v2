@@ -9,14 +9,17 @@ import { generatePasswordResetToken } from "@/lib/tokens";
 export async function forgotPassword(
   values: z.infer<typeof forgotPasswordSchema>
 ) {
+  // Server side data validation
   const validatedData = forgotPasswordSchema.safeParse(values);
 
   if (!validatedData.success) {
     return { error: "Invalid Email!" };
   }
 
+  // Destructure
   const { email } = validatedData.data;
 
+  // Check if email exists
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser) {
@@ -24,25 +27,28 @@ export async function forgotPassword(
     return { error: "You do not have an account yet!" };
   }
 
+  // Check if email exists but no password
   if (existingUser && !existingUser.password) {
     console.log("2");
     return { error: "Please sign in with your email (SSO) !" };
   }
 
+  // Generate token for user
+  const token = generatePasswordResetToken(email);
+  // I put my domain in .env for easy update
+  const domain = process.env.NEXT_PUBLIC_APP_URL;
+  // Create your Link
+  const resetLink = `${domain}/resetPassword/?=${token}`;
+  // I need full name
   const fullName = `${existingUser.firstName} ${existingUser.lastName}`;
 
-  const token = generatePasswordResetToken(email)
-  const domain = process.env.NEXT_PUBLIC_APP_URL;
-
-
-  const sendResetLink = await sendMail({
+  // Send the reset Link
+  await sendMail({
     to: email,
     name: fullName,
-    subject: "OTP",
-    body: `<h1>Your Token: ${domain}/forgotPassword?=${token}</h1>`,
+    subject: "Reset Password",
+    body: `<p>Reset link ${resetLink}</p>`,
   });
 
-  if (sendResetLink){
-    return {success: "Please Check your Email"}
-  }
+  return { success: "Please Check your Email" };
 }
