@@ -1,5 +1,7 @@
 import * as z from "zod";
 
+
+/**This schema accepts values from sign in form */
 export const loginSchema = z.object({
   // Email datatype asign
   email: z.string().email({
@@ -11,6 +13,8 @@ export const loginSchema = z.object({
   checkBox: z.boolean().default(false).optional(),
 });
 
+
+/**This schema accepts values from sign up but excludes confirm password  */
 export const registerSchema = z.object({
   // Email datatype asign
   firstName: z.string().min(6, {
@@ -32,6 +36,8 @@ export const registerSchema = z.object({
     }),
 });
 
+
+/**This schema accepts values from sign up form and includes confirm password  */
 export const withConfirmPassSchema = registerSchema
   .extend({
     confirmPassword: z.string().min(12, {
@@ -41,3 +47,11 @@ export const withConfirmPassSchema = registerSchema
     path: ["confirmPassword"],
     message: "Password do not match",
   });
+
+
+  /** */
+  export const forgotPasswordSchema = z.object({
+    email: z.string().email({
+      message:"Please enter a valid email."
+    })
+  })
