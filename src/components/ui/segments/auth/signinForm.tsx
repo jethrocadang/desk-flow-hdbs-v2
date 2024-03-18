@@ -152,7 +152,7 @@ export default function SignInForm() {
             />
 
             <Link
-              href="/forgotPassword"
+              href="/forgot-password"
               className="text-sm text-blue-900 hover:text-blue-500"
             >
               Fogot Password?

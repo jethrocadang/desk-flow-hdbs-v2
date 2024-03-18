@@ -89,7 +89,7 @@ export default function Page() {
                     Not registered yet?
                   </span>
                   <Link
-                    href={"/signup"}
+                    href={"/sign-up"}
                     className="text-xs text-blue-900 hover:text-blue-500 font-semibold"
                   >
                     Create an account

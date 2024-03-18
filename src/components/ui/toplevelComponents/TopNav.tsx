@@ -69,7 +69,7 @@ export default function TopNav() {
               <div className="h-screen max-md:mx-5 md:pr-5 md:h-auto items-center justify-center md:flex w-full duration-300">
                 <div className="md:pb-6 w-full text-base md:text-sm font-semibold pt-4 md:px-2 text-center md:hover:bg-transparent">
                   <div className="w-full h-14 md:w-28 md:h-9">
-                    <Link href={"/signup"}>
+                    <Link href={"/sign-up"}>
                       <Button size="custom" variant="secondary" disabled={isLoadingSignup} onClick={handleClickSignup}>
                       {isLoadingSignup ? 
                         <Spinner />
@@ -81,7 +81,7 @@ export default function TopNav() {
                 </div>
                 <div className="md:pb-6 w-full  text-base md:text-sm font-semibold py-4 md:px-2 text-center md:hover:bg-transparent">
                   <div className="w-full h-14 md:w-28 md:h-9">
-                    <Link href={"/signin"}>
+                    <Link href={"/sign-in"}>
                       <Button size="custom" variant="primary" disabled={isLoadingSignin} onClick={handleClickSignin}>
                       {isLoadingSignin ? 
                       <Spinner />:

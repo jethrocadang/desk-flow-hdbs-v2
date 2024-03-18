@@ -82,7 +82,7 @@ export default function Page() {
                     Remembered your Password? &nbsp; 
                   </span>
                   <Link
-                    href={"/signin"}
+                    href={"/sign-in"}
                     className="text-xs text-blue-900 hover:text-blue-500 font-semibold"
                   >
                     Sign In
