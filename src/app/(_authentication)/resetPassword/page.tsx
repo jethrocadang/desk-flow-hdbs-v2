@@ -45,7 +45,7 @@ export default function Page() {
                   <div className="flex justify-between gap-5">
                     <div className="flex flex-col gap-5">
                       <h2 className="text-4xl text-blue-900 font-bold ">
-                        Let's reset your password!
+                        Let&apos;s reset your password!
                       </h2>
                       <p className="text-xs text-slate-400">
                         Please enter your new password below to reset your

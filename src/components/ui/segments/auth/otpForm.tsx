@@ -1,75 +1,73 @@
 "use client";
 
-import React, { useRef, useState, useTransition } from "react";
-import Button from "../../toplevelComponents/Button";
+import React, { useRef, useState, useTransition, ChangeEvent, FormEvent } from "react";
+import Button from "@/components/ui/toplevelComponents/Button";
 import { verification } from "@/actions/authentication/verification";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-import { useToast } from "../../shadcn/use-toast";
-import Spinner from "../../toplevelComponents/Spinner";
+import { useToast } from "@/components/ui/shadcn/use-toast";
+import Spinner from "@/components/ui/toplevelComponents/Spinner";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/shadcn/alert";
+import { AlertCircle } from "lucide-react";
+
 const otpSchema = z
   .array(z.string().regex(/^\d$/, "OTP must be a number"))
   .length(6);
 
 export default function OtpForm() {
-  //use Router
   const router = useRouter();
-
-  // use Toast from shadcn
   const { toast } = useToast();
-
-  // TODO Add form status for buttons
   const [isPending, startTransition] = useTransition();
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
-  
-  const inputRefs = useRef(
-    Array(6)
-      .fill(null)
-      .map(() => useRef(null))
-  );
+
+  // useRef for input elements
+  const inputRefs = useRef<HTMLInputElement[]>([]);
 
   const handleInputChange = (index: number, value: string) => {
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
 
-    if (value && index < 5) {
-      inputRefs.current[index + 1].current.focus();
-    } else if (!value && index > 0) {
-      inputRefs.current[index - 1].current.focus();
+    if (value && index < 5 && inputRefs.current[index + 1]) {
+      inputRefs.current[index + 1].focus();
+    } else if (!value && index > 0 && inputRefs.current[index - 1]) {
+      inputRefs.current[index - 1].focus();
     }
   };
 
-  // Passing credential into server
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    
-      e.preventDefault();
-      // Check for empty inputs
-      // TODO Add toast for handling error
-      if (otp.some((value) => !value)) {
-        setError("All fields are required.");
-        return;
-      }
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
 
-      // validate: input must be numbers
-      try {
-        otpSchema.parse(otp);
-      } catch (validationError) {
-        setError("OTP must contain 6 numeric digits.");
-        return;
-      }
+    if (otp.some((value) => !value)) {
+      setError("All fields are required.");
+      return;
+    }
 
-      // logic checking of otp input
-      //kuya jeth diko alm san lalagay transition hehe
-    startTransition( async () =>{
+    try {
+      otpSchema.parse(otp);
+    } catch (validationError) {
+      setError("OTP must contain 6 numeric digits.");
+      return;
+    }
+
+    startTransition(() => {
       const enteredOtp = otp.join("");
-      await verification(enteredOtp).then((success) => {
-        toast({
-          title: "Email Verified!",
-          description: "You can now Login",
-        }),
+      verification(enteredOtp).then((data) => {
+        if (data.success) {
+          toast({
+            title: "Email Verified!",
+            description: "You can now Login",
+          });
           router.push("/signin");
+        } else {
+          setError(data.error || "Verification failed. Please try again.");
+        }
       });
     });
   };
@@ -84,15 +82,20 @@ export default function OtpForm() {
               type="text"
               value={digit}
               onChange={(e) => handleInputChange(index, e.target.value)}
-              ref={inputRefs.current[index]}
+              ref={(input) => inputRefs.current[index] = input as HTMLInputElement}
               maxLength={1}
               className="w-12 h-12 md:w-14 md:h-14 text-center text-2xl border bg-sky-50 border-violet-900 rounded focus:outline-none focus:border-blue-500 focus:bg-white focus:border-2 duration-200"
             />
           ))}
         </div>
-        {/* error */}
         <div className="w-full flex justify-center">
-          {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
+          {error && (
+            <Alert variant="destructive" className="mt-5">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
         </div>
         <div className="w-full flex justify-center">
           <div className="w-full md:w-72 h-12 text-sm">
@@ -101,11 +104,8 @@ export default function OtpForm() {
               size="custom"
               type="submit"
               disabled={isPending}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
             >
-              {isPending ? 
-              <Spinner />:
-              "Verify"}
+              {isPending ? <Spinner /> : "Verify"}
             </Button>
           </div>
         </div>
@@ -113,3 +113,4 @@ export default function OtpForm() {
     </div>
   );
 }
+

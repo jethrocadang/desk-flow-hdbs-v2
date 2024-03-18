@@ -13,16 +13,15 @@ export async function verification(token: string) {
   const verifyToken = await getVerificationTokenByToken(token);
 
   // Check if same token
-  if (!token) {
-    console.log("Invalid Token");
-    return { error: "Invalid Token" };
+  if (!verifyToken) {
+    return { error: "Token does not exists!" };
   }
 
+  
   // Check if not expired
   const hasExpired = new Date(verifyToken.expires) < new Date();
 
   if (hasExpired) {
-    console.log("Token Expired");
     return { error: "Token Expired" };
   }
 
@@ -30,7 +29,6 @@ export async function verification(token: string) {
   const existingUser = await getVerificationTokenByEmail(verifyToken.email);
 
   if (!existingUser) {
-    console.log("Email does not exist!");
     return { error: "Something went wrong!" };
   }
 
