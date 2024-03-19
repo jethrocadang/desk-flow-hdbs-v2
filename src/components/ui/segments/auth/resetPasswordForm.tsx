@@ -49,7 +49,7 @@ export default function ResetPasswordForm() {
 
   //  handle for submit
   // TODO Add toast for handling errors
-  const handleSubmit = async (values: z.infer<typeof resetPasswordSchema>) => {
+  const handleSubmit = (values: z.infer<typeof resetPasswordSchema>) => {
     setError("");
     setSuccess("");
 
