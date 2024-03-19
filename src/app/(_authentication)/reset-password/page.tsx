@@ -5,7 +5,7 @@ import hotDog from "@/public/img/authImage/hotdog.png";
 import ImageSignup from "@/public/img/authImage/imgSignup.png";
 import ResetPasswordForm from "@/components/ui/segments/auth/resetPasswordForm";
 import Link from "next/link";
-import { GoogleButton } from "@/components/ui/segments/auth/googleButton";
+import { Suspense } from "react";
 
 export default function Page() {
   return (
@@ -81,7 +81,9 @@ export default function Page() {
                   {/* inputs segments folder */}
                   <div className="mt-3 w-full flex flex-col">
                     {/* Segments Folder */}
-                    <ResetPasswordForm/>
+                    <Suspense>
+                      <ResetPasswordForm />
+                    </Suspense>
                   </div>
                   <br />
                 </div>

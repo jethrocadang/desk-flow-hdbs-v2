@@ -5,9 +5,9 @@ import hotDog from '@/public/img/authImage/hotdog.png';
 import ImageSignup from '@/public/img/authImage/imgSignup.png';
 import OtpForm from '@/components/ui/segments/auth/otpForm';
 import Link from 'next/link'
-import { getUserById } from '@/data/user';
 
-export default function page() {
+
+export default function Page() {
   return (
     <div>
       <div className='md:relative md:h-screen bg-white w-full '>
