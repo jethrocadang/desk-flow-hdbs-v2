@@ -2,5 +2,12 @@ import { auth } from "auth";
 
 export default async function Page() {
     const session = await auth()
-  return <div>admin {JSON.stringify(session)}</div>;
+  return (
+  <div>
+    admin {JSON.stringify(session)}
+    <div>
+      <p>Desk</p>
+    </div>
+    
+  </div>);
 }
