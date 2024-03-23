@@ -22,8 +22,10 @@ import {
 import { withConfirmPassSchema } from "@/schemas/userSchema";
 import { register } from "@/actions/authentication/register";
 import Spinner from "../../toplevelComponents/Spinner";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -49,6 +51,11 @@ export default function SignUpForm() {
       register(values).then((data) => {
         setError(data.error);
         setSuccess(data.success);
+
+        if(data.success){
+          router.push("/verification")
+        }
+
       });
     });
   };

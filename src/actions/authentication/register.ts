@@ -9,11 +9,9 @@ import { sendMail } from "@/lib/mails";
 import { compileEmailTokenTemplate } from "@/lib/templates/compileEmail";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/prisma";
-import { User } from "@prisma/client";
 
 export async function register(values: z.infer<typeof registerSchema>) {
 
-  let user: User;
   try {
     // data validation
     const validatedData = registerSchema.safeParse(values);
@@ -36,7 +34,7 @@ export async function register(values: z.infer<typeof registerSchema>) {
     }
 
     // Create User
-     user = await db.user.create({
+      await db.user.create({
       data: {
         firstName,
         lastName,
@@ -81,6 +79,4 @@ export async function register(values: z.infer<typeof registerSchema>) {
   } catch (error) {
     console.log(error);
   }
-
-  redirect(`/verification`)
 }
