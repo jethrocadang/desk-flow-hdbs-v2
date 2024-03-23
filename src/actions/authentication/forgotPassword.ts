@@ -38,7 +38,7 @@ export async function forgotPassword(
   // I put my domain in .env for easy update
   const domain = process.env.NEXT_PUBLIC_APP_URL;
   // Create your Link
-  const resetLink = `${domain}/resetPassword/?=${token.token}`;
+  const resetLink = `${domain}/reset-password?token=${token.token}`;
   // I need full name
   const fullName = `${existingUser.firstName} ${existingUser.lastName}`;
 
