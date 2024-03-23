@@ -35,9 +35,10 @@ export default auth((req) => {
     return null;
   }
 
+  //TODO Callback URL
   // Check if login: true && is in public route, if login redirect to default
   if (!isLoggedIn && !isPublicRoute) {
-    return Response.redirect(new URL("/signin", nextUrl));
+    return Response.redirect(new URL("/sign-in", nextUrl));
   }
   return null;
 });
