@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useRef, useState, useTransition, ChangeEvent, FormEvent } from "react";
+import React, {
+  useRef,
+  useState,
+  useTransition,
+  ChangeEvent,
+  FormEvent,
+} from "react";
 import Button from "@/components/ui/toplevelComponents/Button";
 import { verification } from "@/actions/authentication/verification";
 import * as z from "zod";
@@ -82,7 +88,9 @@ export default function OtpForm() {
               type="text"
               value={digit}
               onChange={(e) => handleInputChange(index, e.target.value)}
-              ref={(input) => inputRefs.current[index] = input as HTMLInputElement}
+              ref={(input) =>
+                (inputRefs.current[index] = input as HTMLInputElement)
+              }
               maxLength={1}
               className="w-12 h-12 md:w-14 md:h-14 text-center text-2xl border bg-sky-50 border-violet-900 rounded focus:outline-none focus:border-blue-500 focus:bg-white focus:border-2 duration-200"
             />
@@ -113,4 +121,3 @@ export default function OtpForm() {
     </div>
   );
 }
-
