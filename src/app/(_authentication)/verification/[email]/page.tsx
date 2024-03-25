@@ -65,11 +65,11 @@ export default function Page({ params }: { params: { email: string } }) {
                   </div>
 
                   {/* inputs segments folder */}
-                  <div className="mt-3 w-full flex flex-col">
+                  <div className="mt-3 w-full flex flex-col ">
                     {/* segments folder */}
                     <OtpForm />
                   </div>
-                  <div className="mt-14 flex justify-center ">
+                  <div className="mt-2.5 flex justify-center ">
                     <ResendButton email={decodedEmail} />
                   </div>
                   <br />

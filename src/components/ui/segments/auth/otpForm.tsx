@@ -81,6 +81,7 @@ export default function OtpForm() {
   return (
     <div className="flex justify-center items-center max-md:z-40">
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        
         <div className="flex space-x-4">
           {otp.map((digit, index) => (
             <input
@@ -96,8 +97,7 @@ export default function OtpForm() {
             />
           ))}
         </div>
-        <div className="w-full flex justify-center">
-        </div>
+        <div className="w-full flex justify-center"></div>
         <div className="w-full flex justify-center">
           <div className="w-full md:w-72 h-12 text-sm">
             <Button
@@ -111,12 +111,14 @@ export default function OtpForm() {
           </div>
         </div>
         {error && (
-            <Alert variant="destructive" className="mt-5">
-              <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
+          <Alert variant="destructive" className="mt-5 ">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+
+      
       </form>
     </div>
   );
