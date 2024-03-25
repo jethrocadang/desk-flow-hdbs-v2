@@ -22,7 +22,7 @@ export async function login(values: z.infer<typeof loginSchema>) {
   //If User is not Verified & tried to login send verficaction token
   const existingUser = await getUserByEmail(email);
 
-  if (!existingUser || !existingUser.email || existingUser.password) {
+  if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email is not registered!" };
   }
 
