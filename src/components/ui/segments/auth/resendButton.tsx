@@ -71,7 +71,7 @@ export default function ResendButton({ email }: { email: string }) {
         </Alert>
       )}
       {success && (
-        <Alert variant="destructive" className="mt-5">
+        <Alert variant="success" className="mt-5">
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>{success}</AlertDescription>
         </Alert>
