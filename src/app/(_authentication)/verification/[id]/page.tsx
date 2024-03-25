@@ -8,7 +8,9 @@ import Link from "next/link";
 import ResendButton from "@/components/ui/segments/auth/resendButton";
 
 export default function Page({ params }: { params: { email: string } }) {
+  // Take email from URL & decode the email from URL
   const email = params.email;
+  const decodedEmail = decodeURIComponent(email)
 
   return (
     <div>
@@ -68,7 +70,7 @@ export default function Page({ params }: { params: { email: string } }) {
                     <OtpForm />
                   </div>
                   <div className="mt-14 flex justify-center ">
-                    <ResendButton email={email} />
+                    <ResendButton email={decodedEmail} />
                   </div>
                   <br />
                 </div>

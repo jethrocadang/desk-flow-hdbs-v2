@@ -53,7 +53,7 @@ export default function SignUpForm() {
         setSuccess(data.success);
 
         if(data.success){
-          router.push(`/verficication/${values.email}`)
+          router.push(`/verification/${values.email}`)
         }
       });
     });
