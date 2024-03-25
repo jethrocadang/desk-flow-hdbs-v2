@@ -51,6 +51,10 @@ export default function SignUpForm() {
       register(values).then((data) => {
         setError(data.error);
         setSuccess(data.success);
+
+        if(data.success){
+          router.push(`/verficication/${values.email}`)
+        }
       });
     });
   };

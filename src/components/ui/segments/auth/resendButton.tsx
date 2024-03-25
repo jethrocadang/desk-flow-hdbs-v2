@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/shadcn/alert";
 import { AlertCircle } from "lucide-react";
 
-export default function ResendButton({ id }: { id: string }) {
+export default function ResendButton({ email }: { email: string }) {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(5);
   const [error, setError] = useState("");
@@ -37,11 +37,16 @@ export default function ResendButton({ id }: { id: string }) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSuccess("");
+    setError("");
     setMinutes(0);
     setSeconds(3);
 
     startTransition(() => {
-      resendOtp(id).then((data) => {});
+      resendOtp(email).then((data) => {
+        setSuccess(data.success);
+        setError(data.error);
+      });
     });
   };
 

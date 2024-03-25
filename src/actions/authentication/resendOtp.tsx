@@ -1,16 +1,15 @@
 "use server";
 
-import { getUserById } from "@/data/user";
+import { getUserByEmail, getUserById } from "@/data/user";
 import { getVerificationTokenByEmail } from "@/data/verificationToken";
 import { sendMail } from "@/lib/mails";
 import { db } from "@/lib/prisma";
 import { generateToken } from "@/lib/tokens";
 
-export async function resendOtp(id: string) {
+export async function resendOtp(email: string) {
   // Get user, use the email
   try {
-    const user = await getUserById(id);
-    const email = user.email;
+    const user = await getUserByEmail(email);
     const oldToken = await getVerificationTokenByEmail(email);
 
     if (!oldToken) {

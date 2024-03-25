@@ -77,7 +77,6 @@ export async function register(values: z.infer<typeof registerSchema>) {
     console.log(error);
   }
 
-  redirect(`/verification/${user.id}`);
 }
 
 //TODO Fix redirect

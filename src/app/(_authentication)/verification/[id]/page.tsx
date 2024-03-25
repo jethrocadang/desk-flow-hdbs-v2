@@ -7,8 +7,8 @@ import OtpForm from "@/components/ui/segments/auth/otpForm";
 import Link from "next/link";
 import ResendButton from "@/components/ui/segments/auth/resendButton";
 
-export default function Page({ params }: { params: { id: string } }) {
-  const id = params.id;
+export default function Page({ params }: { params: { email: string } }) {
+  const email = params.email;
 
   return (
     <div>
@@ -68,7 +68,7 @@ export default function Page({ params }: { params: { id: string } }) {
                     <OtpForm />
                   </div>
                   <div className="mt-14 flex justify-center ">
-                    <ResendButton id={id} />
+                    <ResendButton email={email} />
                   </div>
                   <br />
                 </div>
