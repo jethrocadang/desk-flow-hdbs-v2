@@ -40,7 +40,7 @@ export async function sendMail({
   // Send your Email
   try {
     const sendResult = await transport.sendMail({
-      from: SMTP_EMAIL,
+      from: `"DeskFlow" <${SMTP_EMAIL}>`,
       to,
       subject,
       html: body,
