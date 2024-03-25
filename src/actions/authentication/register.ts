@@ -45,7 +45,7 @@ export async function register(values: z.infer<typeof registerSchema>) {
     });
 
     // Generate Token and store to db
-    const verificationtoken = await generateToken(email);
+    const verificationToken = await generateToken(email);
 
     // Join firstname and lastname
     const fullName = `${firstName} ${lastName}`;
@@ -67,9 +67,8 @@ export async function register(values: z.infer<typeof registerSchema>) {
     //),
     const sendVerificationToken = await sendMail({
       to: email,
-      name: fullName,
       subject: "OTP",
-      body: `<h1>Your Token: ${verificationtoken.token}</h1>`,
+      body: `<h1>Your Token: ${verificationToken.token}</h1>`,
     });
 
     return { success: "Email sent!" };

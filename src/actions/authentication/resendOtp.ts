@@ -26,7 +26,6 @@ export async function resendOtp(email: string) {
   
     const sendVerificationToken = await sendMail({
       to: email,
-      name: user.firstName,
       subject: "OTP",
       body: `<h1>Your Token: ${newToken.token}</h1>`,
     });

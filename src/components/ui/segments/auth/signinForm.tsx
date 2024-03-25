@@ -26,12 +26,15 @@ import { AlertCircle } from "lucide-react";
 
 import { loginSchema } from "@/schemas/userSchema";
 import { login } from "@/actions/authentication/login";
+import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
   //Pending states 
   const [isPending, startTransition] = useTransition();
   const[error, setError] = useState("")
   const[success, setSuccess] = useState("")
+
+  const router = useRouter();
 
 
   // form validation
@@ -49,6 +52,10 @@ export default function SignInForm() {
     startTransition(() => {
       login(values).then((data)=>{
         setError(data.error)
+
+        if(data.verification){
+          router.push(`/verification/${values.email}`)
+        }
       })
     });
   };

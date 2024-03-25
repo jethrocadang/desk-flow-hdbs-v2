@@ -46,7 +46,7 @@ export default function ResendButton({ email }: { email: string }) {
         clearInterval(interval); // Stops interval whenever the component unmounts
       };
     }
-  }, [seconds]); // Re-run everytime seconds changes;
+  }, [seconds, minutes, isPending]); // Re-run everytime seconds changes;
 
   //Submit button
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -74,7 +74,7 @@ export default function ResendButton({ email }: { email: string }) {
   }`;
 
   return (
-    <form onSubmit={handleSubmit} className=" flex flex-col w-1/2 px-3">
+    <form onSubmit={handleSubmit} className=" flex flex-col w-1/2 px-3 mt-2">
       {/** Error UIs */}
       {error && (
         <Alert variant="destructive" className="mt-5">
@@ -100,7 +100,7 @@ export default function ResendButton({ email }: { email: string }) {
       </div>
 
       {/**Text && Button */}
-      <div className="flex justify-center" >
+      <div className="flex justify-center mt-1" >
         <span className="text-black text-xs">Didn&apos;t get a code?</span>{" "}
         <button
           type="submit"

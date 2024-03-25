@@ -69,7 +69,7 @@ export default function Page({ params }: { params: { email: string } }) {
                     {/* segments folder */}
                     <OtpForm />
                   </div>
-                  <div className="mt-2.5 flex justify-center ">
+                  <div className="mt-2.5 flex justify-center select-none">
                     <ResendButton email={decodedEmail} />
                   </div>
                   <br />
