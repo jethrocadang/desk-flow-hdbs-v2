@@ -97,13 +97,6 @@ export default function OtpForm() {
           ))}
         </div>
         <div className="w-full flex justify-center">
-          {error && (
-            <Alert variant="destructive" className="mt-5">
-              <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
         </div>
         <div className="w-full flex justify-center">
           <div className="w-full md:w-72 h-12 text-sm">
@@ -117,6 +110,13 @@ export default function OtpForm() {
             </Button>
           </div>
         </div>
+        {error && (
+            <Alert variant="destructive" className="mt-5">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
       </form>
     </div>
   );

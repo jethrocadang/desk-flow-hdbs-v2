@@ -35,7 +35,7 @@ export async function register(values: z.infer<typeof registerSchema>) {
     }
 
     // Create User
-   user = await db.user.create({
+    user = await db.user.create({
       data: {
         firstName,
         lastName,
@@ -72,12 +72,12 @@ export async function register(values: z.infer<typeof registerSchema>) {
       body: `<h1>Your Token: ${verificationtoken.token}</h1>`,
     });
 
-    if (sendVerificationToken) {
-      return { success: "Email sent!" };
-    }
+    return { success: "Email sent!" };
   } catch (error) {
     console.log(error);
   }
 
-  redirect(`/verification/${user.id}`)
+  redirect(`/verification/${user.id}`);
 }
+
+//TODO Fix redirect

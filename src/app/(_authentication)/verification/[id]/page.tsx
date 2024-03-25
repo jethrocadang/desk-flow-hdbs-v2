@@ -10,7 +10,6 @@ import ResendButton from "@/components/ui/segments/auth/resendButton";
 export default function Page({ params }: { params: { id: string } }) {
   const id = params.id;
 
-  console.log(id)
   return (
     <div>
       <div className="md:relative md:h-screen bg-white w-full ">
@@ -68,12 +67,8 @@ export default function Page({ params }: { params: { id: string } }) {
                     {/* segments folder */}
                     <OtpForm />
                   </div>
-                  <div className="mt-14 flex justify-center">
-                    <span className="text-black text-xs">
-                      Didn&apos;t get a code?
-                    </span>
-                    
-                 <ResendButton id={id}/>
+                  <div className="mt-14 flex justify-center ">
+                    <ResendButton id={id} />
                   </div>
                   <br />
                 </div>
