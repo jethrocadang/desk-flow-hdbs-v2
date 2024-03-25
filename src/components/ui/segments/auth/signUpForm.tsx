@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/shadcn/input";
 import { FiUser } from "react-icons/fi";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AlertCircle } from "lucide-react";
 
 import Button from "@/components/ui/toplevelComponents/Button";
 import {
@@ -18,6 +19,8 @@ import {
   FormLabel,
   FormControl,
 } from "@/components/ui/shadcn/form";
+
+import { Alert, AlertDescription } from "../../shadcn/alert";
 
 import { withConfirmPassSchema } from "@/schemas/userSchema";
 import { register } from "@/actions/authentication/register";
@@ -43,19 +46,11 @@ export default function SignUpForm() {
   });
 
   //  handle for submit
-  // TODO Add toast for handling errors
-  const handleSubmit = async (
-    values: z.infer<typeof withConfirmPassSchema>
-  ) => {
+  const handleSubmit = (values: z.infer<typeof withConfirmPassSchema>) => {
     startTransition(() => {
       register(values).then((data) => {
         setError(data.error);
         setSuccess(data.success);
-
-        if(data.success){
-          router.push("/verification")
-        }
-
       });
     });
   };
@@ -186,12 +181,12 @@ export default function SignUpForm() {
                         {showPass ? (
                           <FaEye
                             onClick={() => setShowPass(false)}
-                            className="text-black text-2xl"
+                            className="text-black text-2xl select-none"
                           />
                         ) : (
                           <FaEyeSlash
                             onClick={() => setShowPass(true)}
-                            className="text-black text-2xl"
+                            className="text-black text-2xl select-none"
                           />
                         )}
                       </div>
@@ -209,7 +204,7 @@ export default function SignUpForm() {
                 return (
                   <FormItem>
                     {/* label */}
-                    <FormLabel>confirmPassword</FormLabel>
+                    <FormLabel>Confirm Password</FormLabel>
                     <div className="relative flex flex-col">
                       <FormControl>
                         <Input
@@ -228,12 +223,12 @@ export default function SignUpForm() {
                         {showConfirmPass ? (
                           <FaEye
                             onClick={() => setShowConfirmPass(false)}
-                            className="text-black text-2xl"
+                            className="text-black text-2xl select-none"
                           />
                         ) : (
                           <FaEyeSlash
                             onClick={() => setShowConfirmPass(true)}
-                            className="text-black text-2xl"
+                            className="text-black text-2xl select-none"
                           />
                         )}
                       </div>
@@ -243,9 +238,20 @@ export default function SignUpForm() {
                 );
               }}
             />
-            
-            <p className="text-red-700 text-center mt-2">{error}</p>
-            <p className="text-green-600 text-center mt-2">{success}</p>
+            {error && (
+              <Alert variant="destructive" className="mt-5">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+
+            {success && (
+              <Alert className="mt-5">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{success}</AlertDescription>
+              </Alert>
+            )}
+
             <div className="h-12 mt-5">
               <Button
                 size="custom"
@@ -253,9 +259,7 @@ export default function SignUpForm() {
                 type="submit"
                 disabled={isPending}
               >
-                {isPending ? 
-                <Spinner /> :
-                "Sign Up"}
+                {isPending ? <Spinner /> : "Sign Up"}
               </Button>
             </div>
           </div>

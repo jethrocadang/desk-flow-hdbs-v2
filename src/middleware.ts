@@ -20,7 +20,17 @@ export default auth((req) => {
   // Import your routes and define the routes
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+  // const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+
+  const isAuthRoute = authRoutes.some((route) => {
+    // Using .includes() will not work for dynamic routes: used string manipulation instead.
+    if (route.includes("/:")) {
+      const regex = new RegExp(`^${route.replace(/:[^\s/]+/g, "[^/]+")}$`);
+      return regex.test(nextUrl.pathname);
+    } else {
+      return route === nextUrl.pathname;
+    }
+  });
 
   // allow API auth route for Auth.js
   if (isApiAuthRoute) {
@@ -34,6 +44,8 @@ export default auth((req) => {
     }
     return null;
   }
+
+  console.log(isAuthRoute);
 
   //TODO Callback URL
   // Check if login: true && is in public route, if login redirect to default

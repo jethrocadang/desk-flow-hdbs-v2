@@ -19,11 +19,15 @@ import {
   FormControl,
 } from "@/components/ui/shadcn/form";
 
+import { Alert, AlertDescription } from "../../shadcn/alert";
+import { AlertCircle } from "lucide-react";
+
+
+
 import { loginSchema } from "@/schemas/userSchema";
 import { login } from "@/actions/authentication/login";
 
 export default function SignInForm() {
-  // TODO add error & success UI
   //Pending states 
   const [isPending, startTransition] = useTransition();
   const[error, setError] = useState("")
@@ -158,8 +162,20 @@ export default function SignInForm() {
               Fogot Password?
             </Link>
           </div>
-          <p className="text-red-700 text-center mt-2">{error}</p>
-          <p className="text-green-600 text-center mt-2">{success}</p>
+          {error && (
+              <Alert variant="destructive" className="mt-5">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+
+            {success && (
+              <Alert className="mt-5">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{success}</AlertDescription>
+              </Alert>
+            )}
+
           <div className="h-12 mt-5">
             <Button size="custom" variant="primary" type="submit" disabled={isPending}>
               {isPending ? 
