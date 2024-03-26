@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter} from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,6 +34,7 @@ export default function ResetPasswordForm() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
@@ -48,7 +49,6 @@ export default function ResetPasswordForm() {
   });
 
   //  handle for submit
-  // TODO Add toast for handling errors
   const handleSubmit = (values: z.infer<typeof resetPasswordSchema>) => {
     setError("");
     setSuccess("");
@@ -57,6 +57,10 @@ export default function ResetPasswordForm() {
       resetPassword(values, token).then((data) => {
         setError(data?.error);
         setSuccess(data?.success);
+
+        if(data.success){
+          router.push("/sign-in")
+        }
       });
     });
   };

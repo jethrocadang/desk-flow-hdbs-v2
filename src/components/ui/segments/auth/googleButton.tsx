@@ -24,6 +24,7 @@ export function GoogleButton() {
         variant="outline"
         className="w-full h-12 drop-shadow l rounded-xl border border-slate-400"
         onClick={() => onClick("google")}
+        disabled={isActive}
       >
         {isActive ? 
             <Spinner />
