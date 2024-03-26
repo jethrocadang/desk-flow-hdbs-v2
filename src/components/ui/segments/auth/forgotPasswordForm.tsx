@@ -51,6 +51,7 @@ export default function ForgotPasswordForm() {
       forgotPassword(values).then((data) => {
         setError(data.error);
         setSuccess(data?.success);
+        
       });
     });
   };
