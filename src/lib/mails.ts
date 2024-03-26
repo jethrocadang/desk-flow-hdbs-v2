@@ -16,7 +16,6 @@ export async function sendMail({
   const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
 
 
-  //TODO FIX ERROR IN PRDCUTION (NOT SENDING)
   // Create your transporter
   const transport = nodemailer.createTransport({
     host: "smtp.gmail.com",
