@@ -4,12 +4,10 @@ import nodemailer from "nodemailer"
 
 export async function sendMail({
   to,
-  name,
   subject,
   body,
 }: {
   to: string;
-  name: string;
   subject: string;
   body: string;
 }) {
@@ -18,7 +16,6 @@ export async function sendMail({
   const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
 
 
-  //TODO FIX ERROR IN PRDCUTION (NOT SENDING)
   // Create your transporter
   const transport = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -42,7 +39,7 @@ export async function sendMail({
   // Send your Email
   try {
     const sendResult = await transport.sendMail({
-      from: SMTP_EMAIL,
+      from: `"DeskFlow" <${SMTP_EMAIL}>`,
       to,
       subject,
       html: body,

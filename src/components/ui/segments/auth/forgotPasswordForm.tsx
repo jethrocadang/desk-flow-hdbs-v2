@@ -1,17 +1,14 @@
 "use client";
 import React, { useState, useTransition } from "react";
 import { MdEmail, MdKey } from "react-icons/md";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AlertCircle } from "lucide-react";
 
-import Link from "next/link";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Spinner from "@/components/ui/toplevelComponents/Spinner";
 import { Input } from "@/components/ui/shadcn/input";
-import { Checkbox } from "@/components/ui/shadcn/checkbox";
 import Button from "@/components/ui/toplevelComponents/Button";
 import {
   Form,
@@ -24,7 +21,6 @@ import {
 import {
   Alert,
   AlertDescription,
-  AlertTitle,
 } from "@/components/ui/shadcn/alert";
 
 import { forgotPasswordSchema } from "@/schemas/userSchema";
@@ -55,6 +51,7 @@ export default function ForgotPasswordForm() {
       forgotPassword(values).then((data) => {
         setError(data.error);
         setSuccess(data?.success);
+        
       });
     });
   };
@@ -96,7 +93,6 @@ export default function ForgotPasswordForm() {
           {error && (
             <Alert variant="destructive" className="mt-5">
               <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
@@ -104,7 +100,6 @@ export default function ForgotPasswordForm() {
           {success && (
             <Alert className="mt-5">
               <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Success</AlertTitle>
               <AlertDescription>{success}</AlertDescription>
             </Alert>
           )}

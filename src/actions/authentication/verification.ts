@@ -7,7 +7,7 @@ import {
   getVerificationTokenByToken,
 } from "@/data/verificationToken";
 
-
+//TODO ADD time
 export async function verification(token: string) {
   // Get token from db by token  
   const verifyToken = await getVerificationTokenByToken(token);
@@ -48,4 +48,3 @@ export async function verification(token: string) {
   
 }
 
-//TODO ADD REDIRECT

@@ -45,7 +45,6 @@ export async function forgotPassword(
   // Send the reset Link
   await sendMail({
     to: email,
-    name: fullName,
     subject: "Reset Password",
     body: `<p>Reset link ${resetLink}</p>`,
   });
