@@ -44,3 +44,8 @@ I use genarate layout.tsx in admin in order to combine the header and the sidena
  it contains the deskEdit  
 
  this tab is for the Desk Overview and Desk Edittor 
+
+
+# Added 
+  some modification in code, including in desk-edit file 
+  and add and finish the desk edit tab

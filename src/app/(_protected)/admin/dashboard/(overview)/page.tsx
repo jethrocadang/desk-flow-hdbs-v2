@@ -11,5 +11,6 @@ export default async function Page() {
       <div>
         <Tabs />
       </div>
-  </div>);
-}
+  </div>
+  )
+;}

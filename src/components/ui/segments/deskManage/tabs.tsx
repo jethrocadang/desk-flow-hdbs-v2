@@ -14,10 +14,10 @@ export default function Tabs() {
             <Tab className="bg-[#DAE4FF] px-10 py-2 rounded-xl rounded-b-none  text-sm focus:drop-shadow-md">Desk Editor</Tab>
           </Tab.List>
           <Tab.Panels className="" >
-            <Tab.Panel className=" rounded-tl-none rounded-xl bg-[#ECF1FF]  p-3 drop-shadow-md h-[600px]">
+            <Tab.Panel className=" rounded-tl-none rounded-xl bg-[#ECF1FF]  p-3 drop-shadow-md h-[620px]">
               
             </Tab.Panel>
-            <Tab.Panel className=" rounded-tl-none rounded-xl bg-[#DAE4FF]  p-3 drop-shadow-md h-[600px]">
+            <Tab.Panel className=" rounded-tl-none rounded-xl bg-[#DAE4FF]  p-3 drop-shadow-md h-[620px]">
               <DeskEdit />
             </Tab.Panel>
           </Tab.Panels>

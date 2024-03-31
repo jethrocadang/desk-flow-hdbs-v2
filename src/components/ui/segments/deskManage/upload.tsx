@@ -73,7 +73,7 @@ export default function Upload() {
   
   //if no files
   return (
-    <div>
+    <div className='h-full w-full flex justify-center items-center'>
       {!files && 
         <div className={dropStyle}
         onDragOver={handleDragOver}
