@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Button from "@/components/ui/toplevelComponents/Button";
+import Button from "@/components/ui/utils/Button";
 import headerImage from "@/public/img/homepage/Company-amico1.png";
 import Link from "next/link";
-import Spinner from "../../toplevelComponents/Spinner";
+import Spinner from "../utils/Spinner";
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);

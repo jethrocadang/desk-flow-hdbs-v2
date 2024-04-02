@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MdKey } from "react-icons/md";
 import { Input } from "@/components/ui/shadcn/input";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Button from "@/components/ui/toplevelComponents/Button";
+import Button from "@/components/ui/utils/Button";
 import {
   Form,
   FormField,
@@ -18,7 +18,7 @@ import {
   FormLabel,
   FormControl,
 } from "@/components/ui/shadcn/form";
-import Spinner from "@/components/ui/toplevelComponents/Spinner";
+import Spinner from "@/components/ui/utils/Spinner";
 import {
   Alert,
   AlertDescription,

@@ -2,10 +2,10 @@
 import React from "react";
 import Link from "next/link";
 import { useState } from "react";
-import Button from "./Button";
+import Button from "../ui/utils/Button";
 import { IoClose } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Spinner from "./Spinner";
+import Spinner from "../ui/utils/Spinner";
 
 export default function TopNav() {
   //button status

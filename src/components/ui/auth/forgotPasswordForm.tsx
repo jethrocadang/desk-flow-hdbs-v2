@@ -7,9 +7,9 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import Spinner from "@/components/ui/toplevelComponents/Spinner";
+import Spinner from "@/components/ui/utils/Spinner";
 import { Input } from "@/components/ui/shadcn/input";
-import Button from "@/components/ui/toplevelComponents/Button";
+import Button from "@/components/ui/utils/Button";
 import {
   Form,
   FormField,

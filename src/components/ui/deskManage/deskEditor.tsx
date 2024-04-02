@@ -19,7 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/shadcn/select"
-import { Input } from '../../shadcn/input';
+import { Input } from '../shadcn/input';
 
 export default function DeskEdit() {
   const tabs = [

@@ -10,7 +10,7 @@ import { FiUser } from "react-icons/fi";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AlertCircle } from "lucide-react";
 
-import Button from "@/components/ui/toplevelComponents/Button";
+import Button from "@/components/ui/utils/Button";
 import {
   Form,
   FormField,
@@ -20,11 +20,11 @@ import {
   FormControl,
 } from "@/components/ui/shadcn/form";
 
-import { Alert, AlertDescription } from "../../shadcn/alert";
+import { Alert, AlertDescription } from "../shadcn/alert";
 
 import { withConfirmPassSchema } from "@/schemas/userSchema";
 import { register } from "@/actions/authentication/register";
-import Spinner from "../../toplevelComponents/Spinner";
+import Spinner from "../utils/Spinner";
 import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {

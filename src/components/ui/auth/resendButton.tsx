@@ -11,7 +11,7 @@ import {
 
 import { Alert, AlertDescription } from "@/components/ui/shadcn/alert";
 import { AlertCircle } from "lucide-react";
-import Spinner from "../../toplevelComponents/Spinner";
+import Spinner from "../utils/Spinner";
 
 export default function ResendButton({ email }: { email: string }) {
   // Timer

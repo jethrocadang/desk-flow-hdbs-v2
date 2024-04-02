@@ -3,7 +3,7 @@ import Image from "next/image";
 import frameSignup from "@/public/img/authImage/frameSignup.png";
 import hotDog from "@/public/img/authImage/hotdog.png";
 import ImageSignup from "@/public/img/authImage/imgSignup.png";
-import ResetPasswordForm from "@/components/ui/segments/auth/resetPasswordForm";
+import ResetPasswordForm from "@/components/ui/auth/resetPasswordForm";
 import Link from "next/link";
 import { Suspense } from "react";
 

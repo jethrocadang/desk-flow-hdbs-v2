@@ -1,5 +1,5 @@
 'use client';
-import { Button } from "../../shadcn/button";
+import { Button } from "../shadcn/button";
 
 const Desk = () => {
   const shapes = ['desk1', 'desk2', 'desk3'];

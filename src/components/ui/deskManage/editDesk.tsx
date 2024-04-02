@@ -1,6 +1,6 @@
 'use client';
-import { Button } from "../../shadcn/button";
-import { Input } from "../../shadcn/input";
+import { Button } from "../shadcn/button";
+import { Input } from "../shadcn/input";
 import Status from './status'
 import MultiSelect from "./multiselect";
 import { SelectDepartment } from "./selectDepartment";

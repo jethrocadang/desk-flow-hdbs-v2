@@ -3,9 +3,9 @@
 import React, { useState } from 'react'
 import Image from "next/image";
 import Link from 'next/link'
-import Button from './Button';
+import Button from '../ui/utils/Button';
 import Bgimage from '@/public/img/footer/bg-footer.png';
-import Spinner from './Spinner';
+import Spinner from '../ui/utils/Spinner';
 
 export default function Footer() {
   const [isActive, setIsActive] = useState(false);

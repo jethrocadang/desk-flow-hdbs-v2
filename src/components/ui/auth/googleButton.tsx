@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Button } from "@/components/ui/shadcn/button";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { useState} from "react";
-import Spinner from "../../toplevelComponents/Spinner";
+import Spinner from "../utils/Spinner";
 
 export function GoogleButton() {
    const [isActive, setIsActive] = useState(false);

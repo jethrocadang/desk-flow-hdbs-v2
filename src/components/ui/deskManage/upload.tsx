@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef } from 'react'
-import Button from '../../toplevelComponents/Button';
+import Button from '../utils/Button';
 import { FaRegFileImage } from "react-icons/fa6";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { useState } from 'react';

@@ -7,12 +7,12 @@ import React, {
   ChangeEvent,
   FormEvent,
 } from "react";
-import Button from "@/components/ui/toplevelComponents/Button";
+import Button from "@/components/ui/utils/Button";
 import { verification } from "@/actions/authentication/verification";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/shadcn/use-toast";
-import Spinner from "@/components/ui/toplevelComponents/Spinner";
+import Spinner from "@/components/ui/utils/Spinner";
 import {
   Alert,
   AlertDescription,

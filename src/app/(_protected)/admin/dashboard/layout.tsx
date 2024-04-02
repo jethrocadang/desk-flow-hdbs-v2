@@ -1,25 +1,19 @@
-import React from 'react'
-import SideNav from '@/components/ui/toplevelComponents/SideNav'
-import Header from '@/components/ui/toplevelComponents/Header'
+import React from "react";
+import Header from "@/components/layouts/Header";
+import { SideNav } from "@/components/layouts/sideNav";
 
 export default function DashboardLayout({
-  children, // will be a page or nested layout
+  children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <section>
-      {/* Include shared UI here e.g. a header or sidebar */}
-      {/* topnav */}
-      <div className='flex flex-row'>
-        <SideNav />
-        <div className=" w-full">
-          <Header>Desk Management</Header>
-          <div>
-           {children}
-          </div>
-        </div>
+    <div className="flex flex-row h-screen">
+      <SideNav/>
+      <div className="w-full h-full">
+        <Header />
+        <main className="h-full">{children}</main>
       </div>
-    </section>
-  )
+    </div>
+  );
 }
