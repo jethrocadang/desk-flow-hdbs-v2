@@ -7,17 +7,17 @@ import React, {
   ChangeEvent,
   FormEvent,
 } from "react";
-import Button from "@/components/ui/toplevelComponents/Button";
+import Button from "@/components/utils-ui/Button";
 import { verification } from "@/actions/authentication/verification";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-import { useToast } from "@/components/ui/shadcn/use-toast";
-import Spinner from "@/components/ui/toplevelComponents/Spinner";
+import { useToast } from "@/components/ui/use-toast";
+import Spinner from "@/components/utils-ui/Spinner";
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@/components/ui/shadcn/alert";
+} from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 const otpSchema = z

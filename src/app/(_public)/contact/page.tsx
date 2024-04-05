@@ -1,7 +1,7 @@
 'use client';
 import React from 'react'
 import Image from "next/image";
-import Button from '@/components/ui/toplevelComponents/Button';
+import Button from '@/components/utils-ui/Button';
 import { GrLocation, GrPhone  } from "react-icons/gr";
 import { LuMail } from "react-icons/lu";
 import contact from '@/public/img/contactImg/Contacts.png';

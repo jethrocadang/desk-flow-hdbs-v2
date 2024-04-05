@@ -3,10 +3,10 @@
 import { signIn } from "next-auth/react";
 
 import { FcGoogle } from "react-icons/fc";
-import { Button } from "@/components/ui/shadcn/button";
+import { Button } from "@/components/ui/button";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { useState} from "react";
-import Spinner from "../../toplevelComponents/Spinner";
+import Spinner from "../utils-ui/Spinner";
 
 export function GoogleButton() {
    const [isActive, setIsActive] = useState(false);

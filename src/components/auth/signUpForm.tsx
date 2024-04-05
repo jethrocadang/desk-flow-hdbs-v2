@@ -5,12 +5,12 @@ import { MdEmail, MdKey } from "react-icons/md";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/shadcn/input";
+import { Input } from "@/components/ui/input";
 import { FiUser } from "react-icons/fi";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AlertCircle } from "lucide-react";
 
-import Button from "@/components/ui/toplevelComponents/Button";
+import Button from "@/components/utils-ui/Button";
 import {
   Form,
   FormField,
@@ -18,13 +18,13 @@ import {
   FormMessage,
   FormLabel,
   FormControl,
-} from "@/components/ui/shadcn/form";
+} from "@/components/ui/form";
 
-import { Alert, AlertDescription } from "../../shadcn/alert";
+import { Alert, AlertDescription } from "../ui/alert";
 
 import { withConfirmPassSchema } from "@/schemas/userSchema";
 import { register } from "@/actions/authentication/register";
-import Spinner from "../../toplevelComponents/Spinner";
+import Spinner from "../utils-ui/Spinner";
 import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {

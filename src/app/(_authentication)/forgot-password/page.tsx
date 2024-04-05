@@ -4,8 +4,8 @@ import bgImagaAuth from "@/public/img/authImage/bgAuthentication.png";
 import hotDog from "@/public/img/authImage/hotdog.png";
 import ImageAuth from "@/public/img/authImage/authimage.png";
 import Link from "next/link";
-import { GoogleButton } from "@/components/ui/segments/auth/googleButton";
-import ForgotPasswordForm from "@/components/ui/segments/auth/forgotPasswordForm";
+import { GoogleButton } from "@/components/auth/googleButton";
+import ForgotPasswordForm from "@/components/auth/forgotPasswordForm";
 
 export default function Page() {
   return (

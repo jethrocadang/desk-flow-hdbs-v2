@@ -6,10 +6,10 @@ import Link from "next/link";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Spinner from "@/components/ui/toplevelComponents/Spinner";
-import { Input } from "@/components/ui/shadcn/input";
-import { Checkbox } from "@/components/ui/shadcn/checkbox";
-import Button from "@/components/ui/toplevelComponents/Button";
+import Spinner from "@/components/utils-ui/Spinner";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import Button from "@/components/utils-ui/Button";
 import {
   Form,
   FormField,
@@ -17,9 +17,9 @@ import {
   FormMessage,
   FormLabel,
   FormControl,
-} from "@/components/ui/shadcn/form";
+} from "@/components/ui/form";
 
-import { Alert, AlertDescription } from "../../shadcn/alert";
+import { Alert, AlertDescription } from "../ui/alert";
 import { AlertCircle } from "lucide-react";
 
 

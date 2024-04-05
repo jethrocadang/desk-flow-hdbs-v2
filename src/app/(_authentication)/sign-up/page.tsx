@@ -3,9 +3,9 @@ import Image from "next/image";
 import frameSignup from "@/public/img/authImage/frameSignup.png";
 import hotDog from "@/public/img/authImage/hotdog.png";
 import ImageSignup from "@/public/img/authImage/imgSignup.png";
-import SignUpForm from "@/components/ui/segments/auth/signUpForm";
+import SignUpForm from "@/components/auth/signUpForm";
 import Link from "next/link";
-import { GoogleButton } from "@/components/ui/segments/auth/googleButton";
+import { GoogleButton } from "@/components/auth/googleButton";
 
 export default function Page() {
   return (

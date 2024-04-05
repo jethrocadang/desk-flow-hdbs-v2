@@ -15,10 +15,10 @@ export const loginSchema = z.object({
 /**This schema accepts values from sign up but excludes confirm password  */
 export const registerSchema = z.object({
   // Email datatype asign
-  firstName: z.string().min(6, {
+  firstName: z.string().min(1, {
     message: "required",
   }),
-  lastName: z.string().min(6, {
+  lastName: z.string().min(1, {
     message: "required",
   }),
   email: z.string().email({

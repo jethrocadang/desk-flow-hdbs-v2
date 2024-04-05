@@ -9,9 +9,9 @@ import {
   useTransition,
 } from "react";
 
-import { Alert, AlertDescription } from "@/components/ui/shadcn/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import Spinner from "../../toplevelComponents/Spinner";
+import Spinner from "../utils-ui/Spinner";
 
 export default function ResendButton({ email }: { email: string }) {
   // Timer

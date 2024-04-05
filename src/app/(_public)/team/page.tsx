@@ -1,8 +1,8 @@
 
 'use client';
 import React from 'react'
-import Row1 from '@/components/ui/segments/team/row1';
-import Row2 from '@/components/ui/segments/team/row2';
+import Row1 from '@/components/team/row1';
+import Row2 from '@/components/team/row2';
 
 export default function Teams() {
  

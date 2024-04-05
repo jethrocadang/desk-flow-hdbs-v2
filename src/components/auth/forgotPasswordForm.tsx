@@ -7,9 +7,9 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import Spinner from "@/components/ui/toplevelComponents/Spinner";
-import { Input } from "@/components/ui/shadcn/input";
-import Button from "@/components/ui/toplevelComponents/Button";
+import Spinner from "@/components/utils-ui/Spinner";
+import { Input } from "@/components/ui/input";
+import Button from "@/components/utils-ui/Button";
 import {
   Form,
   FormField,
@@ -17,11 +17,11 @@ import {
   FormMessage,
   FormLabel,
   FormControl,
-} from "@/components/ui/shadcn/form";
+} from "@/components/ui/form";
 import {
   Alert,
   AlertDescription,
-} from "@/components/ui/shadcn/alert";
+} from "@/components/ui/alert";
 
 import { forgotPasswordSchema } from "@/schemas/userSchema";
 import { forgotPassword } from "@/actions/authentication/forgotPassword";

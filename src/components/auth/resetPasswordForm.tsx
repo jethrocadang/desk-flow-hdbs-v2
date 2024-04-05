@@ -7,9 +7,9 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { MdKey } from "react-icons/md";
-import { Input } from "@/components/ui/shadcn/input";
+import { Input } from "@/components/ui/input";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Button from "@/components/ui/toplevelComponents/Button";
+import Button from "@/components/utils-ui/Button";
 import {
   Form,
   FormField,
@@ -17,13 +17,13 @@ import {
   FormMessage,
   FormLabel,
   FormControl,
-} from "@/components/ui/shadcn/form";
-import Spinner from "@/components/ui/toplevelComponents/Spinner";
+} from "@/components/ui/form";
+import Spinner from "@/components/utils-ui/Spinner";
 import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from "@/components/ui/shadcn/alert";
+} from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 import { resetPasswordSchema } from "@/schemas/userSchema";
