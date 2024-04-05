@@ -9,10 +9,10 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="flex flex-row h-screen">
-      <SideNav/>
-      <div className="w-full h-full">
+      <SideNav />
+      <div className="w-full h-screen">
         <Header />
-        <main className="h-full">{children}</main>
+        <main className=" h-[calc(100vh-4rem)]">{children}</main>
       </div>
     </div>
   );
