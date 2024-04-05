@@ -13,7 +13,7 @@ import {
 
 export default function DeskOverview() {
   return (
-    <div className="bg-green-500 h-full w-full flex flex-col justify-center items-center p-5 ">
+    <div className=" h-full w-full flex flex-col justify-center items-center p-5 ">
       <div>
         <Select>
         <SelectTrigger className="w-[180px]">

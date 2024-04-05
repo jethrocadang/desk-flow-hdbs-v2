@@ -2,6 +2,7 @@
 import { Tab } from "@headlessui/react";
 import DeskEdit from "@/components/ui/deskManage/deskEditor";
 import DeskOverview from "./deskOverview";
+import DeskEditor from "./newDeskEditor";
 
 export default function Tabs() {
   return (
@@ -19,8 +20,8 @@ export default function Tabs() {
           <Tab.Panel className=" rounded-tl-none rounded-xl bg-[#ECF1FF]  p-5 drop-shadow-md h-full ">
             <DeskOverview />
           </Tab.Panel>
-          <Tab.Panel className=" rounded-tl-none rounded-xl bg-[#DAE4FF]  p-3 drop-shadow-md h-full">
-            <DeskEdit />
+          <Tab.Panel className=" rounded-tl-none rounded-xl bg-[#DAE4FF] drop-shadow-md h-full  ">
+            <DeskEditor/>
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
