@@ -52,7 +52,7 @@ export const DepartmentForm = () => {
 
   return (
     <div className="bg-white p-5 border border-black rounded-md hidden">
-      <div className="space-y-2 flex flex-col hidden">
+      <div className="space-y-2  flex-col hidden">
         <Label>Departments</Label>
         <ScrollArea className="h-24 w-full rounded-md border bg-white">
           <div className="p-4">
