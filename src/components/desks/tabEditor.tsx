@@ -12,6 +12,7 @@ import { DepartmentForm } from "./departmentForm";
 import { AmenitiesForm } from "./amenitiesForm";
 import { Button } from "../ui/button";
 import { AddFloorButton } from "./addFloorButton";
+import { UploadDropzone } from "@uploadthing/react";
 
 export const Editor = () => {
   return (
@@ -28,21 +29,33 @@ export const Editor = () => {
               <SelectItem value="system">System</SelectItem>
             </SelectContent>
           </Select>
-          <AddFloorButton/>
+          <AddFloorButton />
         </div>
-        <div className=" w-full h-full  flex lg:flex-row flex-col"> 
+        <div className=" w-full h-full  flex lg:flex-row flex-col">
           <div className="my-auto">
+            <UploadDropzone
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                // Do something with the response
+                console.log("Files: ", res);
+                alert("Upload Completed");
+              }}
+              onUploadError={(error: Error) => {
+                // Do something with the error.
+                alert(`ERROR! ${error.message}`);
+              }}
+            />{" "}
             <Image
               src={Map}
               width={1000}
               alt="Floor Map"
-              className="rounded-lg"
+              className="rounded-lg hidden"
             />
           </div>
           <div className="h-full flex flex-col grow p-5 justify-center">
             <DeskForm />
             <DepartmentForm />
-            <AmenitiesForm/>
+            <AmenitiesForm />
           </div>
         </div>
       </div>
