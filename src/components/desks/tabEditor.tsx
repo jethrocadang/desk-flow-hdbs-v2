@@ -31,7 +31,7 @@ export const Editor = () => {
           <AddFloorButton/>
         </div>
         <div className=" w-full h-full  flex lg:flex-row flex-col"> 
-          <div className="">
+          <div className="my-auto">
             <Image
               src={Map}
               width={1000}
