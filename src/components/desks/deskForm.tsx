@@ -16,12 +16,12 @@ import {
 } from "@/components/ui/form";
 
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 import { Input } from "@/components/ui/input";
 
@@ -75,10 +75,10 @@ export const DeskForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 w-full p-5 bg-white hidden"
+        className="space-y-5 w-full p-7 bg-white border border-black rounded-md "
       >
         <div>
-          <h1>Desk Editor</h1>
+          <h1 className="text-xl  font-bold tracking-wide">Desk Editor</h1>
         </div>
         {/**Desk Name */}
         <FormField
@@ -137,7 +137,7 @@ export const DeskForm = () => {
             onChange={setValue}
             defaultOptions={OPTIONS}
             selectFirstItem={false}
-            placeholder="Select frameworks you like..."
+            placeholder="Add Amenities..."
             emptyIndicator={
               <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
                 no results found.
@@ -151,7 +151,7 @@ export const DeskForm = () => {
         <div className="grid w-full gap-1.5">
           <Label>Department</Label>
           <Select>
-            <SelectTrigger className="w-full border border-black">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder="Theme" />
             </SelectTrigger>
             <SelectContent>
@@ -163,9 +163,9 @@ export const DeskForm = () => {
         </div>
         {/**Department*/}
 
-        <div className="flex justify-center bg-green-400">
-        <Button>Save</Button>
-
+        <div className="flex justify-center space-x-5">
+          <Button className="w-[90px]">Save</Button>
+          <Button variant="destructive" className="w-[90px]">Cancel</Button>
         </div>
       </form>
     </Form>

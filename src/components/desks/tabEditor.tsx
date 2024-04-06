@@ -10,14 +10,16 @@ import {
 import { DeskForm } from "./deskForm";
 import { DepartmentForm } from "./departmentForm";
 import { AmenitiesForm } from "./amenitiesForm";
+import { Button } from "../ui/button";
+import { AddFloorButton } from "./addFloorButton";
 
 export const Editor = () => {
   return (
-    <div className="bg-sky-300 h-full p-5">
+    <div className="h-full p-5">
       <div className=" w-full h-full  flex flex-col">
-        <div className="bg-pink-300">
+        <div className=" flex p-2 gap-5">
           <Select>
-            <SelectTrigger className="w-[180px] border border-black">
+            <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Theme" />
             </SelectTrigger>
             <SelectContent>
@@ -26,9 +28,10 @@ export const Editor = () => {
               <SelectItem value="system">System</SelectItem>
             </SelectContent>
           </Select>
+          <AddFloorButton/>
         </div>
         <div className=" w-full h-full  flex lg:flex-row flex-col"> 
-          <div className=" bg-green-300">
+          <div className="">
             <Image
               src={Map}
               width={1000}
@@ -36,7 +39,7 @@ export const Editor = () => {
               className="rounded-lg"
             />
           </div>
-          <div className="h-full bg-purple-300 flex flex-col grow p-5">
+          <div className="h-full flex flex-col grow p-5 justify-center">
             <DeskForm />
             <DepartmentForm />
             <AmenitiesForm/>

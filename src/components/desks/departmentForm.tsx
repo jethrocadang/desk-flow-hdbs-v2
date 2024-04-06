@@ -17,12 +17,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "../ui/scroll-area";
 import { Separator } from "../ui/separator";
-import { Label } from "@radix-ui/react-label";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Badge } from "../ui/badge";
+
 
 const formSchema = z.object({
   department: z.string().min(2, {
     message: "department must be at least 2 characters.",
   }),
+  colors: z.string(),
 });
 
 const tags = Array.from({ length: 50 }).map(
@@ -35,6 +39,7 @@ export const DepartmentForm = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       department: "",
+      colors: "",
     },
   });
 
@@ -46,8 +51,8 @@ export const DepartmentForm = () => {
   }
 
   return (
-    <div className="bg-white p-5 border border-black rounded-md">
-      <div className="">
+    <div className="bg-white p-5 border border-black rounded-md hidden">
+      <div className="space-y-2 flex flex-col hidden">
         <Label>Departments</Label>
         <ScrollArea className="h-24 w-full rounded-md border bg-white">
           <div className="p-4">
@@ -61,13 +66,10 @@ export const DepartmentForm = () => {
             ))}
           </div>
         </ScrollArea>
-        <Button>Add</Button>
+        <Button className="w-[180px]">Add</Button>
       </div>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             control={form.control}
             name="department"
@@ -78,13 +80,46 @@ export const DepartmentForm = () => {
                   <Input placeholder="Department" {...field} />
                 </FormControl>
                 <FormDescription>
-                  This is your public display name.
+                  This will group your desks by department.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <FormField
+            control={form.control}
+            name="colors"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Colors</FormLabel>
+                <FormControl>
+                  <RadioGroup defaultValue="Available">
+                    <div className=" flex justify-between px-7">
+                      <Badge variant="secondary" className="rounded-full">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="Available" id="Available" />
+                        </div>
+                      </Badge>
+                      <Badge variant="secondary">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem
+                            value="Maintenance"
+                            id="Maintenance"
+                          />
+                        </div>
+                      </Badge>
+                      <Badge variant="secondary" className="rounded-full">
+                        <div className="flex items-center rounded-full">
+                          <RadioGroupItem value="Disabled" id="Disabled" />
+                        </div>
+                      </Badge>
+                    </div>
+                  </RadioGroup>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-[180px]">Add Department</Button>
         </form>
       </Form>
     </div>

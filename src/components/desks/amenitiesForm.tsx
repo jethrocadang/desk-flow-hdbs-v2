@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "../ui/scroll-area";
 import { Separator } from "../ui/separator";
-import { Label } from "@radix-ui/react-label";
+import { Label } from "@/components/ui/label";
 
 const formSchema = z.object({
   department: z.string().min(2, {
@@ -46,8 +46,8 @@ export const AmenitiesForm = () => {
   }
 
   return (
-    <div className="bg-white p-5 border border-black rounded-md">
-      <div className="">
+    <div className="bg-white p-5 border border-black rounded-md hidden">
+      <div className="space-y-2">
         <Label>Amenities</Label>
         <ScrollArea className="h-24 w-full rounded-md border bg-white">
           <div className="p-4">
@@ -61,7 +61,7 @@ export const AmenitiesForm = () => {
             ))}
           </div>
         </ScrollArea>
-        <Button>Add</Button>
+        <Button className="w-[180px]">Edit</Button>
       </div>
       <Form {...form}>
         <form
