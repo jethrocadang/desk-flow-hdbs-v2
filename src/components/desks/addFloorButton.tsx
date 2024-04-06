@@ -21,18 +21,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Layers3 } from "lucide-react";
 
 const formSchema = z.object({
   floorName: z.string().min(2, {
@@ -58,7 +59,10 @@ export const AddFloorButton = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="w-[180px]">Add Floor</Button>
+        <Button className="w-[180px] text-black font-semibold gap-3 border border-black">
+          <Layers3 />
+          Add Floor
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -84,14 +88,16 @@ export const AddFloorButton = () => {
             />
             <Select>
               <SelectTrigger className="w-full ">
-                <SelectValue placeholder="Floor Managers"/>
+                <SelectValue placeholder="Floor Managers" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="John Doe">John Doe</SelectItem>
               </SelectContent>
             </Select>
             <DialogFooter>
-              <Button type="submit" className="w-full">Create Floor</Button>
+              <Button type="submit" className="w-full">
+                Create Floor
+              </Button>
             </DialogFooter>
           </form>
         </Form>

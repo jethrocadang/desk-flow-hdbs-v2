@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Map from "@/public/floormap.png";
 import {
@@ -12,7 +14,9 @@ import { DepartmentForm } from "./departmentForm";
 import { AmenitiesForm } from "./amenitiesForm";
 import { Button } from "../ui/button";
 import { AddFloorButton } from "./addFloorButton";
-import { UploadDropzone } from "@uploadthing/react";
+import { UploadDropzone, UploadButton } from "@/utils/uploadthing"
+import { OurFileRouter } from "@/app/api/uploadthing/core";
+import "@uploadthing/react/styles.css";
 
 export const Editor = () => {
   return (
@@ -21,30 +25,32 @@ export const Editor = () => {
         <div className=" flex p-2 gap-5">
           <Select>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Theme" />
+              <SelectValue placeholder="Choose Floor" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
+              <SelectItem value="light">Floor 1</SelectItem>
+              <SelectItem value="dark">Floor 2</SelectItem>
+              <SelectItem value="system">Floor 3</SelectItem>
             </SelectContent>
           </Select>
           <AddFloorButton />
         </div>
         <div className=" w-full h-full  flex lg:flex-row flex-col">
-          <div className="my-auto">
-            <UploadDropzone
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
-                // Do something with the response
-                console.log("Files: ", res);
-                alert("Upload Completed");
-              }}
-              onUploadError={(error: Error) => {
-                // Do something with the error.
-                alert(`ERROR! ${error.message}`);
-              }}
-            />{" "}
+          <div className="flex items-end justify-center h-full">
+            <div className=" ">
+              <UploadButton
+                endpoint="imageUploader"
+                onClientUploadComplete={(res) => {
+                  // Do something with the response
+                  console.log("Files: ", res);
+                  alert("Upload Completed");
+                }}
+                onUploadError={(error: Error) => {
+                  // Do something with the error.
+                  alert(`ERROR! ${error.message}`);
+                }}
+              />
+            </div>
             <Image
               src={Map}
               width={1000}

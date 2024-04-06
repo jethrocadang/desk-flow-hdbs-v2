@@ -75,7 +75,7 @@ export const DeskForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-5 w-full p-7 bg-white border border-black rounded-md "
+        className="space-y-5 w-full p-7 bg-white border border-black rounded-md hidden"
       >
         <div>
           <h1 className="text-xl  font-bold tracking-wide">Desk Editor</h1>
