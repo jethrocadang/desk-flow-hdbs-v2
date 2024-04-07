@@ -15,3 +15,14 @@ export async function getUserById(id: string) {
     return user
   } catch (error) { return null }
 }
+
+export async function getAllUsers() {
+  try {
+    const users = await db.user.findMany({
+
+    })
+    return users
+  } catch (error) {
+    return null
+  }
+}

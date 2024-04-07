@@ -1,8 +1,11 @@
 import { Editor } from "@/components/desks/tabEditor";
 import { Overview } from "@/components/desks/tabOverview";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getAllUsers } from "@/data/user";
 
-export default function DesksPage() {
+export default async function DesksPage() {
+  const users = await getAllUsers();
+
   return (
     <div className=" p-5 h-full">
       <Tabs defaultValue="Overview" className="w-full h-full  ">
@@ -11,10 +14,10 @@ export default function DesksPage() {
           <TabsTrigger value="Editor">Desk Editor </TabsTrigger>
         </TabsList>
         <TabsContent value="Overview">
-            <Overview/>
+          <Overview />
         </TabsContent>
         <TabsContent value="Editor">
-            <Editor/>
+          <Editor users={users} />
         </TabsContent>
       </Tabs>
     </div>

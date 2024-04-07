@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -14,12 +13,19 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Layers3 } from "lucide-react";
+import { floorSchema } from "@/schemas/floorSchema";
+
 import {
   Select,
   SelectContent,
@@ -27,34 +33,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Layers3 } from "lucide-react";
 
-const formSchema = z.object({
-  floorName: z.string().min(2, {
-    message: "Required",
-  }),
-});
+import { createFloor } from "@/actions/floor/floor";
+import { User } from "@prisma/client";
 
-export const AddFloorButton = () => {
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+export const AddFloorButton = ({ users }: { users: User[] }) => {
+
+  console.log("wrorkingsss")
+
+  const form = useForm<z.infer<typeof floorSchema>>({
+    resolver: zodResolver(floorSchema),
     defaultValues: {
       floorName: "",
+      floorManager:"",
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+
+  const onSubmit = (values: z.infer<typeof floorSchema>) => {
+    console.log("workingasdasda")
+    console.log(values)
   }
   return (
     <Dialog>
@@ -86,14 +86,28 @@ export const AddFloorButton = () => {
                 </FormItem>
               )}
             />
-            <Select>
-              <SelectTrigger className="w-full ">
-                <SelectValue placeholder="Floor Managers" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="John Doe">John Doe</SelectItem>
-              </SelectContent>
-            </Select>
+            <FormField
+              control={form.control}
+              name="floorManager"
+              render={({ field }) => (
+                <FormItem>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="w-full ">
+                        <SelectValue placeholder="Floor Managers" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {users.map((user) => (
+                        <SelectItem key={user.id} value={user.name} className="bg-green-500 border border-black">
+                          {user.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
             <DialogFooter>
               <Button type="submit" className="w-full">
                 Create Floor

@@ -40,7 +40,6 @@ model Account {
 
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
   firstName     String?
   lastName      String?
   email         String?   @unique
@@ -72,8 +71,8 @@ model PasswordResetToken {
 
 model Floor {
   id           String @id @default(auto()) @map("_id") @db.ObjectId
-  floorName    String
-  imageUrl     String
+  floorName    String?
+  imageUrl     String?
   floorManager String @db.ObjectId
 
   user User @relation(fields: [floorManager], references: [id], onDelete: Cascade)
