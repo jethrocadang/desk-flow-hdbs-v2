@@ -40,27 +40,22 @@ import { createFloor } from "@/actions/floor/floor";
 import { User } from "@prisma/client";
 
 export const AddFloorButton = ({ users }: { users: User[] }) => {
-
-  console.log("wrorkingsss")
-
   const form = useForm<z.infer<typeof floorSchema>>({
     resolver: zodResolver(floorSchema),
     defaultValues: {
       floorName: "",
-      floorManager:"",
+      floorManager: "",
     },
   });
 
-
   const onSubmit = (values: z.infer<typeof floorSchema>) => {
-    console.log("workingasdasda")
-    console.log(values)
-  }
+    createFloor(values);
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-[180px] text-black font-semibold gap-3 border border-black">
-          <Layers3 />
+        <Button className="w-[180px] text-white font-semibold gap-3 border border-black">
+          <Layers3 className="text-black" />
           Add Floor
         </Button>
       </DialogTrigger>
@@ -91,7 +86,10 @@ export const AddFloorButton = ({ users }: { users: User[] }) => {
               name="floorManager"
               render={({ field }) => (
                 <FormItem>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger className="w-full ">
                         <SelectValue placeholder="Floor Managers" />
@@ -99,8 +97,12 @@ export const AddFloorButton = ({ users }: { users: User[] }) => {
                     </FormControl>
                     <SelectContent>
                       {users.map((user) => (
-                        <SelectItem key={user.id} value={user.name} className="bg-green-500 border border-black">
-                          {user.name}
+                        <SelectItem
+                          key={user.id}
+                          value={user.id}
+                          className="bg-green-500 border border-black"
+                        >
+                          {`${user.firstName} ${user.lastName}`}
                         </SelectItem>
                       ))}
                     </SelectContent>

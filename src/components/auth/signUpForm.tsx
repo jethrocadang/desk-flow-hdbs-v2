@@ -47,16 +47,16 @@ export default function SignUpForm() {
 
   //  handle for submit
   const handleSubmit = (values: z.infer<typeof withConfirmPassSchema>) => {
-    // startTransition(() => {
-    //   register(values).then((data) => {
-    //     setError(data.error);
-    //     setSuccess(data.success);
+    startTransition(() => {
+      register(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
 
-    //     if(data.success){
-    //       router.push(`/verification/${values.email}`)
-    //     }
-    //   });
-    // });
+        if(data.success){
+          router.push(`/verification/${values.email}`)
+        }
+      });
+    });
     console.log(values)
   };
 

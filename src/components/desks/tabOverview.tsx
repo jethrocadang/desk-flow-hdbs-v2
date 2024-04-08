@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Map from "@/public/floormap.png";
+"use client";
+
 import {
   Select,
   SelectContent,
@@ -9,10 +9,12 @@ import {
 } from "@/components/ui/select";
 
 export const Overview = () => {
+
+
   return (
     <div className="bg-sky-300 h-full p-5">
       <div className="  flex lg:flex-row flex-col" >
-        <Select>
+        <Select onValueChange={(value) => (console.log("value:" , value))} >
           <SelectTrigger className="w-[180px] border border-black">
             <SelectValue placeholder="Theme" />
           </SelectTrigger>
@@ -22,12 +24,6 @@ export const Overview = () => {
             <SelectItem value="system">System</SelectItem>
           </SelectContent>
         </Select>
-        <Image
-          src={Map}
-          width={1000}
-          alt="1000"
-          className="rounded-lg mx-auto"
-        />
       </div>
     </div>
   );
