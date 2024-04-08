@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 import { db } from "@/lib/prisma";
 import { floorSchema } from "@/schemas/floorSchema";
@@ -16,20 +16,40 @@ export const createFloor = async (values: z.infer<typeof floorSchema>) => {
     console.log({ "floor name: ": floorName, "floor Manger:": floorManager });
 
     await db.floor.create({
-        data:{
-            floorName,
-            floorManager
-        }
-    })
+      data: {
+        floorName,
+        floorManager,
+      },
+    });
 
     console.log("New floor created successfully.");
 
-    return {success: "New Floor is Created" }
+    return { success: "New Floor is Created" };
   } catch (error) {
     console.error("Error occurred while creating floor:", error);
 
-    return {error: "Something went wrong"}
+    return { error: "Something went wrong" };
   }
 };
 
+export const addImage = async (imageUrl: string, id: string) => {
+  try {
+    console.log("URL:", imageUrl);
+    console.log("ID:", id);
 
+    await db.floor.update({
+      where: {
+        id,
+      },
+      data: {
+        imageUrl,
+      },
+    });
+
+    console.log("success");
+  } catch (error) {
+    console.error("Error occurred while creating floor:", error);
+
+    return { error: "Something went wrong" };
+  }
+};

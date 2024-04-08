@@ -24,7 +24,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Layers3 } from "lucide-react";
-import { floorSchema } from "@/schemas/floorSchema";
+import { addFloorSchema } from "@/schemas/floorSchema";
 
 import {
   Select,
@@ -40,15 +40,15 @@ import { createFloor } from "@/actions/floor/floor";
 import { User } from "@prisma/client";
 
 export const AddFloorButton = ({ users }: { users: User[] }) => {
-  const form = useForm<z.infer<typeof floorSchema>>({
-    resolver: zodResolver(floorSchema),
+  const form = useForm<z.infer<typeof addFloorSchema>>({
+    resolver: zodResolver(addFloorSchema),
     defaultValues: {
       floorName: "",
       floorManager: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof floorSchema>) => {
+  const onSubmit = (values: z.infer<typeof addFloorSchema>) => {
     createFloor(values);
   };
   return (

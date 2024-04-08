@@ -26,6 +26,8 @@ import { floorSchema } from "@/schemas/floorSchema";
 import { Button } from "@/components/ui/button";
 
 import { useState } from "react";
+import DeskEditor from "./editDesk";
+import { addImage } from "@/actions/floor/floor";
 
 export const Editor = ({
   users,
@@ -72,11 +74,13 @@ export const Editor = ({
         <div className=" w-full h-full  flex lg:flex-row flex-col">
           <div className="flex items-end justify-center h-full">
             <div>
-              {selectedFloor ? (
+              <DeskEditor/>
+              {/* {selectedFloor ? (
                 selectedFloor.imageUrl ? (
                   <Image
                     src={selectedFloor.imageUrl}
                     width={1000}
+                    height={1000}
                     alt="Floor Map"
                     className="rounded-lg"
                   />
@@ -84,9 +88,14 @@ export const Editor = ({
                   <UploadDropzone
                     endpoint="imageUploader"
                     onClientUploadComplete={(res) => {
-                      // Do something with the response
                       console.log("Files: ", res);
                       alert("Upload Completed");
+                      const uploadedFile = res[0]; 
+                      const imageUrl = uploadedFile.url;
+                      console.log(imageUrl);
+                      const selectedFloorId = selectedFloor ? selectedFloor.id : null;
+                      console.log("Selected Floor ID:", selectedFloorId);
+                      addImage(imageUrl, selectedFloorId)
                     }}
                     onUploadError={(error: Error) => {
                       // Do something with the error.
@@ -102,13 +111,13 @@ export const Editor = ({
                       },
                       container: "custom-container",
                       allowedContent: "custom-allowed-content",
-                      label: "text-purple"
+                      label: "text-purple",
                     }}
                   />
                 )
               ) : (
                 <p>Please Select a Floor</p>
-              )}
+              )} */}
             </div>
           </div>
           <div className="h-full flex flex-col grow p-5 justify-center"></div>

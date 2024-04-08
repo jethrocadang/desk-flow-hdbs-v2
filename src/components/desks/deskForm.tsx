@@ -75,7 +75,7 @@ export const DeskForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-5 w-full p-7 bg-white border border-black rounded-md hidden"
+        className="space-y-5 p-7 bg-white border border-black rounded-md "
       >
         <div>
           <h1 className="text-xl  font-bold tracking-wide">Desk Editor</h1>
@@ -165,7 +165,9 @@ export const DeskForm = () => {
 
         <div className="flex justify-center space-x-5">
           <Button className="w-[90px]">Save</Button>
-          <Button variant="destructive" className="w-[90px]">Cancel</Button>
+          <Button variant="destructive" className="w-[90px]">
+            Cancel
+          </Button>
         </div>
       </form>
     </Form>
