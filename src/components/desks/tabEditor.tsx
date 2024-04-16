@@ -15,7 +15,7 @@ import { AmenitiesForm } from "./amenitiesForm";
 import { AddFloorButton } from "./addFloorButton";
 import { UploadDropzone, UploadButton } from "@/utils/uploadthing";
 import "@uploadthing/react/styles.css";
-import { Floor, User } from "@prisma/client";
+import { Floor, User, Desk } from "@prisma/client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -26,15 +26,17 @@ import { floorSchema } from "@/schemas/floorSchema";
 import { Button } from "@/components/ui/button";
 
 import { useState } from "react";
-import DeskEditor from "./editDesk";
+import { DeskEditor } from "./editDesk";
 import { addImage } from "@/actions/floor/floor";
 
 export const Editor = ({
   users,
   floors,
+  desks,
 }: {
   users: User[];
   floors: Floor[];
+  desks: Desk[];
 }) => {
   const [selectedFloor, setSelectedFloor] = useState<Floor | null>(null);
 
@@ -54,75 +56,9 @@ export const Editor = ({
     setSelectedFloor(selected || null);
   };
   return (
-    <div className="h-full p-5">
-      <div className=" w-full h-full  flex flex-col">
-        <div className=" flex p-2 gap-5">
-          <Select onValueChange={(value) => handleFloorSelect(value)}>
-            <SelectTrigger className="w-[180px] border border-black">
-              <SelectValue placeholder="Choose Floor" />
-            </SelectTrigger>
-            <SelectContent>
-              {floors.map((floor) => (
-                <SelectItem key={floor.id} value={floor.id}>
-                  {floor.floorName}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <AddFloorButton users={users} />
-        </div>
-        <div className=" w-full h-full  flex lg:flex-row flex-col">
-          <div className="flex items-end justify-center h-full">
-            <div>
-              <DeskEditor/>
-              {/* {selectedFloor ? (
-                selectedFloor.imageUrl ? (
-                  <Image
-                    src={selectedFloor.imageUrl}
-                    width={1000}
-                    height={1000}
-                    alt="Floor Map"
-                    className="rounded-lg"
-                  />
-                ) : (
-                  <UploadDropzone
-                    endpoint="imageUploader"
-                    onClientUploadComplete={(res) => {
-                      console.log("Files: ", res);
-                      alert("Upload Completed");
-                      const uploadedFile = res[0]; 
-                      const imageUrl = uploadedFile.url;
-                      console.log(imageUrl);
-                      const selectedFloorId = selectedFloor ? selectedFloor.id : null;
-                      console.log("Selected Floor ID:", selectedFloorId);
-                      addImage(imageUrl, selectedFloorId)
-                    }}
-                    onUploadError={(error: Error) => {
-                      // Do something with the error.
-                      alert(`ERROR! ${error.message}`);
-                    }}
-                    appearance={{
-                      button({ ready, isUploading }) {
-                        return `bg-purple-btn ${
-                          ready
-                            ? "custom-button-ready"
-                            : "custom-button-not-ready"
-                        } ${isUploading ? "custom-button-uploading" : ""}`;
-                      },
-                      container: "custom-container",
-                      allowedContent: "custom-allowed-content",
-                      label: "text-purple",
-                    }}
-                  />
-                )
-              ) : (
-                <p>Please Select a Floor</p>
-              )} */}
-            </div>
-          </div>
-          <div className="h-full flex flex-col grow p-5 justify-center"></div>
-        </div>
-      </div>
+    <div className="p-5">
+      <div className="bg-sky-100">TOp</div>
+      <DeskEditor desks={desks} />
     </div>
   );
 };

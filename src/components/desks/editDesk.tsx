@@ -1,59 +1,52 @@
-import Map from "@/public/floormap.png";
+"use client";
 
-import React from 'react';
-import { ImageMapper, Area } from 'react-image-mapper';
+import React, { useState, useEffect } from "react";
+import ImageMapper, { MapAreas } from "react-img-mapper";
+import MapImage from "@/public/floormap.png";
+import { Desk } from "@prisma/client";
+import { DeskForm } from "./deskForm";
 
-interface Desk {
-  id: number;
-  x: number;
-  y: number;
-  name: string;
-  description: string;
-  amenities: string;
-  department: string;
-}
+export const DeskEditor = ({ desks }: { desks: Desk[] }) => {
+  const [parentWidth, setParentWidth] = useState(0);
 
-interface DeskMapProps {
-  desks: Desk[];
-  onDeskClick: (desk: Desk) => void;
-  onDeskHover: (desk: Desk, isHovered: boolean) => void;
-}
+  const areas: MapAreas[] = desks
+    ? desks.map((desk) => ({
+        shape: "rect",
+        coords: desk.coords,
+        preFillColor: "#eab54d4d",
+        strokeColor: "gray",
+      }))
+    : [];
 
-const DeskMap: React.FC<DeskMapProps> = ({ desks, onDeskClick, onDeskHover }) => {
-  // Define areas for each desk
-  const areas: Area[] = desks.map((desk) => ({
-    name: desk.id.toString(),
-    shape: 'circle', // or any other shape supported by react-image-mapper
-    coords: [desk.x, desk.y, 10], // x, y, and radius of the circle
-    fillColor: 'rgba(0, 255, 0, 0.5)', // fill color of the clickable area
-    onMouseEnter: () => onDeskHover(desk, true), // Event handler for mouse enter
-    onMouseLeave: () => onDeskHover(desk, false), // Event handler for mouse leave
-    // You can add more properties here if needed
-  }));
+  useEffect(() => {
+    const handleResize = () => {
+      const containerWidth = document.querySelector(".container")?.clientWidth;
+      if (containerWidth) {
+        const scaled = containerWidth * 0.7;
 
-  // Event handler for desk click
-  const handleDeskClick = (area: Area) => {
-    // Find the clicked desk based on its ID
-    const clickedDesk = desks.find((desk) => desk.id.toString() === area.name);
-    // Call the callback function with the clicked desk
-    if (clickedDesk) {
-      onDeskClick(clickedDesk);
-    }
-  };
+        setParentWidth(scaled);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <ImageMapper
-      src="/path/to/your/image.jpg"
-      map={{
-        name: 'desksMap',
-        areas: areas,
-      }}
-      width={800} // Set the width of the image
-      imgWidth={800} // Set the original width of the image
-      onClick={handleDeskClick} // Event handler for click events on areas
-      responsive // Make the map responsive
-    />
+    <div className="flex justify-center items-center bg-pink-100 ">
+      <div className="container flex justify-center items-center  w-full h-full bg-green-200">
+        <ImageMapper
+          src={MapImage.src}
+          parentWidth={parentWidth}
+          responsive={true}
+          map={{ name: "map", areas: areas }}
+        />
+      </div>
+      <div className="bg-blue-200">
+        <DeskForm />
+      </div>
+    </div>
   );
 };
-
-export default DeskMap;

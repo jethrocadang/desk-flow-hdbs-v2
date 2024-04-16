@@ -20,6 +20,6 @@ export const getAllFloors = async () => {
 
         return floors
     } catch (error) {
-        
+        return null
     }
 }

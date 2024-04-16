@@ -19,6 +19,11 @@ enum UserRole {
   FM
 }
 
+enum DeskStatus {
+  AVAILABLE
+  UNAVAILABLE
+}
+
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
@@ -70,10 +75,18 @@ model PasswordResetToken {
 }
 
 model Floor {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
   floorName    String?
   imageUrl     String?
-  floorManager String @db.ObjectId
+  floorManager String  @db.ObjectId
 
-  user User @relation(fields: [floorManager], references: [id], onDelete: Cascade)
+  user User   @relation(fields: [floorManager], references: [id], onDelete: Cascade)
+}
+
+model Desk {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  deskName String?
+  coords   Int[]
+  status   DeskStatus @default(AVAILABLE)
+
 }
