@@ -53,7 +53,7 @@ const OPTIONS: Option[] = [
   { label: "Astro", value: "astro" },
 ];
 
-export const DeskForm = () => {
+export const DeskForm = ({ id }: { id: string }) => {
   const [value, setValue] = useState<Option[]>([]);
 
   // 1. Define your form.

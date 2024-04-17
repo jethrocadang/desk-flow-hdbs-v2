@@ -5,34 +5,29 @@ import ImageMapper, { MapAreas } from "react-img-mapper";
 import MapImage from "@/public/floormap.png";
 import { Desk } from "@prisma/client";
 import { DeskForm } from "./deskForm";
+import { useResize } from "@/hooks/resize";
 
 export const DeskEditor = ({ desks }: { desks: Desk[] }) => {
-  const [parentWidth, setParentWidth] = useState(0);
+  const parentWidth = useResize();
 
-  const areas: MapAreas[] = desks
-    ? desks.map((desk) => ({
-        shape: "rect",
-        coords: desk.coords,
-        preFillColor: "#eab54d4d",
-        strokeColor: "gray",
-      }))
-    : [];
+  const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const containerWidth = document.querySelector(".container")?.clientWidth;
-      if (containerWidth) {
-        const scaled = containerWidth * 0.7;
+  const handleDeskSelect = (desk: Desk) => {
+    setSelectedDesk(desk);
+    console.log("Selected Desk ID:", desk.id);
+  };
 
-        setParentWidth(scaled);
-      }
+  const areas: MapAreas[] = [];
+
+  desks.forEach((item, index) => {
+    areas[index] = {
+      id: item.id,
+      shape: "rect",
+      coords: item.coords,
+      preFillColor: "#eab54d4d",
+      strokeColor: "gray",
     };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  });
 
   return (
     <div className="flex justify-center items-center bg-pink-100 ">
@@ -41,11 +36,18 @@ export const DeskEditor = ({ desks }: { desks: Desk[] }) => {
           src={MapImage.src}
           parentWidth={parentWidth}
           responsive={true}
+          onClick={(e) => {
+            const clickedDesk = desks.find((desk) => desk.id === e.id);
+            if (clickedDesk) {
+              setSelectedDesk(clickedDesk);
+              console.log(clickedDesk.id)
+            }
+          }}
           map={{ name: "map", areas: areas }}
         />
       </div>
       <div className="bg-blue-200">
-        <DeskForm />
+        {selectedDesk && <DeskForm id={selectedDesk.id} />}
       </div>
     </div>
   );
