@@ -32,6 +32,7 @@ import { Badge } from "../ui/badge";
 import MultipleSelector, { Option } from "@/components/ui/multiple-selector";
 
 import { useState } from "react";
+import { Desk } from "@prisma/client";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -53,7 +54,7 @@ const OPTIONS: Option[] = [
   { label: "Astro", value: "astro" },
 ];
 
-export const DeskForm = ({ id }: { id: string }) => {
+export const DeskForm = ({ desk }: { desk: Desk }) => {
   const [value, setValue] = useState<Option[]>([]);
 
   // 1. Define your form.
@@ -88,7 +89,7 @@ export const DeskForm = ({ id }: { id: string }) => {
             <FormItem>
               <FormLabel>Desk Name</FormLabel>
               <FormControl>
-                <Input placeholder="Desk Name" {...field} />
+                <Input placeholder={desk.deskName} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

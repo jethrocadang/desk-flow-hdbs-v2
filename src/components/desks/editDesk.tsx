@@ -47,7 +47,7 @@ export const DeskEditor = ({ desks }: { desks: Desk[] }) => {
         />
       </div>
       <div className="bg-blue-200">
-        {selectedDesk && <DeskForm id={selectedDesk.id} />}
+        {selectedDesk && <DeskForm desk={selectedDesk} />}
       </div>
     </div>
   );

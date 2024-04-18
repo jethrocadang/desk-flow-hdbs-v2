@@ -14,3 +14,17 @@ export const getAllDesks = async () => {
     return null;
   }
 };
+
+export const getDeskById = async (id: string) => {
+  try {
+    const desk = await db.desk.findUnique({
+      where:{
+        id
+      }
+    })
+
+    return desk
+  } catch (error) {
+    return null
+  }
+}
