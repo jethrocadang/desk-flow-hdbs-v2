@@ -5,7 +5,7 @@ import elipse from '@/public/img/homepage/Ellipsee.png';
 export default function Amenities() {
   return (
     <div>
-      <div className=' w-full pt-20 max-md:pt-16'>
+      <div className='container w-full pt-20 max-md:pt-16'>
         <h1 className='text-4xl font-bold	text-blue-900  text-center'>Features and Amenities</h1>
         {/* first Amenities*/}
         <div className=' h-96 w-full flex max-md:flex-col max-md:gap-8 max-md:justify-center max-md:items-center max-md:mt-20'>

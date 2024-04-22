@@ -80,13 +80,22 @@ model Floor {
   imageUrl     String?
   floorManager String  @db.ObjectId
 
-  user User   @relation(fields: [floorManager], references: [id], onDelete: Cascade)
+  user User @relation(fields: [floorManager], references: [id], onDelete: Cascade)
 }
 
 model Desk {
-  id       String     @id @default(auto()) @map("_id") @db.ObjectId
-  deskName String?
-  coords   Int[]
-  status   DeskStatus @default(AVAILABLE)
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  deskName    String?
+  description String?
+  coords      Int[]
+  status      DeskStatus @default(AVAILABLE)
+  amenity     Amenity[]
+}
 
+model Amenity {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  deskId      String? @db.ObjectId
+  amenityName String
+
+  desk Desk? @relation(fields: [deskId], references: [id], onDelete: Cascade)
 }

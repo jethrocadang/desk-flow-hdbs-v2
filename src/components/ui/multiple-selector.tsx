@@ -10,8 +10,8 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 export interface Option {
-  value: string;
-  label: string;
+  value?: string;
+  label?: string;
   disable?: boolean;
   /** fixed option that can't be removed. */
   fixed?: boolean;
@@ -348,7 +348,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       >
         <div
           className={cn(
-            'group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
+            'group rounded-md border px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-purple focus-within:ring-offset-2',
             className,
           )}
         >

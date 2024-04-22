@@ -8,20 +8,11 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 import { Input } from "@/components/ui/input";
 
@@ -31,45 +22,42 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "../ui/badge";
 import MultipleSelector, { Option } from "@/components/ui/multiple-selector";
 
-import { useState } from "react";
-import { Desk } from "@prisma/client";
+import { Amenity, Desk } from "@prisma/client";
+import { deskSchema } from "@/schemas/deskSchema";
+import { updateDesk } from "@/actions/desk/desk";
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-});
+export const DeskForm = ({
+  desk,
+  amenities,
+}: {
+  desk: Desk;
+  amenities: Amenity[];
+}) => {
 
-const OPTIONS: Option[] = [
-  { label: "nextjs", value: "nextjs" },
-  { label: "React", value: "react" },
-  { label: "Remix", value: "remix" },
-  { label: "Vite", value: "vite" },
-  { label: "Nuxt", value: "nuxt" },
-  { label: "Vue", value: "vue" },
-  { label: "Svelte", value: "svelte" },
-  { label: "Angular", value: "angular" },
-  { label: "Ember", value: "ember", disable: true },
-  { label: "Gatsby", value: "gatsby", disable: true },
-  { label: "Astro", value: "astro" },
-];
+  
+  const Amenity: Option[] = amenities.map(
+    (amenity): Option => ({
+      value: amenity.id,
+      label: amenity.amenityName,
+    })
+  );
 
-export const DeskForm = ({ desk }: { desk: Desk }) => {
-  const [value, setValue] = useState<Option[]>([]);
-
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+ 
+  const form = useForm<z.infer<typeof deskSchema>>({
+    resolver: zodResolver(deskSchema),
     defaultValues: {
-      username: "",
+      ...(desk.id && {deskId: desk.id}),
+      deskName: "",
+      ...(desk.status && {status: desk.status}),
+      description: "",
+      amenities: [],
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+
+  function onSubmit(values: z.infer<typeof deskSchema>) {
+    updateDesk(values)
+    console.log(values)
   }
 
   return (
@@ -81,10 +69,22 @@ export const DeskForm = ({ desk }: { desk: Desk }) => {
         <div>
           <h1 className="text-xl  font-bold tracking-wide">Desk Editor</h1>
         </div>
+        <FormField
+          control={form.control}
+          name="deskId"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input value={desk.id} {...field} type="hidden" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         {/**Desk Name */}
         <FormField
           control={form.control}
-          name="username"
+          name="deskName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Desk Name</FormLabel>
@@ -98,74 +98,78 @@ export const DeskForm = ({ desk }: { desk: Desk }) => {
         {/**Desk Name */}
 
         {/**Availabilty */}
-        <RadioGroup defaultValue="Available">
-          <div className=" flex justify-between px-7">
-            <Badge variant="secondary" className="rounded-md">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="Available" id="Available" />
-                <Label htmlFor="Available">Available</Label>
+        <FormField
+          control={form.control}
+          name="status"
+          render={({ field }) => (
+            <RadioGroup
+              defaultValue={desk.status}
+              onValueChange={field.onChange}
+            >
+              <div className=" flex justify-between px-7">
+                <Badge variant="secondary" className="bg-green-400 hover:bg-green-400/80">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="AVAILABLE" id="Available"/>
+                    <Label>Available</Label>
+                  </div>
+                </Badge>
+                <Badge variant="secondary" className="bg-red-400 hover:bg-red-400/80">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="UNAVAILABLE" id="Unavailable" />
+                    <Label>Unavailable</Label>
+                  </div>
+                </Badge>
               </div>
-            </Badge>
-            <Badge variant="secondary">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="Maintenance" id="Maintenance" />
-                <Label htmlFor="Maintenance">Maintenance</Label>
-              </div>
-            </Badge>
-            <Badge variant="secondary">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="Disabled" id="Disabled" />
-                <Label htmlFor="Disabled">Disabled</Label>
-              </div>
-            </Badge>
-          </div>
-        </RadioGroup>
+            </RadioGroup>
+          )}
+        />
         {/**Availabilty */}
 
         {/**Description */}
-        <div className="grid w-full gap-1.5">
-          <Label htmlFor="message">Description</Label>
-          <Textarea placeholder="Describe your desk." id="message" />
-        </div>
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <div className="grid w-full gap-1.5">
+              <Label htmlFor="message">Description</Label>
+              <Textarea
+                placeholder={desk.description || "Desk Description"}
+                {...field}
+              />
+            </div>
+          )}
+        />
         {/**Description */}
 
         {/**Ammenities */}
-        <div className="grid w-full gap-1.5">
-          <Label>Ammenities</Label>
-          <MultipleSelector
-            className="bg-white"
-            value={value}
-            onChange={setValue}
-            defaultOptions={OPTIONS}
-            selectFirstItem={false}
-            placeholder="Add Amenities..."
-            emptyIndicator={
-              <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
-                no results found.
-              </p>
-            }
-          />
-        </div>
+        <FormField
+          control={form.control}
+          name="amenities"
+          render={({ field }) => (
+            <div className="grid w-full gap-1.5">
+              <Label>Ammenities</Label>
+              <MultipleSelector
+                className="bg-white"
+                value={field.value}
+                onChange={field.onChange}
+                defaultOptions={Amenity}
+                selectFirstItem={false}
+                placeholder="Add Amenities..."
+                emptyIndicator={
+                  <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
+                    no results found.
+                  </p>
+                }
+              />
+            </div>
+          )}
+        />
         {/**Ammenities */}
 
-        {/**Department*/}
-        <div className="grid w-full gap-1.5">
-          <Label>Department</Label>
-          <Select>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Theme" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        {/**Department*/}
-
         <div className="flex justify-center space-x-5">
-          <Button className="w-[90px]">Save</Button>
+          <Button className="w-[90px]" type="submit">
+            Save
+          </Button>
           <Button variant="destructive" className="w-[90px]">
             Cancel
           </Button>

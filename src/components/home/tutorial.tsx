@@ -6,7 +6,7 @@ import imgWebDetails from '@/public/img/homepage/img-webDetails.png';
 export default function Tutorial() {
   return (
     <div className='w-full bg-indigo-50'>
-      <div className=' h-screen'>
+      <div className='container h-screen'>
         <div className='w-full h-full my-10'>
           <div className='pt-10 max-md:pt-5'>
             <h1 className='text-4xl font-bold	text-blue-900  text-center'>How it works</h1>

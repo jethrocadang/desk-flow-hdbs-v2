@@ -1,5 +1,3 @@
-"use client";
-import Image from "next/image";
 import React from "react";
 import TopNav from "@/components/utils-ui/TopNav";
 import Header from "@/components/home/header";

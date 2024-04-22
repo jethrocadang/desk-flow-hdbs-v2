@@ -13,7 +13,7 @@ export default function Header() {
     setIsActive(true)
   }
   return (
-    <div>
+    <div className="container">
       <div className="bg-white max-lg:my-11 max-md:pt-12">
         <div className="h-screen w-full max-lg:mt-28 flex max-lg:flex-col-reverse">
           <div className="w-1/2 flex flex-col ml-20  justify-center items-start max-lg:w-full max-lg:ml-0 max-lg:px-10">

@@ -1,22 +1,33 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import ImageMapper, { MapAreas } from "react-img-mapper";
+import ImageMapper, { AreaEvent, MapAreas } from "react-img-mapper";
 import MapImage from "@/public/floormap.png";
-import { Amenity, Desk } from "@prisma/client";
-import { DeskForm } from "./deskForm";
-import { useResize } from "@/hooks/resize";
+import { Desk } from "@prisma/client";
 
-export const DeskEditor = ({
-  desks,
-  amenities,
-}: {
+import { useResize } from "@/hooks/resize";
+import useDesk from "@/hooks/useDesk";
+
+interface Props {
   desks: Desk[];
-  amenities: Amenity[];
+  onMouseEnter?: (e: any) => void;
+  onMouseLeave?: () => void;
+  onDeskSelect?: (e: any) => void;
+}
+
+export const Map: React.FC<Props> = ({
+  desks,
+  onDeskSelect,
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   const parentWidth = useResize();
+  const { selectDesk, selectedDesk, deselectDesk } = useDesk();
 
-  const [selectedDesk, setSelectedDesk] = useState<Desk | null>(null);
+  useEffect(() => {
+    if (typeof onDeskSelect === 'function') {
+        onDeskSelect(selectedDesk);
+      }  }, [selectedDesk, onDeskSelect]);
 
   const areas: MapAreas[] = [];
 
@@ -38,19 +49,18 @@ export const DeskEditor = ({
           parentWidth={parentWidth}
           responsive={true}
           onImageClick={(e) => {
-            setSelectedDesk(null);
+            deselectDesk(null);
           }}
           onClick={(e) => {
             const clickedDesk = desks.find((desk) => desk.id === e.id);
             if (clickedDesk) {
-              setSelectedDesk(clickedDesk);
+              selectDesk(clickedDesk);
             }
           }}
           map={{ name: "map", areas: areas }}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />
-      </div>
-      <div className="bg-blue-200">
-        {selectedDesk && <DeskForm desk={selectedDesk} amenities={amenities} />}
       </div>
     </div>
   );

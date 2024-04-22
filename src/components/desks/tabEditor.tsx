@@ -15,7 +15,7 @@ import { AmenitiesForm } from "./amenitiesForm";
 import { AddFloorButton } from "./addFloorButton";
 import { UploadDropzone, UploadButton } from "@/utils/uploadthing";
 import "@uploadthing/react/styles.css";
-import { Floor, User, Desk } from "@prisma/client";
+import { Floor, User, Desk, Amenity } from "@prisma/client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -33,10 +33,12 @@ export const Editor = ({
   users,
   floors,
   desks,
+  amenities,
 }: {
   users: User[];
   floors: Floor[];
   desks: Desk[];
+  amenities: Amenity[];
 }) => {
   const [selectedFloor, setSelectedFloor] = useState<Floor | null>(null);
 
@@ -56,9 +58,10 @@ export const Editor = ({
     setSelectedFloor(selected || null);
   };
   return (
-    <div className="p-5">
-      <div className="bg-sky-100">TOp</div>
-      <DeskEditor desks={desks} />
+    <div className="container p-0">
+      <div className=" w-full">Top</div>
+      <DeskEditor desks={desks} amenities={amenities} />
+      
     </div>
   );
 };
