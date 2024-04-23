@@ -31,6 +31,7 @@ import useErrAndSucc from "@/hooks/useErrAndSucc";
 import { toast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
 import { CustomArea } from "react-img-mapper";
+import Spinner from "../utils-ui/Spinner";
 
 interface Props {
   desk: Desk;
@@ -44,6 +45,8 @@ export const DeskForm = ({ desk, amenities, onCancel }: Props) => {
   const [success, setSuccess] = useState("");
 
   const router = useRouter();
+
+  
 
   const Amenity: Option[] = amenities.map(
     (amenity): Option => ({
@@ -71,10 +74,11 @@ export const DeskForm = ({ desk, amenities, onCancel }: Props) => {
             title: "Success",
             description: "Desk Updated",
           });
-          router.refresh();
+          router.push("/admin/dashboard/desks");
         }
       });
     });
+
   };
 
   return (

@@ -13,7 +13,13 @@ import { useState } from "react";
 import useDesk from "@/hooks/useDesk";
 import { DeskInfoCard } from "./deskInfo";
 
-export const Overview = ({ desks, amenities }: { desks: Desk[], amenities: Amenity[] }) => {
+export const Overview = ({
+  desks,
+  amenities,
+}: {
+  desks: Desk[];
+  amenities: Amenity[];
+}) => {
   const [isMouseOnMap, setIsMouseOnMap] = useState(false);
   const { selectDesk, selectedDesk } = useDesk();
 
@@ -41,7 +47,9 @@ export const Overview = ({ desks, amenities }: { desks: Desk[], amenities: Ameni
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           />
-          {isMouseOnMap && selectedDesk && <DeskInfoCard desk={selectedDesk}  amenities={amenities}/>}
+          {isMouseOnMap && selectedDesk && (
+            <DeskInfoCard desk={selectedDesk} amenities={amenities} />
+          )}
         </div>
       </div>
     </div>

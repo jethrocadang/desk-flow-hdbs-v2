@@ -11,4 +11,10 @@ export const deskSchema = z.object({
   status: z.enum(["AVAILABLE", "UNAVAILABLE"]),
   description: z.string(),
   amenities: z.array(amenitySchema).min(1),
-});
+}).partial({
+  deskName: true,
+  status: true,
+  description: true,
+  amenities: true,
+})
+

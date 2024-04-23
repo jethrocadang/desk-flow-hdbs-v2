@@ -89,13 +89,13 @@ model Desk {
   description String?
   coords      Int[]
   status      DeskStatus @default(AVAILABLE)
-  amenity     Amenity[]
+  amentyIDs   String[]   @db.ObjectId
+  amenities   Amenity[]  @relation(fields: [amentyIDs], references: [id])
 }
 
 model Amenity {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  deskId      String? @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   amenityName String
-
-  desk Desk? @relation(fields: [deskId], references: [id], onDelete: Cascade)
+  deskIDs     String[] @db.ObjectId
+  desks       Desk[]   @relation(fields: [deskIDs], references: [id])
 }

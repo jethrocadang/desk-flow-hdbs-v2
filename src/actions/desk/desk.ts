@@ -15,9 +15,6 @@ export const updateDesk = async (values: z.infer<typeof deskSchema>) => {
     const { deskId, deskName, status, description, amenities } =
       validateData.data;
 
-    const formattedAmenities = amenities.map((amenity) => ({
-      amenityName: amenity.label,
-    }));
 
     await db.desk.update({
       where: { id: deskId },
@@ -25,9 +22,7 @@ export const updateDesk = async (values: z.infer<typeof deskSchema>) => {
         deskName,
         status,
         description,
-        amenity: {
-          create: formattedAmenities,
-        },
+      
       },
     });
     
