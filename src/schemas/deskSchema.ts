@@ -7,9 +7,7 @@ export const amenitySchema = z.object({
 
 export const deskSchema = z.object({
   deskId: z.string(),
-  deskName: z.string().min(2, {
-    message: "floorName must be at least 2 characters.",
-  }),
+  deskName: z.string(),
   status: z.enum(["AVAILABLE", "UNAVAILABLE"]),
   description: z.string(),
   amenities: z.array(amenitySchema).min(1),

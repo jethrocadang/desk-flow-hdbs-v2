@@ -10,9 +10,9 @@ export const getAllDesks = async () => {
           select: {
             id: true,
             amenityName: true,
-            desk: true
-          }
-        }
+            deskId:true,
+          },
+        },
       },
     });
 
@@ -28,7 +28,21 @@ export const getDeskById = async (id: string) => {
       where: {
         id,
       },
+      select: {
+        id: true,
+        deskName: true,
+        description: true,
+        coords: true,
+        status: true,
+        amenity: {
+          select: {
+            id: true,
+            amenityName: true,
+          },
+        },
+      },
     });
+
 
     return desk;
   } catch (error) {

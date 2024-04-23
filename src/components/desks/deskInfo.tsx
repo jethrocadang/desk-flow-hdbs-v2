@@ -1,4 +1,6 @@
-import { Desk } from "@prisma/client";
+"use client";
+
+import { Desk, Amenity } from "@prisma/client";
 import {
   Card,
   CardContent,
@@ -6,8 +8,16 @@ import {
   CardTitle,
   CardDescription,
 } from "../ui/card";
+import { getAllDesks, getDeskById } from "@/data/desk";
 
-export const DeskInfoCard = ({ desk }: { desk: Desk }) => {
+export const DeskInfoCard = ({
+  desk,
+  amenities,
+}: {
+  desk: Desk;
+  amenities: Amenity[];
+}) => {
+  const data = amenities.filter((amenity) => amenity.deskId === desk.id);
   return (
     <Card>
       <CardHeader>
@@ -18,8 +28,9 @@ export const DeskInfoCard = ({ desk }: { desk: Desk }) => {
       <CardContent>
         <p>Desk Amenities</p>
         <ul>
-          {}
-          <li></li>
+          {data.map((amenity) => (
+            <li key={amenity.id}>{amenity.amenityName}</li>
+          ))}
         </ul>
       </CardContent>
     </Card>

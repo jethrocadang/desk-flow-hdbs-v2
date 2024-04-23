@@ -26,15 +26,25 @@ import { Amenity, Desk } from "@prisma/client";
 import { deskSchema } from "@/schemas/deskSchema";
 import { updateDesk } from "@/actions/desk/desk";
 
-export const DeskForm = ({
-  desk,
-  amenities,
-}: {
+import React, { useTransition, useState } from "react";
+import useErrAndSucc from "@/hooks/useErrAndSucc";
+import { toast } from "../ui/use-toast";
+import { useRouter } from "next/navigation";
+import { CustomArea } from "react-img-mapper";
+
+interface Props {
   desk: Desk;
   amenities: Amenity[];
-}) => {
+  onCancel: (e: CustomArea) => void;
+}
 
-  
+export const DeskForm = ({ desk, amenities, onCancel }: Props) => {
+  const [isPending, startTransition] = useTransition();
+
+  const [success, setSuccess] = useState("");
+
+  const router = useRouter();
+
   const Amenity: Option[] = amenities.map(
     (amenity): Option => ({
       value: amenity.id,
@@ -42,23 +52,30 @@ export const DeskForm = ({
     })
   );
 
- 
   const form = useForm<z.infer<typeof deskSchema>>({
     resolver: zodResolver(deskSchema),
     defaultValues: {
-      ...(desk.id && {deskId: desk.id}),
+      ...(desk.id && { deskId: desk.id }),
       deskName: "",
-      ...(desk.status && {status: desk.status}),
+      ...(desk.status && { status: desk.status }),
       description: "",
       amenities: [],
     },
   });
 
-
-  function onSubmit(values: z.infer<typeof deskSchema>) {
-    updateDesk(values)
-    console.log(values)
-  }
+  const onSubmit = (values: z.infer<typeof deskSchema>) => {
+    startTransition(() => {
+      updateDesk(values).then((data) => {
+        if (data.success) {
+          toast({
+            title: "Success",
+            description: "Desk Updated",
+          });
+          router.refresh();
+        }
+      });
+    });
+  };
 
   return (
     <Form {...form}>
@@ -107,13 +124,19 @@ export const DeskForm = ({
               onValueChange={field.onChange}
             >
               <div className=" flex justify-between px-7">
-                <Badge variant="secondary" className="bg-green-400 hover:bg-green-400/80">
+                <Badge
+                  variant="secondary"
+                  className="bg-green-400 hover:bg-green-400/80"
+                >
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="AVAILABLE" id="Available"/>
+                    <RadioGroupItem value="AVAILABLE" id="Available" />
                     <Label>Available</Label>
                   </div>
                 </Badge>
-                <Badge variant="secondary" className="bg-red-400 hover:bg-red-400/80">
+                <Badge
+                  variant="secondary"
+                  className="bg-red-400 hover:bg-red-400/80"
+                >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="UNAVAILABLE" id="Unavailable" />
                     <Label>Unavailable</Label>
@@ -170,7 +193,13 @@ export const DeskForm = ({
           <Button className="w-[90px]" type="submit">
             Save
           </Button>
-          <Button variant="destructive" className="w-[90px]">
+          <Button
+            variant="destructive"
+            className="w-[90px]"
+            onClick={() => {
+              onCancel(null);
+            }}
+          >
             Cancel
           </Button>
         </div>

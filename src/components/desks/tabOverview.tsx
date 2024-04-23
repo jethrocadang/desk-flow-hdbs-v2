@@ -8,12 +8,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Map } from "./map.";
-import { Desk } from "@prisma/client";
+import { Amenity, Desk } from "@prisma/client";
 import { useState } from "react";
 import useDesk from "@/hooks/useDesk";
 import { DeskInfoCard } from "./deskInfo";
 
-export const Overview = ({ desks }: { desks: Desk[] }) => {
+export const Overview = ({ desks, amenities }: { desks: Desk[], amenities: Amenity[] }) => {
   const [isMouseOnMap, setIsMouseOnMap] = useState(false);
   const { selectDesk, selectedDesk } = useDesk();
 
@@ -41,7 +41,7 @@ export const Overview = ({ desks }: { desks: Desk[] }) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           />
-          {isMouseOnMap && selectedDesk && <DeskInfoCard desk={selectedDesk} />}
+          {isMouseOnMap && selectedDesk && <DeskInfoCard desk={selectedDesk}  amenities={amenities}/>}
         </div>
       </div>
     </div>

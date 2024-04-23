@@ -9,7 +9,7 @@ import {
 
 //TODO ADD time
 export async function verification(token: string) {
-  // Get token from db by token  
+  // Get token from db by token
   const verifyToken = await getVerificationTokenByToken(token);
 
   // Check if same token
@@ -17,7 +17,6 @@ export async function verification(token: string) {
     return { error: "Token does not exists!" };
   }
 
-  
   // Check if not expired
   const hasExpired = new Date(verifyToken.expires) < new Date();
 
@@ -44,7 +43,5 @@ export async function verification(token: string) {
   // Delete the token in the db
   await db.verificationToken.delete({ where: { id: verifyToken.id } });
 
-  return {success: "Email Verfied"}
-  
+  return { success: "Email Verfied" };
 }
-
