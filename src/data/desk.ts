@@ -6,13 +6,7 @@ export const getAllDesks = async () => {
   try {
     const desks = await db.desk.findMany({
       include: {
-        amenity: {
-          select: {
-            id: true,
-            amenityName: true,
-            deskId:true,
-          },
-        },
+        amenities: true
       },
     });
 
@@ -34,12 +28,7 @@ export const getDeskById = async (id: string) => {
         description: true,
         coords: true,
         status: true,
-        amenity: {
-          select: {
-            id: true,
-            amenityName: true,
-          },
-        },
+        amenities: true,
       },
     });
 

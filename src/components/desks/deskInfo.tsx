@@ -17,7 +17,10 @@ export const DeskInfoCard = ({
   desk: Desk;
   amenities: Amenity[];
 }) => {
-  // const data = amenities.filter((amenity) => amenity.deskId === desk.id);
+  const data = amenities.filter((amenity) => desk.amentyIDs.includes(amenity.id));
+  console.log(data)
+
+ 
   return (
     <Card className="w-full my-auto px-5">
       <CardHeader className="px-0">
@@ -38,11 +41,11 @@ export const DeskInfoCard = ({
       <CardContent className="px-0 pt-5">
         <h1 className="font-semibold mb-4">Desk Ammenities</h1>
         <ul>
-          {/* {data.map((amenity) => (
+          {data.map((amenity) => (
             <Badge key={amenity.id}>
               <li key={amenity.id}>{amenity.amenityName}</li>
             </Badge>
-          ))} */}
+          ))}
         </ul>
       </CardContent>
     </Card>

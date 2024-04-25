@@ -19,21 +19,23 @@ export const DeskEditor = ({ desks, amenities }: Props) => {
 
   const areas: MapAreas[] = [];
 
-  desks.forEach((item, index) => {
-    areas[index] = {
-      id: item.id,
-      shape: "rect",
-      coords: item.coords,
-      preFillColor:
-        selectedDesk && selectedDesk.id === item.id
-          ? "rgba(234, 181, 77, 0.5)"
-          : "rgba(234, 181, 77, 0.3)", // Change color if selected
-      strokeColor: "gray",
-    };
-  });
+  if (desks) {
+    desks.forEach((item, index) => {
+      areas[index] = {
+        id: item.id,
+        shape: "rect",
+        coords: item.coords,
+        preFillColor:
+          selectedDesk && selectedDesk.id === item.id
+            ? "rgba(234, 181, 77, 0.5)"
+            : "rgba(234, 181, 77, 0.3)", // Change color if selected
+        strokeColor: "gray",
+      };
+    });
+  }
 
   return (
-    <div className="container my-auto ">
+    <div className="container my-auto p-5">
       <div className=" flex justify-center items-center  ">
         <div className="container flex justify-center items-center  w-full h-full">
           <ImageMapper

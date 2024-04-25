@@ -1,12 +1,5 @@
 "use client";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Map } from "./map.";
 import { Amenity, Desk } from "@prisma/client";
 import { useState } from "react";
@@ -37,6 +30,8 @@ export const Overview = ({
     setIsMouseOnMap(false);
     selectDesk(null);
   };
+
+  //bg-[#DAE4FF]
 
   return (
     <div className="h-full p-5">

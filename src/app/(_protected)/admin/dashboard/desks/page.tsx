@@ -8,9 +8,6 @@ export default async function DesksPage() {
   const amenities = await getAllAmenities();
   const desks = await getAllDesks();
 
-
-  
-
   return (
     <div className=" p-5 h-full">
       <Tabs defaultValue="Overview" className="w-full h-full  ">
@@ -19,7 +16,7 @@ export default async function DesksPage() {
           <TabsTrigger value="Editor">Desk Editor </TabsTrigger>
         </TabsList>
         <TabsContent value="Overview">
-          <Overview desks={desks} amenities={amenities}/>
+          <Overview desks={desks} amenities={amenities} />
         </TabsContent>
         <TabsContent value="Editor" className="flex">
           <DeskEditor desks={desks} amenities={amenities} />

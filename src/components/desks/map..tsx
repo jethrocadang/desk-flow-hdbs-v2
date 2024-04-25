@@ -31,6 +31,7 @@ export const Map: React.FC<Props> = ({
 
   const areas: MapAreas[] = [];
 
+  
   desks.forEach((item, index) => {
     areas[index] = {
       id: item.id,
