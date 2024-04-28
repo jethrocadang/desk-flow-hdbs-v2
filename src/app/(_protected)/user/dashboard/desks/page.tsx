@@ -1,13 +1,14 @@
-import { Booking } from "@/components/desks/deskBooking";
-import { DeskEditor } from "@/components/desks/deskEditor";
+import { BookingTab } from "@/components/desks/deskBooking";
 import { Overview } from "@/components/desks/tabOverview";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getAllAmenities } from "@/data/amenity";
+import { getAllBookings } from "@/data/booking";
 import { getAllDesks } from "@/data/desk";
 
 export default async function DesksPage() {
   const amenities = await getAllAmenities();
   const desks = await getAllDesks();
+  const bookings = await getAllBookings();
 
   return (
     <div className=" p-5 h-full">
@@ -20,7 +21,7 @@ export default async function DesksPage() {
           <Overview desks={desks} amenities={amenities} />
         </TabsContent>
         <TabsContent value="Bookings" className="flex">
-          <Booking desks={desks} amenities={amenities}/>
+          <BookingTab desks={desks} amenities={amenities} bookings={bookings}/>
         </TabsContent>
       </Tabs>
     </div>

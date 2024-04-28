@@ -117,8 +117,8 @@ model Booking {
   userId     String        @db.ObjectId
   date       DateTime
   created_at DateTime      @default(now())
-  updated_at DateTime
-  status     BookingStatus
+  updated_at DateTime?
+  status     BookingStatus @default(BOOKED)
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   desk Desk @relation(fields: [deskId], references: [id], onDelete: Cascade)

@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { date, z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,7 +17,7 @@ import { format } from "date-fns";
 
 import { Input } from "@/components/ui/input";
 
-import { Amenity, Desk } from "@prisma/client";
+import { Amenity, Booking, Desk } from "@prisma/client";
 
 import React, { useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -29,14 +29,16 @@ import { Label } from "../ui/label";
 import { DeskInfoCard } from "./deskInfo";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
+import { createBooking } from "@/actions/bookings/booking";
 
-interface Props {
+type Props = {
   desk: Desk;
+  bookings: Booking[];
   amenities: Amenity[];
   onCancel: (e: CustomArea) => void;
-}
+};
 
-export const BookingForm = ({ desk, amenities, onCancel }: Props) => {
+export const BookingForm = ({ desk, amenities, bookings, onCancel }: Props) => {
   const [isPending, startTransition] = useTransition();
   const user = useCurrentUser();
 
@@ -50,10 +52,64 @@ export const BookingForm = ({ desk, amenities, onCancel }: Props) => {
   });
 
   const onSubmit = (values: z.infer<typeof bookingSchema>) => {
-    console.log("Clicked");
-    console.log(values);
-    console.log(desk.id);
+    createBooking(values);
   };
+
+  const handleDisable = (date: Date) => {
+    const currentBookings = bookings.filter(
+      (booking) => booking.deskId === desk.id
+    );
+
+    for (const booking of currentBookings) {
+      const bookingDate = new Date(booking.date);
+
+      if (date.toDateString() === bookingDate.toDateString()) {
+        return true; // Disable if the date is already booked for this desk
+      }
+    }
+    const currentDate = new Date();
+    const tomorrow = new Date(currentDate);
+    tomorrow.setDate(currentDate.getDate() + 1); // Get tomorrow's date
+    const futureDate = new Date();
+    futureDate.setDate(currentDate.getDate() + 21); // Add 21 days (3 weeks) to the current date
+
+    const dayOfWeek = date.getDay(); // Get the day of the week (0 for Sunday, 1 for Monday, ..., 6 for Saturday)
+    return (
+      dayOfWeek === 0 ||
+      dayOfWeek === 6 ||
+      date <= tomorrow ||
+      date > futureDate
+    );
+  };
+
+  const getDisabledClassName = (date: Date) => {
+    // Specific date to compare against (adjust to UTC)
+    const specificDate = new Date(Date.UTC(2024, 3, 15)); // April is represented by 3 (zero-based)
+    
+    // Convert the provided date to UTC for comparison
+    const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    
+    // Check if the provided date matches the specific date
+    const isSpecificDate = utcDate.toISOString().slice(0, 10) === specificDate.toISOString().slice(0, 10);
+    
+    // Check if any booking matches the provided date
+    const isBooked = bookings.some((booking) => {
+      const bookingDate = new Date(booking.date);
+      return utcDate.toISOString().slice(0, 10) === bookingDate.toISOString().slice(0, 10);
+    });
+    
+    console.log("Specific Date:", specificDate , isBooked);
+
+    // If the date matches the specific date or any booking, return appropriate styles
+    if (isSpecificDate || isBooked) {
+        return "text-muted-foreground opacity-50 bg-red-100"; // Styles for specific date or booked dates
+    } else {
+        return "text-muted-foreground opacity-50"; // No background for disabled dates
+    }
+};
+
+
+  const disabledClassName = getDisabledClassName(new Date());
 
   return (
     <Form {...form}>
@@ -71,21 +127,6 @@ export const BookingForm = ({ desk, amenities, onCancel }: Props) => {
           />
         </div>
 
-        {/**Desk ID */}
-        <FormField
-          control={form.control}
-          name="deskId"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input defaultValue={desk.id} type="hidden" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        {/**Desk ID */}
-
         {/**Calendar */}
         <FormField
           control={form.control}
@@ -99,7 +140,6 @@ export const BookingForm = ({ desk, amenities, onCancel }: Props) => {
                   !field.value && "text-muted-foreground"
                 )}
               >
-                {" "}
                 {field.value ? (
                   format(field.value, "PPP")
                 ) : (
@@ -111,17 +151,11 @@ export const BookingForm = ({ desk, amenities, onCancel }: Props) => {
                 mode="single"
                 selected={field.value}
                 onSelect={field.onChange}
-                disabled={(date) => {
-                  const currentDate = new Date();
-                  const tomorrow = new Date(currentDate);
-                  tomorrow.setDate(currentDate.getDate() + 1); // Get tomorrow's date
-                  const futureDate = new Date();
-                  futureDate.setDate(currentDate.getDate() + 21); // Add 21 days (3 weeks) to the current date
-                  
-                  const dayOfWeek = date.getDay(); // Get the day of the week (0 for Sunday, 1 for Monday, ..., 6 for Saturday)
-                  return dayOfWeek === 0 || dayOfWeek === 6 || date <= tomorrow || date > futureDate;
-              }}
+                disabled={handleDisable}
                 initialFocus
+                classNames={{
+                  day_disabled: disabledClassName,
+                }}
               />
             </>
           )}

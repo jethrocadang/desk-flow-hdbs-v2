@@ -1,19 +1,17 @@
 "use client";
 
 import { Map } from "./map.";
-import { Amenity, Desk } from "@prisma/client";
-import { useState } from "react";
+import type { Amenity, Booking, Desk } from "@prisma/client";
 import useDesk from "@/hooks/useDesk";
-import { DeskInfoCard } from "./deskInfo";
 import { BookingForm } from "./bookingForm";
 
-export const Booking = ({
-  desks,
-  amenities,
-}: {
+interface Props {
   desks: Desk[];
   amenities: Amenity[];
-}) => {
+  bookings: Booking[];
+};
+
+export const BookingTab = ({ desks, amenities, bookings }: Props) => {
   const { selectDesk, selectedDesk, deselectDesk } = useDesk();
 
   const handleDeskSelect = (e: any) => {
@@ -41,6 +39,7 @@ export const Booking = ({
             <BookingForm
               desk={selectedDesk}
               amenities={amenities}
+              bookings={bookings}
               onCancel={(e) => {
                 selectDesk(null);
               }}

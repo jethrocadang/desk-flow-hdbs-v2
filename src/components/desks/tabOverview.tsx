@@ -42,7 +42,7 @@ export const Overview = ({
   return (
     <div className="h-full p-5">
       <div className="  flex lg:flex-row flex-col">
-        <div className="container flex bg-pink-400">
+        <div className="container flex">
           <Map
             desks={desks}
             onDeskSelect={handleDeskSelect}
