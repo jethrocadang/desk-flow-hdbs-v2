@@ -24,6 +24,15 @@ enum DeskStatus {
   UNAVAILABLE
 }
 
+enum BookingStatus {
+  BOOKED
+  PENDING
+  CONFIRMED
+  CANCELLED
+  CHECKED_IN
+  CHECKED_OUT
+}
+
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String  @db.ObjectId
@@ -54,6 +63,7 @@ model User {
   image         String?
   accounts      Account[]
   floor         Floor[]
+  booking       Booking[]
 }
 
 model VerificationToken {
@@ -91,6 +101,7 @@ model Desk {
   status      DeskStatus @default(AVAILABLE)
   amentyIDs   String[]   @db.ObjectId
   amenities   Amenity[]  @relation(fields: [amentyIDs], references: [id])
+  booking     Booking[]
 }
 
 model Amenity {
@@ -98,4 +109,17 @@ model Amenity {
   amenityName String
   deskIDs     String[] @db.ObjectId
   desks       Desk[]   @relation(fields: [deskIDs], references: [id])
+}
+
+model Booking {
+  id         String        @id @default(auto()) @map("_id") @db.ObjectId
+  deskId     String        @db.ObjectId
+  userId     String        @db.ObjectId
+  date       DateTime
+  created_at DateTime      @default(now())
+  updated_at DateTime
+  status     BookingStatus
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  desk Desk @relation(fields: [deskId], references: [id], onDelete: Cascade)
 }

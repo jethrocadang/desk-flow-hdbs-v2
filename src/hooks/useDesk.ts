@@ -8,7 +8,7 @@ const useDesk = () => {
 
   const selectDesk = (desk: Desk) => setSelectedDesk(desk);
 
-  const deselectDesk = (desk: Desk) => setSelectedDesk(null);
+  const deselectDesk = () => setSelectedDesk(null);
 
   return {
     selectedDesk,

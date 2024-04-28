@@ -5,6 +5,7 @@ import { Amenity, Desk } from "@prisma/client";
 import { useState } from "react";
 import useDesk from "@/hooks/useDesk";
 import { DeskInfoCard } from "./deskInfo";
+import { Calendar } from "../ui/calendar";
 
 export const Overview = ({
   desks,
@@ -31,18 +32,24 @@ export const Overview = ({
     selectDesk(null);
   };
 
-  //bg-[#DAE4FF]
+  const handleDeskSelect = (e: any) => {
+    const clickedDesk = desks.find((desk) => desk.id === e.id);
+    if (clickedDesk) {
+      selectDesk(clickedDesk);
+    }
+  };
 
   return (
     <div className="h-full p-5">
       <div className="  flex lg:flex-row flex-col">
-        <div className="container flex">
+        <div className="container flex bg-pink-400">
           <Map
             desks={desks}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onDeskSelect={handleDeskSelect}
+            // onMouseEnter={handleMouseEnter}
+            // onMouseLeave={handleMouseLeave}
           />
-          {isMouseOnMap && selectedDesk && (
+          {selectedDesk && (
             <DeskInfoCard desk={selectedDesk} amenities={amenities} />
           )}
         </div>

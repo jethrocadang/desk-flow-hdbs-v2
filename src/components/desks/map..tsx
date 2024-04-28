@@ -13,6 +13,8 @@ interface Props {
   onMouseEnter?: (e: any) => void;
   onMouseLeave?: () => void;
   onDeskSelect?: (e: any) => void;
+  onImageClick?: (e: any) => void;
+  selectedDesk?: Desk;
 }
 
 export const Map: React.FC<Props> = ({
@@ -20,24 +22,22 @@ export const Map: React.FC<Props> = ({
   onDeskSelect,
   onMouseEnter,
   onMouseLeave,
+  onImageClick,
+  selectedDesk,
 }) => {
   const parentWidth = useResize();
-  const { selectDesk, selectedDesk, deselectDesk } = useDesk();
-
-  useEffect(() => {
-    if (typeof onDeskSelect === 'function') {
-        onDeskSelect(selectedDesk);
-      }  }, [selectedDesk, onDeskSelect]);
 
   const areas: MapAreas[] = [];
 
-  
   desks.forEach((item, index) => {
     areas[index] = {
       id: item.id,
       shape: "rect",
       coords: item.coords,
-      preFillColor: "#eab54d4d",
+      preFillColor:
+        selectedDesk && selectedDesk.id === item.id
+          ? "rgba(234, 181, 77, 0.6)"
+          : "rgba(234, 181, 77, 0.3)", // Change color if the desk is selected
       strokeColor: "gray",
     };
   });
@@ -49,18 +49,11 @@ export const Map: React.FC<Props> = ({
           src={MapImage.src}
           parentWidth={parentWidth}
           responsive={true}
-          onImageClick={(e) => {
-            deselectDesk(null);
-          }}
-          onClick={(e) => {
-            const clickedDesk = desks.find((desk) => desk.id === e.id);
-            if (clickedDesk) {
-              selectDesk(clickedDesk);
-            }
-          }}
-          map={{ name: "map", areas: areas }}
+          onImageClick={onImageClick}
+          onClick={onDeskSelect}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
+          map={{ name: "map", areas: areas }}
         />
       </div>
     </div>
