@@ -5,7 +5,6 @@ import { Amenity, Desk } from "@prisma/client";
 import { useState } from "react";
 import useDesk from "@/hooks/useDesk";
 import { DeskInfoCard } from "./deskInfo";
-import { Calendar } from "../ui/calendar";
 
 export const Overview = ({
   desks,

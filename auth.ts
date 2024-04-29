@@ -4,12 +4,14 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "auth.config";
 import { db } from "@/lib/prisma";
 import { getUserById } from "@/data/user";
-import { UserRole } from "@prisma/client";
+import { User, UserRole } from "@prisma/client";
 
 // Declare role to typescript
 declare module "next-auth" {
   interface User {
     role: UserRole;
+    firstName: string
+    lastName: string
   }
 }
 
@@ -35,9 +37,7 @@ export const {
     }
   },
   callbacks: {
-    async signIn({ user, account }) {
-
-      
+    async signIn({ user, account, profile }) {
 
       if (account?.provider !== "credentials") return true;
 
@@ -58,6 +58,14 @@ export const {
       if (token.role && session.user) {
         session.user.role = token.role as UserRole;
       }
+
+      if(session.user){
+        session.user.firstName = token.firstName as string;
+        session.user.lastName = token.lastName as string;
+
+      }
+
+
       return session;
     },
     // Use token to get user Id
@@ -69,6 +77,8 @@ export const {
       if (!existingUser) return token;
 
       token.role = existingUser.role;
+      token.firstName = existingUser.firstName;
+      token.lastName = existingUser.lastName;
 
       return token;
     },

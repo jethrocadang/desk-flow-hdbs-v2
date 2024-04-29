@@ -1,59 +1,38 @@
-
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo.svg";
-import { LuLayoutDashboard, LuFolderOpen } from "react-icons/lu";
-import { MdOutlineManageAccounts } from "react-icons/md";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
-import { GrMapLocation } from "react-icons/gr";
 import { useState } from "react";
+import { useCurrentRole } from "@/hooks/useCurrentUser";
+import { admin, user, bottomFunctions } from "./links";
 
-const menuItems = [
-  {
-    link: "/dashboard",
-    label: "Dashboard",
-    icon: <LuLayoutDashboard className="text-[#324054] text-2xl" />,
-  },
-  {
-    link: "/bookings",
-    label: "Bookings",
-    icon: <LuFolderOpen className="text-[#324054] text-2xl" />,
-  },
-  {
-    link: "/manageUser",
-    label: "Manage User",
-    icon: <MdOutlineManageAccounts className="text-[#324054] text-2xl" />,
-  },
-  {
-    link: "/desks",
-    label: "Desks",
-    icon: <GrMapLocation className="text-[#324054] text-2xl" />,
-  },
-];
-
-const bottomFunctions = [
-  {
-    link: "/settings",
-    label: "Settings",
-    icon: <IoSettingsOutline className="text-[#324054] text-2xl" />,
-  },
-  {
-    link: "/logout",
-    label: "Logout",
-    icon: <IoLogOutOutline className="text-[#324054] text-2xl" />,
-  },
-];
-
+interface Props {
+  link: string;
+  label: string;
+  icon: JSX.Element;
+}
 export const SideNav = () => {
   const [toggle, setToggle] = useState(false);
+
+  const role = useCurrentRole();
 
   const handleClick = () => {
     setToggle(!toggle);
   };
 
+  let links:Props[];
+  switch (role) {
+    case "ADMIN":
+      links = admin;
+      break;
+
+    case "USER":
+      links = user;
+      break;
+    default:
+      links = [];
+  }
   return (
     <aside
       className={`left-0 z-10 hidden ${
@@ -84,7 +63,7 @@ export const SideNav = () => {
               toggle ? "items-start justify-center" : "items-center"
             }`}
           >
-            {menuItems.map((items, index) => (
+            {links.map((items, index) => (
               <li
                 key={index}
                 className={`rounded-lg hover:bg-[#E0E2FF] p-2 ${
