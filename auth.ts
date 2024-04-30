@@ -5,13 +5,14 @@ import authConfig from "auth.config";
 import { db } from "@/lib/prisma";
 import { getUserById } from "@/data/user";
 import { User, UserRole } from "@prisma/client";
+import { getAccountbyUserId } from "@/data/account";
 
 // Declare role to typescript
 declare module "next-auth" {
   interface User {
     role: UserRole;
-    firstName: string
-    lastName: string
+    firstName: string;
+    lastName: string;
   }
 }
 
@@ -22,32 +23,31 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  pages:{
-    signIn:"/sign-in",
-    error:"/error"
+  pages: {
+    signIn: "/sign-in",
+    error: "/error",
   },
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
-  events:{
-    async linkAccount({user}){
+  events: {
+    async linkAccount({ user }) {
       await db.user.update({
-        where:{id: user.id},
-        data:{emailVerified: new Date()}
-      })
-    }
+        where: { id: user.id },
+        data: { emailVerified: new Date() },
+      });
+    },
   },
   callbacks: {
     async signIn({ user, account, profile }) {
-
       if (account?.provider !== "credentials") return true;
 
       const existingUser = await getUserById(user.id);
       if (!existingUser.emailVerified) {
         return false;
-      };
+      }
 
       //TODO add 2FA
-      
+
       return true;
     },
     // Get session {role}
@@ -59,12 +59,10 @@ export const {
         session.user.role = token.role as UserRole;
       }
 
-      if(session.user){
+      if (session.user) {
         session.user.firstName = token.firstName as string;
         session.user.lastName = token.lastName as string;
-
       }
-
 
       return session;
     },
@@ -76,6 +74,9 @@ export const {
 
       if (!existingUser) return token;
 
+      const existingAccount = await getAccountbyUserId(existingUser.id);
+
+      token.isOAuth = !!existingAccount;
       token.role = existingUser.role;
       token.firstName = existingUser.firstName;
       token.lastName = existingUser.lastName;
