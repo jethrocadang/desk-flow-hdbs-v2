@@ -7,4 +7,3 @@ export const bookingSchema = z.object({
         required_error: "Date is Required!"
     })
 })
-

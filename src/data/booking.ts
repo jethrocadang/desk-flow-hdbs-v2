@@ -8,6 +8,9 @@ export const getAllBookings = async () => {
       include: {
         desk: true,
       },
+      orderBy:{
+        date:"desc"
+      }
     });
     return bookings;
   } catch (error) {

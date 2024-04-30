@@ -4,6 +4,7 @@ import { Map } from "./map.";
 import type { Amenity, Booking, Desk } from "@prisma/client";
 import useDesk from "@/hooks/useDesk";
 import { BookingForm } from "./bookingForm";
+import { UserBookingCard } from "./userBookingCard";
 
 interface Props {
   desks: Desk[];
@@ -28,14 +29,14 @@ export const BookingTab = ({ desks, amenities, bookings }: Props) => {
   return (
     <div className="h-full p-5">
       <div className="  flex lg:flex-row flex-col">
-        <div className="container flex">
+        <div className="container flex flex-col md:flex-row">
           <Map
             desks={desks}
             onDeskSelect={handleDeskSelect}
             onImageClick={handleImageClick}
             selectedDesk={selectedDesk}
           />
-          {selectedDesk && (
+          {selectedDesk ? (
             <BookingForm
               desk={selectedDesk}
               amenities={amenities}
@@ -44,6 +45,8 @@ export const BookingTab = ({ desks, amenities, bookings }: Props) => {
                 selectDesk(null);
               }}
             />
+          ):(
+           <UserBookingCard desks={desks} bookings={bookings}/>
           )}
         </div>
       </div>

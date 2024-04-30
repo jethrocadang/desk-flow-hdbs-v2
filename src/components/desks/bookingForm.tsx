@@ -2,25 +2,13 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { date, z } from "zod";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormField } from "@/components/ui/form";
 import { format } from "date-fns";
-
-import { Input } from "@/components/ui/input";
-
 import { Amenity, Booking, Desk } from "@prisma/client";
-
 import React, { useTransition } from "react";
-import { useRouter } from "next/navigation";
 import { CustomArea } from "react-img-mapper";
 import { Calendar } from "../ui/calendar";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
@@ -30,6 +18,8 @@ import { DeskInfoCard } from "./deskInfo";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
 import { createBooking } from "@/actions/bookings/booking";
+import { toast } from "../ui/use-toast";
+import { useRouter } from "next/navigation";
 
 type Props = {
   desk: Desk;
@@ -41,6 +31,7 @@ type Props = {
 export const BookingForm = ({ desk, amenities, bookings, onCancel }: Props) => {
   const [isPending, startTransition] = useTransition();
   const user = useCurrentUser();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
@@ -52,7 +43,17 @@ export const BookingForm = ({ desk, amenities, bookings, onCancel }: Props) => {
   });
 
   const onSubmit = (values: z.infer<typeof bookingSchema>) => {
-    createBooking(values);
+    startTransition(() => {
+      createBooking(values).then((data) => {
+        if (data.success) {
+          toast({
+            title: "Success!",
+            description: "Booking Created!",
+          });
+          router.refresh();
+        }
+      });
+    });
   };
 
   const handleDisable = (date: Date) => {
@@ -85,29 +86,35 @@ export const BookingForm = ({ desk, amenities, bookings, onCancel }: Props) => {
   const getDisabledClassName = (date: Date) => {
     // Specific date to compare against (adjust to UTC)
     const specificDate = new Date(Date.UTC(2024, 3, 15)); // April is represented by 3 (zero-based)
-    
+
     // Convert the provided date to UTC for comparison
-    const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-    
+    const utcDate = new Date(
+      Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+    );
+
     // Check if the provided date matches the specific date
-    const isSpecificDate = utcDate.toISOString().slice(0, 10) === specificDate.toISOString().slice(0, 10);
-    
+    const isSpecificDate =
+      utcDate.toISOString().slice(0, 10) ===
+      specificDate.toISOString().slice(0, 10);
+
     // Check if any booking matches the provided date
     const isBooked = bookings.some((booking) => {
       const bookingDate = new Date(booking.date);
-      return utcDate.toISOString().slice(0, 10) === bookingDate.toISOString().slice(0, 10);
+      return (
+        utcDate.toISOString().slice(0, 10) ===
+        bookingDate.toISOString().slice(0, 10)
+      );
     });
-    
-    console.log("Specific Date:", specificDate , isBooked);
+
+    console.log("Specific Date:", specificDate, isBooked);
 
     // If the date matches the specific date or any booking, return appropriate styles
     if (isSpecificDate || isBooked) {
-        return "text-muted-foreground opacity-50 bg-red-100"; // Styles for specific date or booked dates
+      return "text-muted-foreground opacity-50 bg-red-100"; // Styles for specific date or booked dates
     } else {
-        return "text-muted-foreground opacity-50"; // No background for disabled dates
+      return "text-muted-foreground opacity-50"; // No background for disabled dates
     }
-};
-
+  };
 
   const disabledClassName = getDisabledClassName(new Date());
 
