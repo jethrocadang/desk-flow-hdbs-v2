@@ -6,6 +6,8 @@ import Logo from "@/public/logo.svg";
 import { useState } from "react";
 import { useCurrentRole } from "@/hooks/useCurrentUser";
 import { admin, user, bottomFunctions } from "./links";
+import { IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
+import { logout } from "@/actions/authentication/logout";
 
 interface Props {
   link: string;
@@ -21,7 +23,11 @@ export const SideNav = () => {
     setToggle(!toggle);
   };
 
-  let links:Props[];
+  const onClick = () =>{
+    logout()
+  }
+
+  let links: Props[];
   switch (role) {
     case "ADMIN":
       links = admin;
@@ -90,25 +96,38 @@ export const SideNav = () => {
               toggle ? "items-start justify-center" : "items-center"
             }`}
           >
-            {bottomFunctions.map((items, index) => (
-              <li
-                key={index}
-                className={`rounded-lg hover:bg-[#E0E2FF] p-2 ${
-                  toggle && "w-full"
-                }`}
-              >
-                <Link href={items.link} className="flex items-start space-x-2">
-                  {items.icon}
-                  <span
-                    className={`text-md text-black duration-300 ${
-                      !toggle && "hidden"
-                    } origin-left duration-1000`}
-                  >
-                    {items.label}
-                  </span>
-                </Link>
-              </li>
-            ))}
+            <li
+              className={`rounded-lg hover:bg-[#E0E2FF] p-2 ${
+                toggle && "w-full"
+              }`}
+            >
+              <Link href="#" className="flex items-start space-x-2">
+                <IoSettingsOutline className="text-[#324054] text-2xl" />
+                <span
+                  className={`text-md text-black duration-300 ${
+                    !toggle && "hidden"
+                  } origin-left duration-1000`}
+                >
+                  Settings
+                </span>
+              </Link>
+            </li>
+            <li
+              className={`rounded-lg hover:bg-[#E0E2FF] p-2 ${
+                toggle && "w-full"
+              }`}
+            >
+              <button className="flex items-start space-x-2" onClick={onClick}>
+                <IoLogOutOutline className="text-[#324054] text-2xl" />
+                <span
+                  className={`text-md text-black duration-300 ${
+                    !toggle && "hidden"
+                  } origin-left duration-1000`}
+                >
+                  Logout
+                </span>
+              </button>
+            </li>
           </ul>
         </div>
       </div>

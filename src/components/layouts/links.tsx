@@ -49,13 +49,9 @@ export const admin = [
   
    export const bottomFunctions = [
     {
-      link: "/settings",
+      link: "#",
       label: "Settings",
       icon: <IoSettingsOutline className="text-[#324054] text-2xl" />,
     },
-    {
-      link: "/logout",
-      label: "Logout",
-      icon: <IoLogOutOutline className="text-[#324054] text-2xl" />,
-    },
+  
   ];

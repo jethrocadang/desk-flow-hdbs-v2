@@ -3,8 +3,6 @@ export const publicRoutes = [
   "/contact",
   "/team",
   "/reset-password",
-  "/admin/dashboard/desks",
-  "/user/dashboard/desks",
 ];
 
 export const authRoutes = [
