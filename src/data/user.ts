@@ -31,7 +31,12 @@ export async function getAllUsers() {
 
 export const getUserCount = async () => {
   try {
-    const user = await db.user.count();
+    const allUsers = await db.user.count();
+    const user = await db.user.count({
+      where:{
+        role:"USER"
+      }
+    })
     const admin = await db.user.count({
       where: {
         role: "ADMIN",
@@ -43,6 +48,7 @@ export const getUserCount = async () => {
       },
     });
     return {
+      allUsers,
       user,
       admin,
       FM,

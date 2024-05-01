@@ -51,18 +51,19 @@ export const getDeskCount = async () => {
         status: "UNAVAILABLE",
       },
     });
-    const unoccupied = await db.desk.count({
-      where:{
-        booking: null
-      }
-    })
+    // const unoccupied = await db.desk.count({
+    //   where: {
+    //     booking: {},
+    //   },
+    // });
     return {
       desks,
       available,
       unavailable,
-      unoccupied
-    }
+      // unoccupied
+    };
   } catch (error) {
-    return null
+    console.log(error);
+    return { error };
   }
 };

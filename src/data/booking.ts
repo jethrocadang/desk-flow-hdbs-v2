@@ -20,7 +20,7 @@ export const getAllBookings = async () => {
 
 export const getBookingsCount = async () => {
   try {
-    const bookings = await db.booking.count();
+    const allBookings = await db.booking.count();
     const confirmed = await db.booking.count({
       where: {
         status: "CONFIRMED",
@@ -37,7 +37,7 @@ export const getBookingsCount = async () => {
       },
     });
     return {
-      bookings,
+      allBookings,
       confirmed,
       pending,
       cancelled,

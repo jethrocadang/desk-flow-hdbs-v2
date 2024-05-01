@@ -13,17 +13,17 @@ export const admin = [
       icon: <LuLayoutDashboard className="text-[#324054] text-2xl" />,
     },
     {
-      link: "/bookings",
+      link: "/dashboard/bookings",
       label: "Bookings",
       icon: <LuFolderOpen className="text-[#324054] text-2xl" />,
     },
     {
-      link: "/manageUser",
+      link: "/dashboard/users",
       label: "Manage User",
       icon: <MdOutlineManageAccounts className="text-[#324054] text-2xl" />,
     },
     {
-      link: "/desks",
+      link: "/dashboard/desks",
       label: "Desks",
       icon: <GrMapLocation className="text-[#324054] text-2xl" />,
     },
