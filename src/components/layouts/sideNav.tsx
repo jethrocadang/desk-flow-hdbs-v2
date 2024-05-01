@@ -43,10 +43,10 @@ export const SideNav = () => {
     <aside
       className={`left-0 z-10 hidden ${
         toggle ? "w-72 duration-150" : "w-20 "
-      } flex-col border-r bg-background  duration-150 sm:flex`}
+      } flex-col  bg-background  duration-150 sm:flex`}
     >
-      <div className="flex flex-col h-full">
-        <div className="flex flex-col items-center my-5">
+      <div className="flex flex-col h-full fixed px-[17px] border-r">
+        <div className="flex flex-col my-5">
           <button
             onClick={handleClick}
             className={`flex  items-center w-full ${

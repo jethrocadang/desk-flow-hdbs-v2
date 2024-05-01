@@ -67,7 +67,7 @@ git commit -m "message"
 
 # 4. Push your changes to github !!! Notify the QA or the github manager before pushing !!!
 
-git push origin <branch-name>:testing
+git push origin <branch-name>:reset-staging
 
 
 # 4. Create pull request in github 
