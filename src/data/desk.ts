@@ -6,7 +6,7 @@ export const getAllDesks = async () => {
   try {
     const desks = await db.desk.findMany({
       include: {
-        amenities: true
+        amenities: true,
       },
     });
 
@@ -32,9 +32,37 @@ export const getDeskById = async (id: string) => {
       },
     });
 
-
     return desk;
   } catch (error) {
     return null;
+  }
+};
+
+export const getDeskCount = async () => {
+  try {
+    const desks = await db.desk.count();
+    const available = await db.desk.count({
+      where: {
+        status: "AVAILABLE",
+      },
+    });
+    const unavailable = await db.desk.count({
+      where: {
+        status: "UNAVAILABLE",
+      },
+    });
+    const unoccupied = await db.desk.count({
+      where:{
+        booking: null
+      }
+    })
+    return {
+      desks,
+      available,
+      unavailable,
+      unoccupied
+    }
+  } catch (error) {
+    return null
   }
 };
