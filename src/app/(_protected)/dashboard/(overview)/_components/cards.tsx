@@ -1,4 +1,3 @@
-import { useCurrentUser } from "@/hooks/useCurrentUser";
 import React from "react";
 import DashCards from "@/components/ui/dashCards";
 import { LuUsers } from "react-icons/lu";
@@ -60,9 +59,9 @@ export const BookingsCard = ({
   cancelled,
 }: BookingsProp) => {
   return (
-    <div className="flex flex-col gap-2 mt-10">
+    <div className="flex flex-col gap-2 mt-10 px-16">
       <h2 className=" text-2xl font-bold">Bookings</h2>
-      <div className="flex flex-row justify-around">
+      <div className="flex flex-row justify-between">
       <DashCards
           title="Total"
           icon={<BsFillBoxFill className=" text-3xl text-green-600" />}
