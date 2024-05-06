@@ -1,20 +1,23 @@
 "use server";
 
 import { getAllDesks, getDeskCount } from "@/data/desk";
-import { getBookingsCount } from "@/data/booking";
+import { getAllBookings, getBookingsCount } from "@/data/booking";
 import { getUserCount } from "@/data/user";
 import { currentRole, currentUser } from "@/lib/auth";
 import Main from "./_components/main";
 import { BookingsCard, DesksCard, UserCards } from "./_components/cards";
 import { DashCalendar } from "./_components/calendar";
+import { History } from "./_components/history";
 
 export default async function Dashboard() {
-  const { desks, available, unavailable } = await getDeskCount();
+  const { allDesks, available, unavailable } = await getDeskCount();
   const { user, admin, allUsers, FM } = await getUserCount();
   const { allBookings, confirmed, pending, cancelled } =
     await getBookingsCount();
+  const bookings = await getAllBookings();
+  const desks = await getAllDesks();
 
-  const { ADMIN, FLOOR_MANAGER, USER} = await currentRole();
+  const { ADMIN, FLOOR_MANAGER, USER } = await currentRole();
 
   return (
     <>
@@ -30,7 +33,7 @@ export default async function Dashboard() {
             cancelled={cancelled}
           />
           <DesksCard
-            desks={desks}
+            desks={allDesks}
             available={available}
             unavailable={unavailable}
           />
@@ -44,7 +47,10 @@ export default async function Dashboard() {
             pending={pending}
             cancelled={cancelled}
           />
-          <DashCalendar/>
+          <div className="flex p-5 justify-center items-center space-x-8" >
+            <DashCalendar bookings={bookings}/>
+            <History desks={desks} bookings={bookings} />
+          </div>
         </Main>
       )}
     </>

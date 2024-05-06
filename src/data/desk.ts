@@ -40,7 +40,7 @@ export const getDeskById = async (id: string) => {
 
 export const getDeskCount = async () => {
   try {
-    const desks = await db.desk.count();
+    const allDesks = await db.desk.count();
     const available = await db.desk.count({
       where: {
         status: "AVAILABLE",
@@ -57,7 +57,7 @@ export const getDeskCount = async () => {
     //   },
     // });
     return {
-      desks,
+      allDesks,
       available,
       unavailable,
       // unoccupied

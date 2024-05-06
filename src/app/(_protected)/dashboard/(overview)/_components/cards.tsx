@@ -59,7 +59,7 @@ export const BookingsCard = ({
   cancelled,
 }: BookingsProp) => {
   return (
-    <div className="flex flex-col gap-2 mt-10 px-16">
+    <div className="flex flex-col gap-2 mt-10 ">
       <h2 className=" text-2xl font-bold">Bookings</h2>
       <div className="flex flex-row justify-between">
       <DashCards

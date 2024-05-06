@@ -45,7 +45,6 @@ export default auth((req) => {
     return null;
   }
 
-  console.log("middleware",isAuthRoute);
 
   //TODO Callback URL
   // Check if login: true && is in public route, if login redirect to default

@@ -9,7 +9,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="h-full">
-      <div className="h-full p-5 rounded-md">
+      <div className="h-full px-16 py-10 rounded-md">
         <h1 className="font-bold text-4xl tracking-widest text-[#2B3674]">
           Hello, {user?.firstName}!
         </h1>
