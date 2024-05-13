@@ -63,7 +63,7 @@ export const UserBookingCard = ({ desks, bookings }: Props) => {
           })
         ) : (
           <div className="text-center text-sm font-medium tracking-wide">
-            <p>You Don't Have Bookings.</p>
+            <p>You Don&apos;t Have Bookings.</p>
           </div>
         )}
       </ScrollArea>
