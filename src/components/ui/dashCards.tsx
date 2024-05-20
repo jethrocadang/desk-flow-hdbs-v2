@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { cn } from '@/lib/utils'
 
 
 interface DashCardsProps {
@@ -14,13 +15,14 @@ interface DashCardsProps {
   description : string,
   count : number,
   icon : React.ReactNode,
+  className?: string
 };
 
 
-export default function DashCards({title, description, count, icon}: DashCardsProps) {
+export default function DashCards({title, description, count, icon, className }: DashCardsProps) {
   return (
     <div>
-      <Card className=' w-80 bg-gradient-to-t from-violet-300 to-transparent to-60% drop-shadow-md'>
+      <Card className={cn('w-80 bg-gradient-to-t from-violet-300 to-transparent to-60% drop-shadow-md',className)}>
         <CardHeader>
           <div className=' flex flex-row justify-between'>
             <CardTitle>{title}</CardTitle>

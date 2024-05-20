@@ -1,9 +1,9 @@
 "use client";
+
 import { LuLayoutDashboard, LuFolderOpen } from "react-icons/lu";
 import { MdOutlineManageAccounts } from "react-icons/md";
-import { IoSettingsOutline, IoLogOutOutline } from "react-icons/io5";
+import { IoSettingsOutline } from "react-icons/io5";
 import { GrMapLocation } from "react-icons/gr";
-
 
 
 export const admin = [
@@ -13,35 +13,37 @@ export const admin = [
       icon: <LuLayoutDashboard className="text-[#324054] text-2xl" />,
     },
     {
-      link: "/bookings",
+      link: "/dashboard/bookings",
       label: "Bookings",
       icon: <LuFolderOpen className="text-[#324054] text-2xl" />,
     },
     {
-      link: "/manageUser",
+      link: "/dashboard/users",
       label: "Manage User",
       icon: <MdOutlineManageAccounts className="text-[#324054] text-2xl" />,
     },
     {
-      link: "/desks",
+      link: "/dashboard/desks",
       label: "Desks",
       icon: <GrMapLocation className="text-[#324054] text-2xl" />,
     },
   ];
+
+
   
   export const user = [
     {
-      link: "/user/dashboard",
+      link: "/dashboard",
       label: "Dashboard",
       icon: <LuLayoutDashboard className="text-[#324054] text-2xl" />,
     },
     {
-      link: "/user/dashboard/bookings",
+      link: "/dashboard/bookings",
       label: "Bookings",
       icon: <LuFolderOpen className="text-[#324054] text-2xl" />,
     },
     {
-      link: "/user/dashboard/desks",
+      link: "/dashboard/desks",
       label: "Desks",
       icon: <GrMapLocation className="text-[#324054] text-2xl" />,
     },

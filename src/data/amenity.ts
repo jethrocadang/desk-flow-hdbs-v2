@@ -10,3 +10,13 @@ export const getAllAmenities = async () => {
     return null;
   }
 };
+
+
+export const getAmentyCount = async () => {
+  try {
+    const amenity = await db.amenity.count()
+    return amenity
+  } catch (error) {
+    return{error}
+  }
+}

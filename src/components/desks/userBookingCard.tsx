@@ -1,13 +1,17 @@
+"use client";
+
 import { Booking, Desk } from "@prisma/client";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Separator } from "../ui/separator";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { ScrollArea } from "../ui/scroll-area";
+import { CancelBooking } from "./cancelBooking";
 
 type Props = {
   desks: Desk[];
   bookings: Booking[];
 };
+
 export const UserBookingCard = ({ desks, bookings }: Props) => {
   const user = useCurrentUser();
 
@@ -20,12 +24,12 @@ export const UserBookingCard = ({ desks, bookings }: Props) => {
   };
 
   return (
-    <Card className="w-full self-center px-5">
+    <Card className="w-[300px] self-center px-5">
       <CardHeader className="text-center">
         <CardTitle>Your Bookings</CardTitle>
       </CardHeader>
       <Separator className="mb-5" />
-      <ScrollArea className="flex h-[670px]">
+      <ScrollArea className="flex h-[450px]">
         {data.length > 0 ? ( // Check if there are bookings
           data.map((booking) => {
             const desk = desks.find((desk) => desk.id === booking.deskId);
@@ -43,13 +47,14 @@ export const UserBookingCard = ({ desks, bookings }: Props) => {
                 >
                   <div className="flex text-xs justify-between font-semibold tracking-wider">
                     <p>{desk.deskName}</p>
-                    <p>{new Date(booking.date).toDateString()}</p>{" "}
+                    <p>{new Date(booking.date).toDateString()}</p>
                   </div>
                   <div
                     className={`flex justify-center p-2 rounded-lg font-semibold tracking-widest text-sm ${statusColor}`}
                   >
                     <p>{isExpired ? "EXPIRED" : booking.status}</p>
                   </div>
+                  {booking.status === "BOOKED" && <CancelBooking id={booking.id}/>}
                 </CardContent>
               );
             } else {
@@ -58,7 +63,7 @@ export const UserBookingCard = ({ desks, bookings }: Props) => {
           })
         ) : (
           <div className="text-center text-sm font-medium tracking-wide">
-            <p>Select a Desk to Create your Booking.</p>
+            <p>You Don&apos;t Have Bookings.</p>
           </div>
         )}
       </ScrollArea>
