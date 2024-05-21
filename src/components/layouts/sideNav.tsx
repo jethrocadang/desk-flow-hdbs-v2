@@ -23,9 +23,9 @@ export const SideNav = () => {
     setToggle(!toggle);
   };
 
-  const onClick = () =>{
-    logout()
-  }
+  const onClick = () => {
+    logout();
+  };
 
   let links: Props[];
   switch (role) {
@@ -34,6 +34,7 @@ export const SideNav = () => {
       break;
 
     case "USER":
+    case "FM":
       links = user;
       break;
     default:

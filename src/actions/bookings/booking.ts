@@ -39,4 +39,15 @@ export const createBooking = async (values: z.infer<typeof bookingSchema>) => {
   }
 };
 
+export const cancelBooking = async (id: string) => {
+  try {
+    await db.booking.update({
+      where: { id },
+      data: { status: "CANCELLED" },
+    });
 
+    return { success: "Booking Cancelled" };
+  } catch (error) {
+    return null;
+  }
+};
