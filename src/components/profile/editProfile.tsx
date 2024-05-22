@@ -42,6 +42,10 @@ export default function profile() {
   });
   // check if he want to edit his profile
   const [edit, setEdit] = useState(false)
+  // for show pass
+  const [showCurrentPass, setShowCurrentPass] = useState(false);
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   const handleEditProfile = () =>{
     setEdit(true);
@@ -188,10 +192,10 @@ export default function profile() {
                         <FormItem>
                           {/* label */}
                           <FormLabel>Current Password</FormLabel>
-                          <div className="flex flex-col">
+                          <div className="relative flex flex-col">
                             <FormControl>
                               <Input
-                                type="password"
+                                type={showCurrentPass ? "text" : "password"}
                                 placeholder="************"
                                 className="px-7 py-6 border bg-sky-50 border-violet-900"
                                 
@@ -200,7 +204,20 @@ export default function profile() {
                             </FormControl>
                             {/* icons */}
                             
-                            {/* eye */}
+                            {/* eye */} 
+                            <div className="absolute right-0 top-3 pr-4 cursor-pointer">
+                              {showCurrentPass ? (
+                                <FaEye
+                                  onClick={() => setShowCurrentPass(false)}
+                                  className="text-black text-2xl select-none"
+                                />
+                              ) : (
+                                <FaEyeSlash
+                                  onClick={() => setShowCurrentPass(true)}
+                                  className="text-black text-2xl select-none"
+                                />
+                              )}
+                            </div>
                             
                           </div>
                           <FormMessage /> {/* display Error Messgae*/}
@@ -217,10 +234,10 @@ export default function profile() {
                         <FormItem>
                           {/* label */}
                           <FormLabel>New Password</FormLabel>
-                          <div className="flex flex-col">
+                          <div className=" relative flex flex-col">
                             <FormControl>
                               <Input
-                                type="password"
+                                type={showPass ? "text" : "password"}
                                 placeholder="************"
                                 className="px-7 py-6 border bg-sky-50 border-violet-900"
                                 
@@ -230,6 +247,19 @@ export default function profile() {
                             {/* icons */}
                             
                             {/* eye */}
+                            <div className="absolute right-0 top-3 pr-4 cursor-pointer">
+                              {showPass ? (
+                                <FaEye
+                                  onClick={() => setShowPass(false)}
+                                  className="text-black text-2xl select-none"
+                                />
+                              ) : (
+                                <FaEyeSlash
+                                  onClick={() => setShowPass(true)}
+                                  className="text-black text-2xl select-none"
+                                />
+                              )}
+                            </div>
                             
                           </div>
                           <FormMessage /> {/* display Error Messgae*/}
@@ -246,10 +276,10 @@ export default function profile() {
                         <FormItem>
                           {/* label */}
                           <FormLabel>Confirm Password</FormLabel>
-                          <div className="flex flex-col">
+                          <div className="relative flex flex-col">
                             <FormControl>
                               <Input
-                                type="password"
+                                type={showConfirmPass ? "text" : "password"}
                                 placeholder="************"
                                 className="px-7 py-6 border bg-sky-50 border-violet-900"
                                 {...field}
@@ -258,6 +288,19 @@ export default function profile() {
                             {/* icons */}
                             
                             {/* eye */}
+                            <div className="absolute right-0 top-3 pr-4 cursor-pointer">
+                              {showConfirmPass ? (
+                                <FaEye
+                                  onClick={() => setShowConfirmPass(false)}
+                                  className="text-black text-2xl select-none"
+                                />
+                              ) : (
+                                <FaEyeSlash
+                                  onClick={() => setShowConfirmPass(true)}
+                                  className="text-black text-2xl select-none"
+                                />
+                              )}
+                            </div>
                             
                           </div>
                           <FormMessage /> {/* display Error Messgae*/}

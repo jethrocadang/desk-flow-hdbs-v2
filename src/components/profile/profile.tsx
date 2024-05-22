@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 
 export default function editProfile() {
   const user = useCurrentUser();
+  const [showPass, setShowPass] = useState(false);
   return (
     <div className='container pt-7'>
       <div>
@@ -36,7 +38,22 @@ export default function editProfile() {
           {/* Password */}
           <div className='w-full flex flex-col'>
             <label htmlFor="Password" className=' text-base font-semibold'>Password</label>
-            <input type="password" disabled name='password' value="heelo143" className='border bg-sky-50 border-violet-900 rounded-md w-full p-4'/>
+            <div className='relative w-full'>
+              <input type={showPass ? "text" : "password"} disabled name='password' value="heelo143" className='border bg-sky-50 border-violet-900 rounded-md w-full p-4'/>
+              <div className="absolute right-0 top-4 pr-4 cursor-pointer">
+                {showPass ? (
+                  <FaEye
+                    onClick={() => setShowPass(false)}
+                    className="text-black text-2xl select-none"
+                  />
+                ) : (
+                  <FaEyeSlash
+                    onClick={() => setShowPass(true)}
+                    className="text-black text-2xl select-none"
+                  />
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
