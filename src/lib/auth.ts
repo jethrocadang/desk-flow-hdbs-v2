@@ -15,3 +15,4 @@ export const currentRole = async () => {
 
   return { ADMIN, FLOOR_MANAGER, USER };
 };
+
