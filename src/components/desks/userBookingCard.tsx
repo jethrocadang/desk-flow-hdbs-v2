@@ -54,7 +54,7 @@ export const UserBookingCard = ({ desks, bookings }: Props) => {
                   >
                     <p>{isExpired ? "EXPIRED" : booking.status}</p>
                   </div>
-                  {booking.status === "BOOKED" && <CancelBooking id={booking.id}/>}
+                  {(booking.status === "BOOKED" && !isExpired ) && <CancelBooking id={booking.id}/>}
                 </CardContent>
               );
             } else {

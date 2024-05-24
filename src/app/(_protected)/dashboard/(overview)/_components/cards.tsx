@@ -19,25 +19,25 @@ export const UserCards = ({ allUsers, user, admin, FM }: UserProps) => {
         <DashCards
           title="Total"
           icon={<LuUsers className=" text-3xl" />}
-          description="example lang"
+          description=""
           count={allUsers}
         />
         <DashCards
           title="Admins"
           icon={<LuUsers className=" text-3xl" />}
-          description="example lang"
+          description=""
           count={admin}
         />
         <DashCards
           title="Floor Manager"
           icon={<LuUsers className=" text-3xl" />}
-          description="example lang"
+          description=""
           count={FM}
         />
         <DashCards
           title="Employees"
           icon={<LuUsers className=" text-3xl" />}
-          description="example lang"
+          description=""
           count={user}
         />
       </div>
@@ -65,25 +65,25 @@ export const BookingsCard = ({
       <DashCards
           title="Total"
           icon={<BsFillBoxFill className=" text-3xl text-green-600" />}
-          description="example lang"
+          description=""
           count={allBookings}
         />
         <DashCards
           title="Confirmed"
           icon={<BsFillBoxFill className=" text-3xl text-green-600" />}
-          description="example lang"
+          description=""
           count={confirmed}
         />
         <DashCards
           title="Pending "
           icon={<BsFillBoxFill className=" text-3xl text-yellow-600" />}
-          description="example lang"
+          description=""
           count={pending}
         />
         <DashCards
           title="Cancelled"
           icon={<BsFillBoxFill className=" text-3xl text-red-600" />}
-          description="example lang"
+          description=""
           count={cancelled}
         />
       </div>
@@ -105,25 +105,25 @@ export const DesksCard = ({desks, available, unavailable}:DesksProp) => {
       <DashCards
           title="Total"
           icon={<GoGraph className=" text-3xl font-semibold text-green-600" />}
-          description="example lang"
+          description=""
           count={desks}
         />
         <DashCards
           title="Occupied"
           icon={<GoGraph className=" text-3xl font-semibold text-green-600" />}
-          description="example lang"
+          description=""
           count={8}
         />
         <DashCards
           title="Unoccupied"
           icon={<GoGraph className=" text-3xl font-semibold text-yellow-600" />}
-          description="example lang"
+          description=""
           count={available}
         />
         <DashCards
           title="Dissabled"
           icon={<GoGraph className=" text-3xl font-semibold text-red-600" />}
-          description="example lang"
+          description=""
           count={unavailable}
         />
       </div>
