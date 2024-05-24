@@ -26,7 +26,12 @@ import { editProfileWithConfirmPassSchema } from "@/schemas/userSchema";
 import { User } from "@prisma/client";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 
-export default function EditProfile({ data }: { data: User }) {
+type Props = {
+  data: User
+  onCancelEdit:(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
+
+export default function EditProfile({ data, onCancelEdit }: Props) {
   const isPasswordNull = data?.password === null ? true : false;
 
   const form = useForm<z.infer<typeof editProfileWithConfirmPassSchema>>({
@@ -50,11 +55,6 @@ export default function EditProfile({ data }: { data: User }) {
   const handleEditProfile = () => {
     setEdit(true);
   };
-
-  const handleCancelEdit = () => {
-    setEdit(false);
-  };
-
   // Handle on submit
   const handleSubmit = () => {};
   return (
@@ -315,7 +315,7 @@ export default function EditProfile({ data }: { data: User }) {
                   }}
                 />
                 <div className="h-12 mt-5 flex flex-row gap-5 justify-end">
-                  <Button className="bg-red-500" onClick={handleCancelEdit}>
+                  <Button className="bg-red-500" onClick={onCancelEdit}>
                     cancel
                   </Button>
                   <Button className="bg-green-500" type="submit">

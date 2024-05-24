@@ -23,8 +23,10 @@ export default function ProfileIndex({user}:{user: User} ) {
           </div>
         </>
       ) : (
-        <>
-        <EditProfile data={user}/>
+        <> 
+        <EditProfile data={user} onCancelEdit={(e) => {
+          setEdit(false)
+        }}/>
         </>
       )}
     </div>
