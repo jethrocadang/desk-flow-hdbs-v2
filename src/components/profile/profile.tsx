@@ -11,20 +11,20 @@ export default function editProfile({ data }: { data: User }) {
 
   const isPasswordNull = data.password === null ? true : false;
 
-  console.log(isPasswordNull)
-
+console.log(user.image)
   return (
     <div className="container pt-7">
       <div>
         <div className="w-full flex items-center justify-center">
           <div className=" w-40 h-40 border border-black bg-slate-500 rounded-full flex justify-center items-center">
             <Image
-              src={user?.image}
+              src={data?.image}
               width={40}
               height={40}
               className=" w-full bg-cover bg-center rounded-full"
               alt=""
             />
+          
           </div>
         </div>
         {/* form for */}

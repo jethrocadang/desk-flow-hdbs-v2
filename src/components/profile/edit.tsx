@@ -1,17 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useTransition, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import Profile from "@/components/profile/profile";
-import InitialProfile from "@/public/img/profile/initialProfile.png";
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import {
   Form,
@@ -22,81 +18,110 @@ import {
   FormControl,
 } from "@/components/ui/form";
 
-import { editProfileWithConfirmPassSchema } from "@/schemas/userSchema";
+import { editProfileSchema } from "@/schemas/userSchema";
 import { User } from "@prisma/client";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { updateUser, uploadAvatar } from "@/actions/profile/user";
+import { UploadButton } from "@/utils/uploadthing";
+import { toast } from "../ui/use-toast";
+import { useRouter } from "next/navigation";
+import Spinner from "../utils-ui/Spinner";
 
 type Props = {
-  data: User
-  onCancelEdit:(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-}
+  data: User;
+  onCancelEdit: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
+};
 
 export default function EditProfile({ data, onCancelEdit }: Props) {
   const isPasswordNull = data?.password === null ? true : false;
+  const user = useCurrentUser();
+  const [image, setImage] = useState(data?.image);
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [uploadStatus, setUploadStatus] = useState(false)
 
-  const form = useForm<z.infer<typeof editProfileWithConfirmPassSchema>>({
-    resolver: zodResolver(editProfileWithConfirmPassSchema),
+  //Form
+  const form = useForm<z.infer<typeof editProfileSchema>>({
+    resolver: zodResolver(editProfileSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      currentPassword: "",
-      newPassword: "",
+      firstName: data.firstName || "",
+      lastName: data.lastName || "",
+      image: data.image ||  "",
     },
   });
-  // check if he want to edit his profile
-  const [edit, setEdit] = useState(false);
-  // for show pass
-  const [showCurrentPass, setShowCurrentPass] = useState(false);
-  const [showPass, setShowPass] = useState(false);
-  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
-  const user = useCurrentUser();
-  const handleEditProfile = () => {
-    setEdit(true);
+  //Submit
+  const handleSubmit = (values: z.infer<typeof editProfileSchema>) => {
+    startTransition(() => {
+      updateUser(values).then((data) => {
+        if (data.success) {
+          toast({
+            title: "Success",
+            description: "Profile Updated",
+          });
+          onCancelEdit(false)
+        }
+      });
+    });
   };
-  // Handle on submit
-  const handleSubmit = () => {};
+
+
+  //Temporary Upload Image not stored in DB
+  const handleUploadImage = (res: any) => {
+      const url = res[0].url;
+      setImage(url);
+      form.setValue("image", url);
+      setUploadStatus(false)
+  }
+
+
+
+
   return (
     <div className="container">
       <div className="container pt-10">
-        {/* Avatar upload do it here */}
-        <div className="w-full flex flex-row gap-5">
-          <div className="w-1/4 flex justify-center items-center">
-            <div className=" w-40 h-40 border border-black bg-slate-500 rounded-full">
-              <Image
-                src={user?.image}
-                width={40}
-                height={40}
-                className=" w-full bg-cover bg-center rounded-full"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="w-1/4 flex flex-col justify-center border-r border-black">
-            <Input
-              placeholder="first name"
-              type="file"
-              className="px-2 py-1 w-48  border bg-white border-violet-900"
-            />
-
-            <Button className="bg-white hover:bg-white text-black  w-48">
-              Remove
-            </Button>
-          </div>
-          <div className="w-1/2 flex flex-col justify-center pl-5">
-            <p className="text-lg">Image requiremnts:</p>
-            <p className="text-sm">1. Min. 400 x 400px</p>
-            <p className="text-sm">2. Max. 2MB</p>
-            <p className="text-sm">3. Your face or company logo</p>
-          </div>
-        </div>
-
         {/* form */}
         <div className="pt-10 max-md:z-40">
           <Form {...form}>
             {/* every the time the form is invalid the handle submit will not perform */}
             <form onSubmit={form.handleSubmit(handleSubmit)}>
+              <div className="w-full flex flex-row gap-5 mb-10">
+                <div className="w-1/4 flex justify-center items-center">
+                  <div className=" w-40 h-40 border border-black bg-slate-500 rounded-full">
+                    <Image
+                      src={image}
+                      width={40}
+                      height={40}
+                      className=" w-full bg-cover bg-center rounded-full"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div className="w-1/4 flex flex-col justify-center border-r border-black p-5">
+                  <UploadButton
+                    endpoint="imageUploader"
+                    onClientUploadComplete={handleUploadImage}
+                    onUploadProgress={(p:number)=> {
+                      setUploadStatus(true)          
+                    }}
+                    onUploadError={(error: Error) => {
+                      alert(`ERROR! ${error.message}`);
+                    }}
+                    appearance={{
+                      button: "bg-blue-300 w-full",
+                    }}
+                  />
+                </div>
+                <div className="w-1/2 flex flex-col justify-center pl-5">
+                  <p className="text-lg">Image requirements:</p>
+                  <p className="text-sm">1. Min. 400 x 400px</p>
+                  <p className="text-sm">2. Max. 4MB</p>
+                  <p className="text-sm">3. Your face or company logo</p>
+                </div>
+              </div>
+
               <div className="flex flex-col gap-3 px-10">
                 {/* Name */}
                 <div className="flex flex-row gap-10 w-full">
@@ -152,174 +177,29 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
                   </div>
                 </div>
                 {/* Email */}
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        {/* label */}
-                        <FormLabel>Email</FormLabel>
-                        <div className="flex flex-col">
-                          <FormControl>
-                            <Input
-                              placeholder={user?.email}
-                              className="px-7 py-6 border bg-sky-50 border-violet-900"
-                              disabled={isPasswordNull}
-                              {...field}
-                            />
-                          </FormControl>
-                          {/* icons */}
-                        </div>
-                        <FormMessage /> {/* display Error Messgae*/}
-                      </FormItem>
-                    );
-                  }}
-                />
-                {/* Current pass */}
-                <FormField
-                  control={form.control}
-                  name="currentPassword"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        {/* label */}
-                        <div
-                          className={`relative flex flex-col ${
-                            isPasswordNull ? "hidden" : ""
-                          }`}
-                        >
-                          <FormLabel>Current Password</FormLabel>
-                          <div className="relative flex flex-col">
-                            <FormControl>
-                              <Input
-                                type={showCurrentPass ? "text" : "password"}
-                                placeholder="************"
-                                className="px-7 py-6 border bg-sky-50 border-violet-900"
-                                {...field}
-                              />
-                            </FormControl>
-                            {/* icons */}
 
-                            {/* eye */}
-                            <div className="absolute right-0 top-3 pr-4 cursor-pointer">
-                              {showCurrentPass ? (
-                                <FaEye
-                                  onClick={() => setShowCurrentPass(false)}
-                                  className="text-black text-2xl select-none"
-                                />
-                              ) : (
-                                <FaEyeSlash
-                                  onClick={() => setShowCurrentPass(true)}
-                                  className="text-black text-2xl select-none"
-                                />
-                              )}
-                            </div>
-                          </div>
-                          <FormMessage /> {/* display Error Messgae*/}
-                        </div>
-                      </FormItem>
-                    );
-                  }}
-                />
-                {/* New Password */}
-                <FormField
-                  control={form.control}
-                  name="newPassword"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        {/* label */}
-                        <div
-                          className={`relative flex flex-col ${
-                            isPasswordNull ? "hidden" : ""
-                          }`}
-                        >
-                          <FormLabel>New Password</FormLabel>
-                          <div className=" relative flex flex-col">
-                            <FormControl>
-                              <Input
-                                type={showPass ? "text" : "password"}
-                                placeholder="************"
-                                className="px-7 py-6 border bg-sky-50 border-violet-900"
-                                {...field}
-                              />
-                            </FormControl>
-                            {/* icons */}
+                <FormItem>
+                  {/* label */}
+                  <FormLabel>Email</FormLabel>
+                  <div className="flex flex-col">
+                    <FormControl>
+                      <Input
+                        placeholder={user?.email}
+                        className="px-7 py-6 border bg-sky-50 border-violet-900"
+                        disabled={isPasswordNull}
+                      />
+                    </FormControl>
+                    {/* icons */}
+                  </div>
+                  <FormMessage /> {/* display Error Messgae*/}
+                </FormItem>
 
-                            {/* eye */}
-                            <div className="absolute right-0 top-3 pr-4 cursor-pointer">
-                              {showPass ? (
-                                <FaEye
-                                  onClick={() => setShowPass(false)}
-                                  className="text-black text-2xl select-none"
-                                />
-                              ) : (
-                                <FaEyeSlash
-                                  onClick={() => setShowPass(true)}
-                                  className="text-black text-2xl select-none"
-                                />
-                              )}
-                            </div>
-                          </div>
-                          <FormMessage /> {/* display Error Messgae*/}
-                        </div>
-                      </FormItem>
-                    );
-                  }}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        {/* label */}
-                        <div
-                          className={`relative flex flex-col ${
-                            isPasswordNull ? "hidden" : ""
-                          }`}
-                        >
-                          <FormLabel>Confirm Password</FormLabel>
-                          <div className="relative flex flex-col">
-                            <FormControl>
-                              <Input
-                                type={showConfirmPass ? "text" : "password"}
-                                placeholder="************"
-                                className="px-7 py-6 border bg-sky-50 border-violet-900"
-                                {...field}
-                              />
-                            </FormControl>
-                            {/* icons */}
-
-                            {/* eye */}
-                            <div className="absolute right-0 top-3 pr-4 cursor-pointer">
-                              {showConfirmPass ? (
-                                <FaEye
-                                  onClick={() => setShowConfirmPass(false)}
-                                  className="text-black text-2xl select-none"
-                                />
-                              ) : (
-                                <FaEyeSlash
-                                  onClick={() => setShowConfirmPass(true)}
-                                  className="text-black text-2xl select-none"
-                                />
-                              )}
-                            </div>
-                          </div>
-                          <FormMessage /> {/* display Error Messgae*/}
-                        </div>
-                      </FormItem>
-                    );
-                  }}
-                />
                 <div className="h-12 mt-5 flex flex-row gap-5 justify-end">
-                  <Button className="bg-red-500" onClick={onCancelEdit}>
+                  <Button className="bg-red-500" onClick={onCancelEdit} disabled={isPending || uploadStatus}>
                     cancel
                   </Button>
-                  <Button className="bg-green-500" type="submit">
-                    Submit
+                  <Button className="bg-green-500" type="submit" disabled={isPending || uploadStatus} >
+                    {(isPending || uploadStatus) ? <Spinner/> : "Submit"}
                   </Button>
                 </div>
               </div>

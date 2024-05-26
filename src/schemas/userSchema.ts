@@ -73,46 +73,45 @@ export const resetPasswordSchema = z
     message: "Password do not match",
   });
 
-
 // This the One I add Schema In This Schema included Current Passsword
 /**This schema accepts values from edit profile form and includes currentpass and confirm password  */
-export const editProfileSchema = z.object({
-  // Email datatype asign
-  firstName: z.string().min(1, {
-    message: "required",
-  }),
-  lastName: z.string().min(1, {
-    message: "required",
-  }),
-  email: z.string().email({
-    message: "The email address must include '@'",
-  }),
-  currentPassword: z
-    .string()
-    .min(12, {
-      message: "Password must atleast 12 characters",
-    })
-    .refine((data) => /[!@#$%^&*]/.test(data), {
-      message: "Password must contain at least one special character.",
-    }),
-  newPassword: z
-    .string()
-    .min(12, {
-      message: "Password must atleast 12 characters",
-    })
-    .refine((data) => /[!@#$%^&*]/.test(data), {
-      message: "Password must contain at least one special character.",
-    }),
-});
+export const editProfileSchema = z
+  .object({
+    // Email datatype asign
+    firstName: z.string(),
+    lastName: z.string(),
+    image: z.string(),
+  }).partial()
+ 
 
 /**This schema accepts values from edit profile form and includes confirm password  */
-export const editProfileWithConfirmPassSchema = editProfileSchema
-  .extend({
+// export const editProfileWithConfirmPassSchema = editProfileSchema
+//   .extend({
+//     confirmPassword: z.string().min(12, {
+//       message: "You must confirm your password",
+//     }),
+//   })
+//   .refine((data) => data.newPassword === data.confirmPassword, {
+//     path: ["confirmPassword"],
+//     message: "Confirm Password do not match to New Password",
+//   });
+
+export const updatePassSchema = z
+  .object({
+    currentPassword: z.string(),
+    newPassword: z
+      .string()
+      .min(12, {
+        message: "Password must atleast 12 characters",
+      })
+      .refine((data) => /[!@#$%^&*]/.test(data), {
+        message: "Password must contain at least one special character.",
+      }),
     confirmPassword: z.string().min(12, {
       message: "You must confirm your password",
     }),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
     path: ["confirmPassword"],
-    message: "Confirm Password do not match to New Password",
+    message: "Password do not match",
   });
