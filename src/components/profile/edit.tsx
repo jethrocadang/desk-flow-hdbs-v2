@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition, useEffect } from "react";
+import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 
 import * as z from "zod";
@@ -21,10 +21,9 @@ import {
 import { editProfileSchema } from "@/schemas/userSchema";
 import { User } from "@prisma/client";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { updateUser, uploadAvatar } from "@/actions/profile/user";
+import { updateUser } from "@/actions/profile/user";
 import { UploadButton } from "@/utils/uploadthing";
 import { toast } from "../ui/use-toast";
-import { useRouter } from "next/navigation";
 import Spinner from "../utils-ui/Spinner";
 
 type Props = {
@@ -38,7 +37,6 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
   const isPasswordNull = data?.password === null ? true : false;
   const user = useCurrentUser();
   const [image, setImage] = useState(data?.image);
-  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [uploadStatus, setUploadStatus] = useState(false)
 

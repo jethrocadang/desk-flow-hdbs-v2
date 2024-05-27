@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { signIn } from "next-auth/react";
 import { User } from "@prisma/client";
 
-export default function editProfile({ data }: { data: User }) {
+export default function Profile({ data }: { data: User }) {
   const user = useCurrentUser();
   const [showPass, setShowPass] = useState(false);
-
   const isPasswordNull = data.password === null ? true : false;
 
-console.log(user.image)
   return (
     <div className="container pt-7">
       <div>
