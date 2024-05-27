@@ -61,7 +61,7 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
             title: "Success",
             description: "Profile Updated",
           });
-          onCancelEdit(false)
+          onCancelEdit(null)
         }
       });
     });
