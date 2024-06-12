@@ -35,7 +35,7 @@ export const DeskEditor = ({ desks, amenities }: Props) => {
   }
 
   return (
-    <div className="container my-auto p-5">
+    <div className="container my-auto p-5 dark:bg-slate-700">
       <div className=" flex justify-center items-center  ">
         <div className="container flex justify-center items-center  w-full h-full">
           <ImageMapper

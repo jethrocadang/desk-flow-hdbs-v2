@@ -10,7 +10,7 @@ export default function Profile({ data }: { data: User }) {
   const isPasswordNull = data.password === null ? true : false;
 
   return (
-    <div className="container pt-7">
+    <div className="container pt-32 ">
       <div>
         <div className="w-full flex items-center justify-center">
           <div className=" w-40 h-40 border border-black bg-slate-500 rounded-full flex justify-center items-center">
@@ -37,7 +37,7 @@ export default function Profile({ data }: { data: User }) {
                 disabled
                 name="firstName"
                 value={user?.firstName}
-                className="border bg-sky-50 border-violet-900 rounded-md w-full p-3"
+                className="border bg-sky-50 dark:bg-slate-900 dark:border dark:border-slate-100 border-violet-900 rounded-md w-full p-3"
               />
             </div>
             <div className="w-full flex flex-col">
@@ -49,7 +49,7 @@ export default function Profile({ data }: { data: User }) {
                 disabled
                 name="lastName"
                 value={user?.lastName}
-                className="border bg-sky-50 border-violet-900 rounded-md w-full p-3"
+                className="border bg-sky-50 dark:bg-slate-900 dark:border dark:border-slate-100 border-violet-900 rounded-md w-full p-3"
               />
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function Profile({ data }: { data: User }) {
               disabled
               name="email"
               value={user?.email}
-              className="border bg-sky-50 border-violet-900 rounded-md w-full p-3"
+              className="border bg-sky-50 dark:bg-slate-900 dark:border dark:border-slate-100 border-violet-900 rounded-md w-full p-3"
             />
           </div>
 
@@ -80,7 +80,7 @@ export default function Profile({ data }: { data: User }) {
                 disabled
                 name="password"
                 value="heelo143"
-                className="border bg-sky-50 border-violet-900 rounded-md w-full p-4"
+                className="border bg-sky-50 dark:bg-slate-900 dark:border dark:border-slate-100 border-violet-900 rounded-md w-full p-4"
               />
               <div className="absolute right-0 top-4 pr-4 cursor-pointer">
                 {showPass ? (

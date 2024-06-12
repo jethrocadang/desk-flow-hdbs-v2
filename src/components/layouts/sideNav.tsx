@@ -42,15 +42,15 @@ export const SideNav = () => {
   }
   return (
     <aside
-      className={`left-0 z-10 hidden ${
+      className={`left-0 fixed h-full z-50 hidden ${
         toggle ? "w-72 duration-150" : "w-20 "
-      } flex-col  bg-background  duration-150 sm:flex`}
+      } flex-col  bg-background  duration-150 sm:flex dark:bg-slate-900`}
     >
-      <div className="flex flex-col h-full fixed px-[17px] border-r">
+      <div className="flex flex-col h-full px-[17px] border-r dark:border-slate-400">
         <div className="flex flex-col my-5">
           <button
             onClick={handleClick}
-            className={`flex  items-center w-full ${
+            className={`flex   items-center w-full ${
               toggle ? " px-5" : "justify-center "
             }`}
           >
@@ -73,14 +73,14 @@ export const SideNav = () => {
             {links.map((items, index) => (
               <li
                 key={index}
-                className={`rounded-lg hover:bg-[#E0E2FF] p-2 ${
+                className={`rounded-lg hover:bg-[#E0E2FF] dark:hover:bg-black p-2 ${
                   toggle && "w-full"
                 }`}
               >
                 <Link href={items.link} className="flex items-start space-x-2">
                   {items.icon}
                   <span
-                    className={`text-md text-black ${
+                    className={`text-md text-black dark:text-white ${
                       !toggle && "sm:hidden"
                     } origin-left`}
                   >
@@ -98,14 +98,14 @@ export const SideNav = () => {
             }`}
           >
             <li
-              className={`rounded-lg hover:bg-[#E0E2FF] p-2 ${
+              className={`rounded-lg hover:bg-[#E0E2FF] dark:hover:bg-black p-2 ${
                 toggle && "w-full"
               }`}
             >
               <Link href="#" className="flex items-start space-x-2">
-                <IoSettingsOutline className="text-[#324054] text-2xl" />
+                <IoSettingsOutline className="text-[#324054] text-2xl dark:text-white" />
                 <span
-                  className={`text-md text-black duration-300 ${
+                  className={`text-md text-black dark:text-white duration-300 ${
                     !toggle && "hidden"
                   } origin-left duration-1000`}
                 >
@@ -114,14 +114,14 @@ export const SideNav = () => {
               </Link>
             </li>
             <li
-              className={`rounded-lg hover:bg-[#E0E2FF] p-2 ${
+              className={`rounded-lg hover:bg-[#E0E2FF] dark:hover:bg-black p-2 ${
                 toggle && "w-full"
               }`}
             >
               <button className="flex items-start space-x-2" onClick={onClick}>
-                <IoLogOutOutline className="text-[#324054] text-2xl" />
+                <IoLogOutOutline className="text-[#324054] text-2xl dark:text-white" />
                 <span
-                  className={`text-md text-black duration-300 ${
+                  className={`text-md text-black dark:text-white duration-300 ${
                     !toggle && "hidden"
                   } origin-left duration-1000`}
                 >

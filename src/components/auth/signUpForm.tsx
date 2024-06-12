@@ -85,14 +85,14 @@ export default function SignUpForm() {
                           <FormControl>
                             <Input
                               placeholder="first name"
-                              className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                              className="pl-12 py-6 border bg-sky-50 border-violet-900 dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white"
                               disabled={isPending}
                               {...field}
                             />
                           </FormControl>
                           {/* icons */}
                           <div className="absolute top-2.5 pl-2.5">
-                            <FiUser className="text-black text-3xl" />
+                            <FiUser className="text-black text-3xl dark:text-white" />
                           </div>
                         </div>
                         <FormMessage /> {/* display Error Messgae*/}
@@ -114,14 +114,14 @@ export default function SignUpForm() {
                           <FormControl>
                             <Input
                               placeholder="last name"
-                              className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                              className="pl-12 py-6 border bg-sky-50 border-violet-900 dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white"
                               disabled={isPending}
                               {...field}
                             />
                           </FormControl>
                           {/* icons */}
                           <div className="absolute top-2.5 pl-2.5">
-                            <FiUser className="text-black text-3xl" />
+                            <FiUser className="text-black text-3xl dark:text-white" />
                           </div>
                         </div>
                         <FormMessage /> {/* display Error Messgae*/}
@@ -144,14 +144,14 @@ export default function SignUpForm() {
                       <FormControl>
                         <Input
                           placeholder="Email"
-                          className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                          className="pl-12 py-6 border dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white bg-sky-50 border-violet-900"
                           disabled={isPending}
                           {...field}
                         />
                       </FormControl>
                       {/* icons */}
                       <div className="absolute top-2.5 pl-2.5">
-                        <MdEmail className="text-black text-3xl" />
+                        <MdEmail className="text-black text-3xl dark:text-white" />
                       </div>
                     </div>
                     <FormMessage /> {/* display Error Messgae*/}
@@ -173,25 +173,25 @@ export default function SignUpForm() {
                         <Input
                           type={showPass ? "text" : "password"}
                           placeholder="************"
-                          className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                          className="pl-12 py-6 border dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white bg-sky-50 border-violet-900"
                           disabled={isPending}
                           {...field}
                         />
                       </FormControl>
                       {/* icons */}
                       <div className="absolute top-2.5 pl-2.5">
-                        <MdKey className="text-black text-3xl" />
+                        <MdKey className="text-black text-3xl dark:text-white" />
                       </div>
                       <div className="absolute right-0 top-3 pr-4 cursor-pointer">
                         {showPass ? (
                           <FaEye
                             onClick={() => setShowPass(false)}
-                            className="text-black text-2xl select-none"
+                            className="text-black text-2xl select-none dark:text-white"
                           />
                         ) : (
                           <FaEyeSlash
                             onClick={() => setShowPass(true)}
-                            className="text-black text-2xl select-none"
+                            className="text-black text-2xl select-none dark:text-white"
                           />
                         )}
                       </div>
@@ -215,25 +215,25 @@ export default function SignUpForm() {
                         <Input
                           type={showConfirmPass ? "text" : "password"}
                           placeholder="************"
-                          className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                          className="pl-12 py-6 border dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white bg-sky-50 border-violet-900"
                           disabled={isPending}
                           {...field}
                         />
                       </FormControl>
                       {/* icons */}
                       <div className="absolute top-2.5 pl-2.5">
-                        <MdKey className="text-black text-3xl" />
+                        <MdKey className="text-black text-3xl dark:text-white" />
                       </div>
                       <div className="absolute right-0 top-3 pr-4 cursor-pointer">
                         {showConfirmPass ? (
                           <FaEye
                             onClick={() => setShowConfirmPass(false)}
-                            className="text-black text-2xl select-none"
+                            className="text-black text-2xl select-none dark:text-white"
                           />
                         ) : (
                           <FaEyeSlash
                             onClick={() => setShowConfirmPass(true)}
-                            className="text-black text-2xl select-none"
+                            className="text-black text-2xl select-none dark:text-white"
                           />
                         )}
                       </div>

@@ -19,7 +19,7 @@ export default function ProfileIndex({user}:{user: User} ) {
         <>
           <Profile data={user}/>
           <div className="w-full px-16 flex justify-end">
-            <Button onClick={handleEditProfile}>Edit Profile</Button>
+            <Button onClick={handleEditProfile} className="text-white dark:text-white">Edit Profile</Button>
           </div>
         </>
       ) : (

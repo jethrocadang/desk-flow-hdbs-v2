@@ -5,14 +5,9 @@ import imgWebDetails from "@/public/img/homepage/img-webDetails.png";
 
 export default function WebDetails() {
   return (
-    <div className=" h-screen  relative">
-      <Image
-        className="h-screen w-full bg-cover bg-center  relative"
-        src={bgImage}
-        alt=""
-      />
+    <div className=" h-screen bg-indigo-50 dark:bg-slate-900">
       <div className="flex justify-center">
-        <div className="container w-full h-screen absolute top-0 max-md:mt-5">
+        <div className="container w-full h-screen max-md:mt-5">
           <div className="flex w-full h-full max-md:flex-col max-md:justify-center max-md:items-center">
             {/* first half */}
             <div className="w-1/2 h-full flex justify-center items-center max-md:w-full">
@@ -32,7 +27,7 @@ export default function WebDetails() {
                 Desk<span className="text-blue-500">Flow</span>{" "}
               </h1>
               <div className=" mr-28 max-md:mr-0">
-                <p className="text-blue-900 text-lg max-md:text-base">
+                <p className=" dark:text-white text-blue-900 text-lg max-md:text-base">
                   What image comes to mind when you think of an office? Perhaps
                   an open area with desks, meeting rooms, a lunchroom, and
                   perhaps lounge seating? Or a large structure with one office

@@ -4,6 +4,7 @@ import bgImagaAuth from "@/public/img/authImage/bgAuthentication.png";
 import hotDog from "@/public/img/authImage/hotdog.png";
 import ImageAuth from "@/public/img/authImage/authimage.png";
 import SignInForm from "@/components/auth/signinForm";
+import frameSignup from "@/public/img/authImage/frameSignup.png";
 import Link from "next/link";
 import { GoogleButton } from "@/components/auth/googleButton";
 
@@ -11,11 +12,12 @@ import { GoogleButton } from "@/components/auth/googleButton";
 export default function Page() {
   return (
     <div>
-      <div className="max-md:relative bg-white h-screen w-full ">
+      <div className="max-md:relative h-screen w-full ">
         {/* background Image */}
         <Image
-          src={bgImagaAuth}
-          className="hidden md:flex md:h-screen md:w-full md:bg-cover md:bg-center md:relative"
+          src={frameSignup}
+          className="max-md:hidden dark:hidden md:absolute md:right-0 md:top-0 md:z-0 w-72"
+          height={400}
           alt=""
         />
         <Image
@@ -24,7 +26,7 @@ export default function Page() {
           alt=""
         />
 
-        <div className="max-md:mx-8 md:absolute md:top-0 md:h-full md:w-full z-10">
+        <div className=" max-md:mx-8 md:absolute md:top-0 md:h-full md:w-full z-10">
           <div className="md:absolute h-full w-full md:flex">
             {/* First half */}
             <div className=" w-full h-full md:w-1/2 pt-7 md:ml-5 md:flex md:items-start">
@@ -42,10 +44,10 @@ export default function Page() {
                 {/* Header */}
                 <div className="flex gap-5">
                   <div className="flex flex-col gap-5">
-                    <h2 className="text-4xl text-blue-900 font-bold ">
+                    <h2 className="dark:text-white text-4xl text-blue-900 font-bold ">
                       Welcome back!
                     </h2>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-slate-400 dark:text-slate-300">
                       If you are already a user, you can login with your email
                       and password.
                     </p>
@@ -66,15 +68,15 @@ export default function Page() {
                 {/* devider */}
                 <div className=" flex w-full justify-center mt-4">
                   <div className="w-1/3 pt-2.5">
-                    <hr className=" border border-gray-300" />
+                    <hr className="dark:text-slate-200 border border-gray-300" />
                   </div>
                   <div className="w-1/3 flex justify-center">
-                    <p className="text-slate-700 text-sm">
+                    <p className="dark:text-slate-200 text-slate-700 text-sm">
                       or Login with Email
                     </p>
                   </div>
                   <div className="w-1/3 pt-2.5 ">
-                    <hr className=" border border-gray-300" />
+                    <hr className="dark:text-slate-200 border border-gray-300" />
                   </div>
                 </div>
 
@@ -85,12 +87,12 @@ export default function Page() {
                 </div>
 
                 <div className="mt-5 flex justify-center">
-                  <span className="text-black text-xs">
+                  <span className="text-black text-xs dark:text-slate-200">
                     Not registered yet?
                   </span>
                   <Link
                     href={"/sign-up"}
-                    className="text-xs text-blue-900 hover:text-blue-500 font-semibold"
+                    className="text-xs text-blue-900 hover:text-blue-500 font-semibold dark:text-sky-500"
                   >
                     Create an account
                   </Link>

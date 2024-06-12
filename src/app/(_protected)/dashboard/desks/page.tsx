@@ -18,17 +18,17 @@ export default async function DesksPage() {
   return (
     <>
       {(ADMIN || FLOOR_MANAGER) && (
-        <div className=" p-5 h-full">
+        <div className=" p-5 h-full pl-24 mt-16">
           <Suspense fallback={<Loading />}>
             <Tabs defaultValue="Overview" className="w-full h-full  ">
               <TabsList className="">
-                <TabsTrigger value="Overview">Desk Overview</TabsTrigger>
-                <TabsTrigger value="Editor">Desk Editor </TabsTrigger>
+                <TabsTrigger value="Overview" className="dark:text-white dark:bg-slate-900">Desk Overview</TabsTrigger>
+                <TabsTrigger value="Editor" className="dark:text-white dark:bg-slate-700">Desk Editor </TabsTrigger>
               </TabsList>
-              <TabsContent value="Overview">
+              <TabsContent value="Overview" className="flex">
                 <Overview desks={desks} amenities={amenities} />
               </TabsContent>
-              <TabsContent value="Editor" className="flex">
+              <TabsContent value="Editor" className="flex ">
                 <DeskEditor desks={desks} amenities={amenities} />
               </TabsContent>
             </Tabs>
@@ -39,9 +39,9 @@ export default async function DesksPage() {
         <div className=" p-5 h-full">
           <Suspense fallback={<Loading />}>
             <Tabs defaultValue="Overview" className="w-full h-full  ">
-              <TabsList className="">
-                <TabsTrigger value="Overview">Desk Overview</TabsTrigger>
-                <TabsTrigger value="Bookings">Desk Bookings </TabsTrigger>
+              <TabsList className=" dark:bg-slate-900">
+                <TabsTrigger value="Overview" className="dark:text-white dark:bg-slate-900">Desk Overview</TabsTrigger>
+                <TabsTrigger value="Bookings" className="dark:text-white dark:bg-slate-900">Desk Bookings </TabsTrigger>
               </TabsList>
               <TabsContent value="Overview">
                 <Overview desks={desks} amenities={amenities} />

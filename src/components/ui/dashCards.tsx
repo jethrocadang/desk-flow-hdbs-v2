@@ -22,7 +22,7 @@ interface DashCardsProps {
 export default function DashCards({title, description, count, icon, className }: DashCardsProps) {
   return (
     <div>
-      <Card className={cn('w-80 bg-gradient-to-t from-violet-300 to-transparent to-60% drop-shadow-md',className)}>
+      <Card className={cn('w-80 bg-gradient-to-t from-violet-300 to-transparent to-60% drop-shadow-md dark:bg-slate-900 dark:from-transparent ',className)}>
         <CardHeader>
           <div className=' flex flex-row justify-between'>
             <CardTitle>{title}</CardTitle>

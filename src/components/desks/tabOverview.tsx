@@ -39,7 +39,7 @@ export const Overview = ({
   };
 
   return (
-    <div className="h-full p-5">
+    <div className="h-full p-5 dark:bg-slate-900">
       <div className="  flex lg:flex-row flex-col">
         <div className="container flex">
           <Map

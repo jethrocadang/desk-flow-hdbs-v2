@@ -39,8 +39,8 @@ export default function Row1() {
           <div className={`absolute bottom-0 left-0 w-full p-4 rounded-b-3xl   duration-300 
           ${showDetails1 ? 'h-20 bg-gradient-to-t from-indigo-600 from-5%' : 'h-0' } `}>
               <div className="text-center pt-3 text-white duration-300">
-                <p className="text-lg">Jethro Cadang</p>
-                <p className="text-xs font-bold">Project Manager</p>
+                <p className={`text-lg ${!showDetails1 && "scale-0"}`}>Jethro Cadang</p>
+                <p className={`text-xs font-bold ${!showDetails1 && "scale-0"}`}>Project Manager</p>
               </div>
           </div>
         </div>
@@ -51,8 +51,8 @@ export default function Row1() {
           <div className={`absolute bottom-0 left-0 w-full p-4 rounded-b-3xl   duration-300 
           ${showDetails2 ? 'h-20 bg-gradient-to-t from-indigo-600 from-5%' : 'h-0' } `}>
               <div className=' text-center pt-3 text-white'>
-                <p className="text-lg">John Michael Umali</p>
-                <p className="text-xs font-bold">Web Developer</p>
+                <p className={`text-lg ${!showDetails2 && "scale-0"}`}>John Michael Umali</p>
+                <p className={`text-xs font-bold ${!showDetails2 && "scale-0"}`}>Web Developer</p>
               </div>
           </div>
         </div>
@@ -62,8 +62,8 @@ export default function Row1() {
           <div className={`absolute bottom-0 left-0 w-full p-4 rounded-b-3xl   duration-300 
           ${showDetails3 ? 'h-20 bg-gradient-to-t from-indigo-600 from-5%' : 'h-0' } `}>
               <div className=' text-center pt-3 text-white'>
-                <p className="text-lg">Allen Aebram Magadia</p>
-                <p className="text-xs font-bold">Web Developer</p>
+                <p className={`text-lg ${!showDetails3 && "scale-0"}`}>Allen Aebram Magadia</p>
+                <p className={`text-xs font-bold ${!showDetails3 && "scale-0"}`}>Web Developer</p>
               </div>
           </div>
         </div>

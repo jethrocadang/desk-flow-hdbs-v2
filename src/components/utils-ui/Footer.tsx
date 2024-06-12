@@ -19,14 +19,14 @@ export default function Footer() {
         {/* background Image */}
         <Image
           src={Bgimage}
-          className="h-full w-full bg-cover bg-center  relative"
+          className=" dark:hidden h-full w-full bg-cover bg-center  relative"
           alt=""
         />
         <div className="container ">
           <div className=" duration-300 absolute top-0 mt-14 ml-16 max-lg:ml-12 ">
             {/* Header */}
             <div>
-              <h1 className="text-blue-900 font-bold text-5xl max-lg:text-3xl max-md:text-2xl duration-300">
+              <h1 className="dark:text-sky-700 text-blue-900 font-bold text-5xl max-lg:text-3xl max-md:text-2xl duration-300">
                 Unlock Your Productive <br /> Workspace Today!{" "}
               </h1>
               <div className="w-28 h-9 mt-8 text-white text-sm font-semibold ">
@@ -53,19 +53,19 @@ export default function Footer() {
                     <div className="flex flex-col gap-6 mt-6 max-md:gap-4 duration-300">
                       <Link
                         href="/"
-                        className="text-lg text-blue-900 hover:text-blue-500 font-semibold"
+                        className=" dark:text-white text-lg text-blue-900 hover:text-blue-500 font-semibold"
                       >
                         DeskFlow
                       </Link>
                       <Link
                         href="/contact"
-                        className="text-lg text-blue-900 hover:text-blue-500 font-semibold"
+                        className="dark:text-white text-lg text-blue-900 hover:text-blue-500 font-semibold"
                       >
                         Contact Us
                       </Link>
                       <Link
                         href="/team"
-                        className="text-lg text-blue-900 hover:text-blue-500 font-semibold"
+                        className="dark:text-white text-lg text-blue-900 hover:text-blue-500 font-semibold"
                       >
                         Our Team
                       </Link>
@@ -80,13 +80,13 @@ export default function Footer() {
                     <div className="flex flex-col gap-6 mt-6 max-md:gap-4 duration-300">
                       <Link
                         href="#"
-                        className="text-lg text-blue-900 hover:text-blue-500 font-semibold"
+                        className="dark:text-white text-lg text-blue-900 hover:text-blue-500 font-semibold"
                       >
                         Terms &amp; Conditions
                       </Link>
                       <Link
                         href="#"
-                        className="text-lg text-blue-900 hover:text-blue-500 font-semibold"
+                        className="dark:text-white text-lg text-blue-900 hover:text-blue-500 font-semibold"
                       >
                         Privacy Policy
                       </Link>
@@ -99,7 +99,7 @@ export default function Footer() {
                       CONTACTS
                     </h1>
                     <div className=" mt-6">
-                      <p className="text-lg text-blue-900 font-semibold">
+                      <p className="dark:text-white text-lg text-blue-900 font-semibold">
                         hotdesk@gmail.com
                       </p>
                     </div>
@@ -108,10 +108,10 @@ export default function Footer() {
               </div>
               <div className="w-full mt-10">
                 <div className="flex mr-8 justify-between max-md:justify-center max-md:flex-none max-md:pr-3 gap-1 duration-300">
-                  <p className="text-blue-900">
+                  <p className=" dark:text-gray-500 text-blue-900">
                     Copyright &copy; 2023 Hot-Desking System
                   </p>
-                  <p className="text-blue-900">All Rights Reserved</p>
+                  <p className="dark:text-gray-500 text-blue-900">All Rights Reserved</p>
                 </div>
               </div>
               <br />

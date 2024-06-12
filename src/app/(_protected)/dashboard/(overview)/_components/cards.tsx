@@ -15,7 +15,7 @@ export const UserCards = ({ allUsers, user, admin, FM }: UserProps) => {
   return (
     <div className="flex flex-col gap-2">
       <h2 className=" text-2xl font-bold">Users</h2>
-      <div className="flex flex-row justify-around">
+      <div className="flex flex-wrap gap-16 justify-center">
         <DashCards
           title="Total"
           icon={<LuUsers className=" text-3xl" />}
@@ -61,7 +61,7 @@ export const BookingsCard = ({
   return (
     <div className="flex flex-col gap-2 mt-10 ">
       <h2 className=" text-2xl font-bold">Bookings</h2>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-wrap gap-16 justify-center">
       <DashCards
           title="Total"
           icon={<BsFillBoxFill className=" text-3xl text-green-600" />}
@@ -101,7 +101,7 @@ export const DesksCard = ({desks, available, unavailable}:DesksProp) => {
   return (
     <div className="flex flex-col gap-2 mt-10">
       <h2 className=" text-2xl font-bold">Desks</h2>
-      <div className="flex flex-row justify-around">
+      <div className="flex flex-wrap gap-16 justify-center">
       <DashCards
           title="Total"
           icon={<GoGraph className=" text-3xl font-semibold text-green-600" />}

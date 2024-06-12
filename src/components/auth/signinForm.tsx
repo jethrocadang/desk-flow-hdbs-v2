@@ -80,14 +80,14 @@ export default function SignInForm() {
                     <FormControl>
                       <Input
                         placeholder="Email"
-                        className={`pl-12 py-6 border bg-sky-50 ${error ? "border-red-700" : "border-violet-900"}`}
+                        className={`pl-12 py-6 border dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white  bg-sky-50 ${error ? "border-red-700" : "border-violet-900"}`}
                         disabled={isPending}
                         {...field}
                       />
                     </FormControl>
                     {/* icons */}
                     <div className="absolute top-2.5 pl-2.5">
-                      <MdEmail className="text-black text-3xl" />
+                      <MdEmail className="text-black text-3xl dark:text-white" />
                     </div>
                   </div>
                   <FormMessage /> {/* display Error Messgae*/}
@@ -108,25 +108,25 @@ export default function SignInForm() {
                       <Input
                         type={showPass ? "text" : "password"}
                         placeholder="************"
-                        className={`pl-12 py-6 border bg-sky-50 ${error ? "border-red-700" : "border-violet-900"}`}
+                        className={`pl-12 py-6 border bg-sky-50 dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white ${error ? "border-red-700" : "border-violet-900"}`}
                         disabled={isPending}
                         {...field}
                       />
                     </FormControl>
                     {/* icons */}
                     <div className="absolute top-2.5 pl-2.5">
-                      <MdKey className="text-black text-3xl" />
+                      <MdKey className="text-black text-3xl dark:text-white" />
                     </div>
                     <div className="absolute right-0 top-3 pr-4 cursor-pointer">
                       {showPass ? (
                         <FaEye
                           onClick={() => setShowPass(false)}
-                          className="text-black text-2xl"
+                          className="text-black text-2xl dark:text-white"
                         />
                       ) : (
                         <FaEyeSlash
                           onClick={() => setShowPass(true)}
-                          className="text-black text-2xl"
+                          className="text-black text-2xl dark:text-white"
                         />
                       )}
                     </div>
@@ -146,13 +146,13 @@ export default function SignInForm() {
                     <div className="flex flext-row gap-2">
                       <FormControl>
                         <Checkbox
-                          className="mt-1"
+                          className="mt-1 dark:text-white"
                           checked={field.value}
                           onCheckedChange={field.onChange}
                         />
                       </FormControl>
                       <div>
-                        <FormLabel className="text-sm text-black">
+                        <FormLabel className="dark:text-white text-sm text-black">
                           Remember me
                         </FormLabel>
                       </div>
@@ -164,7 +164,7 @@ export default function SignInForm() {
 
             <Link
               href="/forgot-password"
-              className="text-sm text-blue-900 hover:text-blue-500"
+              className="dark:text-sky-500 text-sm text-blue-900 hover:text-blue-500"
             >
               Fogot Password?
             </Link>

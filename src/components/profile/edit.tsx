@@ -108,7 +108,7 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
                       alert(`ERROR! ${error.message}`);
                     }}
                     appearance={{
-                      button: "bg-blue-300 w-full",
+                      button: "bg-blue-300 w-full dark:bg-slate-900 dark:border dark:border-slate-100",
                     }}
                   />
                 </div>
@@ -136,7 +136,7 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
                               <FormControl>
                                 <Input
                                   placeholder={user.firstName}
-                                  className="px-7 py-6 border bg-sky-50 border-violet-900"
+                                  className="px-7 py-6 border bg-sky-50 border-violet-900 dark:bg-slate-900 dark:border dark:border-slate-100"
                                   {...field}
                                 />
                               </FormControl>
@@ -161,7 +161,7 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
                               <FormControl>
                                 <Input
                                   placeholder={user?.lastName}
-                                  className="px-7 py-6 border bg-sky-50 border-violet-900"
+                                  className="px-7 py-6 border bg-sky-50 border-violet-900 dark:bg-slate-900 dark:border dark:border-slate-100"
                                   {...field}
                                 />
                               </FormControl>
@@ -183,7 +183,7 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
                     <FormControl>
                       <Input
                         placeholder={user?.email}
-                        className="px-7 py-6 border bg-sky-50 border-violet-900"
+                        className="px-7 py-6 border bg-sky-50 border-violet-900 dark:bg-slate-900 dark:border dark:border-slate-100"
                         disabled={isPasswordNull}
                       />
                     </FormControl>
@@ -193,10 +193,10 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
                 </FormItem>
 
                 <div className="h-12 mt-5 flex flex-row gap-5 justify-end">
-                  <Button className="bg-red-500" onClick={onCancelEdit} disabled={isPending || uploadStatus}>
+                  <Button className="bg-red-500 dark:text-white dark:bg-slate-900 dark:border dark:border-slate-100 dark:hover:bg-slate-500" onClick={onCancelEdit} disabled={isPending || uploadStatus}>
                     cancel
                   </Button>
-                  <Button className="bg-green-500" type="submit" disabled={isPending || uploadStatus} >
+                  <Button className="bg-green-500 hover:bg-green-300 dark:text-white dark:bg-slate-600 dark:border dark:border-slate-100 dark:hover:bg-slate-900" type="submit" disabled={isPending || uploadStatus} >
                     {(isPending || uploadStatus) ? <Spinner/> : "Submit"}
                   </Button>
                 </div>

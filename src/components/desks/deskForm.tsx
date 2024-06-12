@@ -85,7 +85,7 @@ export const DeskForm = ({ desk, amenities, onCancel }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-5 p-7 bg-white border border-black rounded-md "
+        className="space-y-5 p-7 bg-white dark:bg-slate-900 border border-black rounded-md "
       >
         <div>
           <h1 className="text-xl  font-bold tracking-wide">Desk Editor</h1>
@@ -176,7 +176,7 @@ export const DeskForm = ({ desk, amenities, onCancel }: Props) => {
             <div className="grid w-full gap-1.5">
               <Label>Ammenities</Label>
               <MultipleSelector
-                className="bg-white"
+                className="bg-white dark:bg-slate-950"
                 value={field.value}
                 onChange={field.onChange}
                 defaultOptions={Amenity}

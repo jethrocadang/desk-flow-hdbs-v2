@@ -6,6 +6,7 @@ import Button from "./Button";
 import { IoClose } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Spinner from "./Spinner";
+import ToggleTheme from "../ui/toggleTheme";
 
 export default function TopNav() {
   //button status
@@ -24,14 +25,14 @@ export default function TopNav() {
   return (
     <div>
       {/* nav container */}
-      <nav className="w-full  border-b-2 border-slate-400 bg-white fixed top-0 left-0 right-0 z-10">
+      <nav className="w-full  border-b-2 border-slate-400 bg-white dark:bg-slate-900 fixed top-0 left-0 right-0 z-10">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               {/* LOGO or NAME  */}
               <Link href="/">
-                <h2 className="text-2xl text-blue-700 font-bold ">
-                  Desk<span className="text-blue-500">Flow</span>{" "}
+                <h2 className="text-2xl text-blue-600 font-bold ">
+                  Desk<span className="text-blue-400">Flow</span>{" "}
                 </h2>
               </Link>
               {/* BURGERNAV FOR MOBILE */}
@@ -89,6 +90,9 @@ export default function TopNav() {
                       </Button>
                     </Link>
                   </div>
+                </div>
+                <div>
+                  <ToggleTheme />
                 </div>
               </div>
             </div>

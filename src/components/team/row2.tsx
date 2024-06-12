@@ -39,8 +39,8 @@ export default function Row2() {
             <div className={`absolute bottom-0 left-0 w-full p-4 rounded-b-3xl   duration-300 
             ${showDetails4 ? 'h-20 bg-gradient-to-t from-indigo-600 from-5%' : 'h-0' } `}>
                 <div className=' text-center pt-3 text-white'>
-                  <p className="text-lg">Marjorie Anito</p>
-                  <p className="text-xs font-bold">UI/UX Designer</p>
+                  <p className={`text-lg ${!showDetails4 && "scale-0"}`}>Marjorie Anito</p>
+                  <p className={`text-xs font-bold ${!showDetails4 && "scale-0"}`}>UI/UX Designer</p>
                 </div>
             </div>
           </div>
@@ -50,8 +50,8 @@ export default function Row2() {
             <div className={`absolute bottom-0 left-0 w-full p-4 rounded-b-3xl   duration-300 
             ${showDetails5 ? 'h-20 bg-gradient-to-t from-indigo-600 from-5%' : 'h-0' } `}>
                 <div className=' text-center pt-3 text-white'>
-                  <p className="text-lg">Erish Berboso</p>
-                  <p className="text-xs font-bold">Quality Assurance Tester</p>
+                  <p className={`text-lg ${!showDetails5 && "scale-0"}`}>Erish Berboso</p>
+                  <p className={`text-xs font-bold ${!showDetails5 && "scale-0"}`}>Quality Assurance Tester</p>
                 </div>
             </div>
           </div>
@@ -61,8 +61,8 @@ export default function Row2() {
             <div className={`absolute bottom-0 left-0 w-full p-4 rounded-b-3xl   duration-300 
             ${showDetails6 ? 'h-20 bg-gradient-to-t from-indigo-600 from-5%' : 'h-0' } `}>
                 <div className=' text-center pt-3 text-white'>
-                  <p className="text-lg">Vera Jane Lazaraga</p>
-                  <p className="text-xs font-bold">Content Writer</p>
+                  <p className={`text-lg ${!showDetails6 && "scale-0"}`}>Vera Jane Lazaraga</p>
+                  <p className={`text-xs font-bold ${!showDetails6 && "scale-0"}`}>Content Writer</p>
                 </div>
             </div>
           </div>

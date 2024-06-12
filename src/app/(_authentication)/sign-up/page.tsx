@@ -10,11 +10,11 @@ import { GoogleButton } from "@/components/auth/googleButton";
 export default function Page() {
   return (
     <div>
-      <div className="md:relative bg-white w-full ">
+      <div className="md:relative w-full">
         {/* background Image */}
         <Image
           src={frameSignup}
-          className="max-md:hidden md:absolute md:right-0 md:top-0 md:z-0 w-96"
+          className="max-md:hidden dark:hidden md:absolute md:right-0 md:top-0 md:z-0 w-96"
           height={900}
           alt=""
         />
@@ -44,10 +44,10 @@ export default function Page() {
                   {/* Header */}
                   <div className="flex justify-between gap-5">
                     <div className="flex flex-col gap-5">
-                      <h2 className="text-4xl text-blue-900 font-bold ">
+                      <h2 className="dark:text-white text-4xl text-blue-900 font-bold ">
                         Lets Get Started!
                       </h2>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-slate-400 dark:text-slate-200">
                         Please enter your details below to register.
                       </p>
                     </div>
@@ -67,15 +67,15 @@ export default function Page() {
                   {/* devider */}
                   <div className=" flex w-full justify-center mt-4">
                     <div className="w-1/3 pt-2.5">
-                      <hr className=" border border-gray-300" />
+                      <hr className=" border dark:border-slate-200 border-gray-300" />
                     </div>
                     <div className="w-1/3 flex justify-center">
-                      <p className="text-slate-700 text-sm">
+                      <p className="dark:text-slate-200 text-slate-700 text-sm">
                         or Login with Email
                       </p>
                     </div>
                     <div className="w-1/3 pt-2.5 ">
-                      <hr className=" border border-gray-300" />
+                      <hr className=" border dark:border-slate-200 border-gray-300" />
                     </div>
                   </div>
 
@@ -86,12 +86,12 @@ export default function Page() {
                   </div>
 
                   <div className="mt-5 flex justify-center">
-                    <span className="text-black text-xs">
+                    <span className=" text-black text-xs dark:text-slate-200">
                       Already have an account?
                     </span>
                     <Link
                       href={"/sign-in"}
-                      className="text-xs text-blue-900 hover:text-blue-500 font-semibold"
+                      className="text-xs dark:text-sky-500 text-blue-900 hover:text-blue-500 font-semibold"
                     >
                       Sign In
                     </Link>

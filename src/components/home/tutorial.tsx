@@ -5,11 +5,11 @@ import imgWebDetails from '@/public/img/homepage/img-webDetails.png';
 
 export default function Tutorial() {
   return (
-    <div className='w-full bg-indigo-50'>
-      <div className='container h-screen'>
+    <div className='w-full bg-indigo-50 dark:bg-slate-900'>
+      <div className='container py-10'>
         <div className='w-full h-full my-10'>
           <div className='pt-10 max-md:pt-5'>
-            <h1 className='text-4xl font-bold	text-blue-900  text-center'>How it works</h1>
+            <h1 className='text-4xl font-bold dark:text-white	text-blue-900  text-center'>How it works</h1>
           </div>
           <div className='flex flex-row-reverse w-full h-full max-md:flex-col max-md:justify-center max-md:items-start'>
             {/* first half */}
@@ -35,8 +35,8 @@ export default function Tutorial() {
                       <p className=' text-white text-2xl p-2 max-md:text-xl'>01</p>
                     </div>
                     <div className='pt-3 pl-2 mr-24 max-md:mr-0 max-md:pt-0'>
-                      <p className='text-blue-900 text-xl font-semibold pb-2'>Book a Desk</p>
-                      <p className='text-blue-900 text-md max-sm:text-base '>Employees can reserve a desk in accordance with their preferred schedule and select the most suitable desk for their needs.  </p>
+                      <p className='dark:text-sky-700 text-blue-900 text-xl font-semibold pb-2'>Book a Desk</p>
+                      <p className='dark:text-white text-blue-900 text-md max-sm:text-base '>Employees can reserve a desk in accordance with their preferred schedule and select the most suitable desk for their needs.  </p>
                     </div>
                   </div>
 
@@ -45,8 +45,8 @@ export default function Tutorial() {
                       <p className=' text-white text-2xl p-2 max-md:text-xl'>02</p>
                     </div>
                     <div className='pt-3 pl-3 mr-24'>
-                      <p className='text-blue-900 text-xl font-semibold pb-3'>Available Desk</p>
-                      <p className='text-blue-900 text-md max-sm:text-base '>Users can reserve their preferred desk by checking which desks are available. </p>
+                      <p className='text-blue-900 text-xl font-semibold pb-3 dark:text-sky-700'>Available Desk</p>
+                      <p className='dark:text-white text-blue-900 text-md max-sm:text-base '>Users can reserve their preferred desk by checking which desks are available. </p>
                     </div>
                   </div>
 
@@ -55,8 +55,8 @@ export default function Tutorial() {
                       <p className=' text-white text-2xl p-2 max-md:text-xl'>03</p>
                     </div>
                     <div className='pt-3 pl-3 mr-24'>
-                      <p className='text-blue-900 text-xl font-semibold pb-3'>Lorem Ipsum</p>
-                      <p className='text-blue-900 text-md max-sm:text-base '>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
+                      <p className='text-blue-900 text-xl font-semibold pb-3 dark:text-sky-700'>Lorem Ipsum</p>
+                      <p className='dark:text-white text-blue-900 text-md max-sm:text-base '>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
                     </div>
                   </div>
                   
