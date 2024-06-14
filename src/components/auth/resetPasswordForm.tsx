@@ -89,25 +89,25 @@ export default function ResetPasswordForm() {
                         <Input
                           type={showPass ? "text" : "password"}
                           placeholder="************"
-                          className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                          className="pl-12 py-6 border bg-sky-50 border-violet-900 dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white"
                           disabled={isPending}
                           {...field}
                         />
                       </FormControl>
                       {/* icons */}
                       <div className="absolute top-2.5 pl-2.5">
-                        <MdKey className="text-black text-3xl" />
+                        <MdKey className="text-black text-3xl dark:text-white" />
                       </div>
                       <div className="absolute right-0 top-3 pr-4 cursor-pointer">
                         {showPass ? (
                           <FaEye
                             onClick={() => setShowPass(false)}
-                            className="text-black text-2xl"
+                            className="text-black text-2xl dark:text-white"
                           />
                         ) : (
                           <FaEyeSlash
                             onClick={() => setShowPass(true)}
-                            className="text-black text-2xl"
+                            className="text-black text-2xl dark:text-white"
                           />
                         )}
                       </div>
@@ -131,25 +131,25 @@ export default function ResetPasswordForm() {
                         <Input
                           type={showConfirmPass ? "text" : "password"}
                           placeholder="************"
-                          className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                          className="pl-12 py-6 border bg-sky-50 border-violet-900 dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white"
                           disabled={isPending}
                           {...field}
                         />
                       </FormControl>
                       {/* icons */}
                       <div className="absolute top-2.5 pl-2.5">
-                        <MdKey className="text-black text-3xl" />
+                        <MdKey className="text-black text-3xl dark:text-white" />
                       </div>
                       <div className="absolute right-0 top-3 pr-4 cursor-pointer">
                         {showConfirmPass ? (
                           <FaEye
                             onClick={() => setShowConfirmPass(false)}
-                            className="text-black text-2xl"
+                            className="text-black text-2xl dark:text-white"
                           />
                         ) : (
                           <FaEyeSlash
                             onClick={() => setShowConfirmPass(true)}
-                            className="text-black text-2xl"
+                            className="text-black text-2xl dark:text-white"
                           />
                         )}
                       </div>

@@ -31,7 +31,7 @@ export const CancelBooking = ({ id }: { id: string }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full text-xs h-8 bg-red-200 text-black tracking-wide hover:bg-red-300">
+        <Button className="w-full text-xs h-8 bg-red-200 dark:bg-slate-600 text-black tracking-wide hover:bg-red-300 dark:text-white dark:hover:bg-slate-900">
           Cancel Booking
         </Button>
       </DialogTrigger>

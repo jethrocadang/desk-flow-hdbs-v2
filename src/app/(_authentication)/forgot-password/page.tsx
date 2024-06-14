@@ -10,11 +10,11 @@ import ForgotPasswordForm from "@/components/auth/forgotPasswordForm";
 export default function Page() {
   return (
     <div>
-      <div className="max-md:relative bg-white h-screen w-full ">
+      <div className="max-md:relative h-screen w-full ">
         {/* background Image */}
         <Image
           src={bgImagaAuth}
-          className="hidden md:flex md:h-screen md:w-full md:bg-cover md:bg-center md:relative"
+          className="hidden dark:hidden md:flex md:h-screen md:w-full md:bg-cover md:bg-center md:relative"
           alt=""
         />
         <Image
@@ -41,10 +41,10 @@ export default function Page() {
                 {/* Header */}
                 <div className="flex gap-5">
                   <div className="flex flex-col gap-5">
-                    <h2 className="text-4xl text-blue-900 font-bold ">
+                    <h2 className="text-4xl text-blue-900 font-bold dark:text-white">
                       Forgot your Password?
                     </h2>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-slate-400 dark:text-slate-200">
                       Please enter your email.
                     </p>
                   </div>
@@ -73,12 +73,12 @@ export default function Page() {
                 </div>
 
                 {/* inputs segments folder */}
-                <div className="w-full flex flex-col">
+                <div className="w-full flex flex-col pt-5">
                   {/* Segments Folder */}
                   <ForgotPasswordForm />
                 </div>
                 <div className="mt-5 flex justify-center">
-                  <span className="text-black text-xs">
+                  <span className="text-black text-xs dark:text-white">
                     Remembered your Password? &nbsp; 
                   </span>
                   <Link

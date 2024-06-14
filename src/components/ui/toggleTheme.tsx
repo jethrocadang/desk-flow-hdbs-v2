@@ -11,7 +11,7 @@ function ToggleTheme() {
 
   useEffect(()=> {
     setMounted(true)
-  })
+  }, []);
 
   if(!mounted){
     return <Button variant="secondary" size="icon" disabled={true}></Button>
