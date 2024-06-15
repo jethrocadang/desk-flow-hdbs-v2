@@ -36,12 +36,12 @@ export default async function DesksPage() {
         </div>
       )}
       {USER && (
-        <div className=" p-5 h-full">
+        <div className=" p-5 h-full pl-24 mt-16">
           <Suspense fallback={<Loading />}>
             <Tabs defaultValue="Overview" className="w-full h-full  ">
               <TabsList className=" dark:bg-slate-900">
                 <TabsTrigger value="Overview" className="dark:text-white dark:bg-slate-900">Desk Overview</TabsTrigger>
-                <TabsTrigger value="Bookings" className="dark:text-white dark:bg-slate-900">Desk Bookings </TabsTrigger>
+                <TabsTrigger value="Bookings" className="dark:text-white dark:bg-slate-700">Desk Bookings </TabsTrigger>
               </TabsList>
               <TabsContent value="Overview">
                 <Overview desks={desks} amenities={amenities} />

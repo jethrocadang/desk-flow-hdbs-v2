@@ -75,14 +75,14 @@ export default function ForgotPasswordForm() {
                     <FormControl>
                       <Input
                         placeholder="Email"
-                        className="pl-12 py-6 border bg-sky-50 border-violet-900"
+                        className="pl-12 py-6 border bg-sky-50 border-violet-900 dark:bg-slate-900 dark:border dark:border-slate-100 dark:text-white"
                         disabled={isPending}
                         {...field}
                       />
                     </FormControl>
                     {/* icons */}
                     <div className="absolute top-2.5 pl-2.5">
-                      <MdEmail className="text-black text-3xl" />
+                      <MdEmail className="text-black text-3xl dark:text-white" />
                     </div>
                   </div>
                   <FormMessage /> {/* display Error Messgae*/}

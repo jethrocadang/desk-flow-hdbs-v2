@@ -27,7 +27,7 @@ export const BookingTab = ({ desks, amenities, bookings }: Props) => {
   };
 
   return (
-    <div className="h-full p-5">
+    <div className="container h-full p-5 dark:bg-slate-700">
       <div className="  flex lg:flex-row flex-col">
         <div className="container flex flex-col md:flex-row">
           <Map

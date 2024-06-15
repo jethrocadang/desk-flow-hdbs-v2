@@ -10,11 +10,11 @@ import { Suspense } from "react";
 export default function Page() {
   return (
     <div>
-      <div className="md:relative bg-white w-full ">
+      <div className="md:relative w-full ">
         {/* background Image */}
         <Image
           src={frameSignup}
-          className="max-md:hidden md:absolute md:right-0 md:top-0 md:z-0 w-96"
+          className="max-md:hidden dark:hidden md:absolute md:right-0 md:top-0 md:z-0 w-96"
           height={900}
           alt=""
         />
@@ -44,10 +44,10 @@ export default function Page() {
                   {/* Header */}
                   <div className="flex justify-between gap-5">
                     <div className="flex flex-col gap-5">
-                      <h2 className="text-4xl text-blue-900 font-bold ">
+                      <h2 className="text-4xl text-blue-900 font-bold dark:text-white">
                         Let&apos;s reset your password!
                       </h2>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-slate-400 dark:text-slate-200">
                         Please enter your new password below to reset your
                         password.
                       </p>

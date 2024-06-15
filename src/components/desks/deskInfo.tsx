@@ -31,7 +31,7 @@ export const DeskInfoCard = ({
 
   return (
     <Card className={cn("w-full my-auto px-5", className)}>
-      <CardHeader className="px-0">
+      <CardHeader className=" px-3">
         <CardTitle>{desk.deskName}</CardTitle>
         <CardDescription>{desk.description}</CardDescription>
       </CardHeader>
@@ -46,7 +46,7 @@ export const DeskInfoCard = ({
         </p>
       </CardContent> */}
 
-      <CardContent className="px-0 ">
+      <CardContent className=" px-3 ">
         <h1 className="font-semibold mb-4">Desk Ammenities</h1>
         <ul>
           {data.map((amenity) => (

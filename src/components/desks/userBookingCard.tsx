@@ -18,7 +18,7 @@ export const UserBookingCard = ({ desks, bookings }: Props) => {
   const data = bookings.filter((booking) => booking.userId === user?.id);
 
   const statusColors: { [status: string]: string } = {
-    BOOKED: "bg-green-200",
+    BOOKED: "bg-green-200 dark:text-black",
     PENDING: "bg-orange-200",
     CANCELLED: "bg-amber-200",
   };

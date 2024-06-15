@@ -122,7 +122,7 @@ export const BookingForm = ({ desk, amenities, bookings, onCancel }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" p-7 bg-white border border-black rounded-md "
+        className=" p-7 bg-white dark:bg-slate-900 border border-black rounded-md "
       >
         <div>
           <h1 className="text-xl  font-bold tracking-wide">Book this Desk?</h1>
