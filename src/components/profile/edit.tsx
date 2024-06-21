@@ -38,7 +38,7 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
   const user = useCurrentUser();
   const [image, setImage] = useState(data?.image);
   const [isPending, startTransition] = useTransition();
-  const [uploadStatus, setUploadStatus] = useState(false)
+  const [uploadStatus, setUploadStatus] = useState(false);
 
   //Form
   const form = useForm<z.infer<typeof editProfileSchema>>({
@@ -46,7 +46,7 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
     defaultValues: {
       firstName: data.firstName || "",
       lastName: data.lastName || "",
-      image: data.image ||  "",
+      image: data.image || "",
     },
   });
 
@@ -59,23 +59,19 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
             title: "Success",
             description: "Profile Updated",
           });
-          onCancelEdit(null)
+          onCancelEdit(null);
         }
       });
     });
   };
 
-
   //Temporary Upload Image not stored in DB
   const handleUploadImage = (res: any) => {
-      const url = res[0].url;
-      setImage(url);
-      form.setValue("image", url);
-      setUploadStatus(false)
-  }
-
-
-
+    const url = res[0].url;
+    setImage(url);
+    form.setValue("image", url);
+    setUploadStatus(false);
+  };
 
   return (
     <div className="container">
@@ -101,14 +97,15 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
                   <UploadButton
                     endpoint="imageUploader"
                     onClientUploadComplete={handleUploadImage}
-                    onUploadProgress={(p:number)=> {
-                      setUploadStatus(true)          
+                    onUploadProgress={(p: number) => {
+                      setUploadStatus(true);
                     }}
                     onUploadError={(error: Error) => {
                       alert(`ERROR! ${error.message}`);
                     }}
                     appearance={{
-                      button: "bg-blue-300 w-full dark:bg-slate-900 dark:border dark:border-slate-100",
+                      button:
+                        "bg-blue-300 w-full dark:bg-slate-900 dark:border dark:border-slate-100",
                     }}
                   />
                 </div>
@@ -193,11 +190,19 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
                 </FormItem>
 
                 <div className="h-12 mt-5 flex flex-row gap-5 justify-end">
-                  <Button className="bg-red-500 dark:text-white dark:bg-slate-900 dark:border dark:border-slate-100 dark:hover:bg-slate-500" onClick={onCancelEdit} disabled={isPending || uploadStatus}>
+                  <Button
+                    className="bg-red-500 hover:bg-red-300 dark:text-white dark:bg-slate-900 dark:border dark:border-slate-100 dark:hover:bg-slate-500"
+                    onClick={onCancelEdit}
+                    disabled={isPending || uploadStatus}
+                  >
                     cancel
                   </Button>
-                  <Button className="bg-green-500 hover:bg-green-300 dark:text-white dark:bg-slate-600 dark:border dark:border-slate-100 dark:hover:bg-slate-900" type="submit" disabled={isPending || uploadStatus} >
-                    {(isPending || uploadStatus) ? <Spinner/> : "Submit"}
+                  <Button
+                    className="bg-green-500 hover:bg-green-300 dark:text-white dark:bg-slate-600 dark:border dark:border-slate-100 dark:hover:bg-slate-900"
+                    type="submit"
+                    disabled={isPending || uploadStatus}
+                  >
+                    {isPending || uploadStatus ? <Spinner /> : "Submit"}
                   </Button>
                 </div>
               </div>

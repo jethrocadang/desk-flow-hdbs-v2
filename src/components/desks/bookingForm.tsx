@@ -20,6 +20,7 @@ import { CalendarIcon } from "lucide-react";
 import { createBooking } from "@/actions/bookings/booking";
 import { toast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
+import { Card } from "../ui/card";
 
 type Props = {
   desk: Desk;
@@ -154,16 +155,18 @@ export const BookingForm = ({ desk, amenities, bookings, onCancel }: Props) => {
                 )}
                 <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
               </div>
-              <Calendar
-                mode="single"
-                selected={field.value}
-                onSelect={field.onChange}
-                disabled={handleDisable}
-                initialFocus
-                classNames={{
-                  day_disabled: disabledClassName,
-                }}
-              />
+              <Card className="flex justify-center my-5">
+                <Calendar
+                  mode="single"
+                  selected={field.value}
+                  onSelect={field.onChange}
+                  disabled={handleDisable}
+                  initialFocus
+                  classNames={{
+                    day_disabled: disabledClassName,
+                  }}
+                />
+              </Card>
             </>
           )}
         />

@@ -30,25 +30,14 @@ export const DeskInfoCard = ({
   );
 
   return (
-    <Card className={cn("w-full my-auto px-5", className)}>
+    <Card className={cn(" m-auto px-5 py-7 w-[300px]", className)}>
       <CardHeader className=" px-3">
         <CardTitle>{desk.deskName}</CardTitle>
         <CardDescription>{desk.description}</CardDescription>
       </CardHeader>
-      {/* <CardContent
-        className={`${
-          desk.status === "AVAILABLE" ? "bg-green-300" : "bg-red-300"
-        } p-5 py-3 text-center rounded`}
-      >
-        <p className="my-auto font-semibold tracking-widest text-sm">
-
-        {desk.status}
-        </p>
-      </CardContent> */}
-
       <CardContent className=" px-3 ">
         <h1 className="font-semibold mb-4">Desk Ammenities</h1>
-        <ul>
+        <ul >
           {data.map((amenity) => (
             <Badge key={amenity.id}>
               <li key={amenity.id}>{amenity.amenityName}</li>
@@ -56,7 +45,11 @@ export const DeskInfoCard = ({
           ))}
         </ul>
       </CardContent>
-      {calendar !== "hidden" && <Calendar />}
+      {calendar !== "hidden" && (
+        <Card className="flex items-center justify-center ">
+          <Calendar/>
+        </Card>
+      )}
     </Card>
   );
 };

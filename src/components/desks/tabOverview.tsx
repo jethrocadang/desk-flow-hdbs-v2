@@ -13,23 +13,7 @@ export const Overview = ({
   desks: Desk[];
   amenities: Amenity[];
 }) => {
-  const [isMouseOnMap, setIsMouseOnMap] = useState(false);
   const { selectDesk, selectedDesk } = useDesk();
-
-  const handleMouseEnter = (e: any) => {
-    setIsMouseOnMap(true);
-    const clickedDesk = desks.find((desk) => desk.id === e.id);
-    if (clickedDesk) {
-      selectDesk(clickedDesk);
-    }
-  };
-
-  console.log("Mouse Entered: ", isMouseOnMap);
-
-  const handleMouseLeave = () => {
-    setIsMouseOnMap(false);
-    selectDesk(null);
-  };
 
   const handleDeskSelect = (e: any) => {
     const clickedDesk = desks.find((desk) => desk.id === e.id);
@@ -45,8 +29,6 @@ export const Overview = ({
           <Map
             desks={desks}
             onDeskSelect={handleDeskSelect}
-            // onMouseEnter={handleMouseEnter}
-            // onMouseLeave={handleMouseLeave}
           />
           {selectedDesk && (
             <DeskInfoCard desk={selectedDesk} amenities={amenities} />
