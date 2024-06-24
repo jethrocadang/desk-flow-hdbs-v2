@@ -22,8 +22,23 @@ export async function getUserById(id: string) {
 
 export async function getAllUsers() {
   try {
-    const users = await db.user.findMany({});
-    return users;
+    const users = await db.user.findMany({
+      where: {
+        emailVerified: {
+          not: null,
+        },
+      },
+    });
+
+    const transform = users.map((user) => ({
+      id: user.id,
+      fullName: `${user.firstName} ${user.lastName}`,
+      email: user.email,
+      role: user.role,
+      image: user.image,
+    }));
+
+    return transform;
   } catch (error) {
     return null;
   }
@@ -33,10 +48,10 @@ export const getUserCount = async () => {
   try {
     const allUsers = await db.user.count();
     const user = await db.user.count({
-      where:{
-        role:"USER"
-      }
-    })
+      where: {
+        role: "USER",
+      },
+    });
     const admin = await db.user.count({
       where: {
         role: "ADMIN",

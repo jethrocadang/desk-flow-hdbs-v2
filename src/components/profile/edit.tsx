@@ -21,7 +21,7 @@ import {
 import { editProfileSchema } from "@/schemas/userSchema";
 import { User } from "@prisma/client";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { updateUser } from "@/actions/profile/user";
+import { updateUser } from "@/actions/user";
 import { UploadButton } from "@/utils/uploadthing";
 import { toast } from "../ui/use-toast";
 import Spinner from "../utils-ui/Spinner";

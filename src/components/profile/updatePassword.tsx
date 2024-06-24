@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,7 +21,7 @@ import {
 
 import { User } from "@prisma/client";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { updateUser } from "@/actions/profile/user";
+import { updateUser } from "@/actions/user";
 import { updatePassSchema } from "@/schemas/userSchema";
 
 type Props = {
@@ -54,15 +53,10 @@ export default function EditProfile({ data, onCancelEdit }: Props) {
     setEdit(true);
   };
   // Handle on submit
-  const handleSubmit = (
-    values: z.infer<typeof updatePassSchema>
-  ) => {
-  };
+  const handleSubmit = (values: z.infer<typeof updatePassSchema>) => {};
   return (
     <div className="container">
       <div className="container pt-10">
-   
-
         {/* form */}
         <div className="pt-10 max-md:z-40">
           <Form {...form}>

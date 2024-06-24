@@ -10,25 +10,24 @@ export const updateUser = async (values: z.infer<typeof editProfileSchema>) => {
     const user = await currentUser();
 
     const validateData = editProfileSchema.safeParse(values);
-    if (!validateData.success){
-      return {error: "Invalid Input"}
+    if (!validateData.success) {
+      return { error: "Invalid Input" };
     }
 
-    const {firstName, lastName, image} = validateData.data
+    const { firstName, lastName, image } = validateData.data;
 
     await db.user.update({
-      where:{ id: user.id},
-      data:{
+      where: { id: user.id },
+      data: {
         firstName,
         lastName,
-        image
-      }
-    })
+        image,
+      },
+    });
 
-    return {success: "Updated Sucessfully!"}
-
+    return { success: "Updated Sucessfully!" };
   } catch (error) {}
-  return null
+  return null;
 };
 
 export const uploadAvatar = async (url: string) => {
@@ -44,4 +43,23 @@ export const uploadAvatar = async (url: string) => {
       },
     });
   } catch (error) {}
+};
+
+export const updateRole = async ({
+  id,
+  role,
+}: {
+  id: string;
+  role: "USER" | "ADMIN" | "FM";
+}) => {
+  await db.user.update({
+    where: {
+      id,
+    },
+    data: {
+      role,
+    },
+  });
+
+  return { success : "Updated Succesfully"}
 };
