@@ -8,6 +8,7 @@ export default async function UsersPage() {
 
   return (
     <div className=" px-32 pt-32">
+      <div className="text-2xl font-bold tracking-wider">Manage Users</div>
         <DataTable columns={columns} data={users}/>
     </div>
   );
