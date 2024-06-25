@@ -12,9 +12,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { toast } from "@/components/ui/use-toast";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export type User = {
   id: string;
@@ -23,6 +25,7 @@ export type User = {
   image: string | null;
   role: "USER" | "ADMIN" | "FM";
 };
+
 
 const roleStyles = {
   USER: "bg-blue-500 text-white",
@@ -37,13 +40,20 @@ const roleDisplayNames = {
 };
 
 const handleUpdateRole = (userId: string, newRole: "USER" | "ADMIN" | "FM") => {
-  updateRole({id: userId, role: newRole})
-}
+
+  updateRole({ id: userId, role: newRole }).then((data) => {
+    if(data.success){
+      toast({
+        description:"Updated Successfully"
+      })
+    }
+  });
+};
 
 export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "fullName",
-        header: ({ column }) => {
+    header: ({ column }) => {
       return (
         <Button
           variant="ghost"
@@ -52,7 +62,7 @@ export const columns: ColumnDef<User>[] = [
           Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => (
       <div className="flex flex-row items-center gap-3">
@@ -75,8 +85,8 @@ export const columns: ColumnDef<User>[] = [
           Email
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
-    },    
+      );
+    },
   },
   {
     accessorKey: "role",
@@ -89,8 +99,9 @@ export const columns: ColumnDef<User>[] = [
           Role
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
-    },    cell: ({ row }) => {
+      );
+    },
+    cell: ({ row }) => {
       const role = row.original.role;
       const roleClass = roleStyles[role] || "bg-gray-500 text-white";
       const displayName = roleDisplayNames[role] || "Unknown Role";
@@ -114,8 +125,17 @@ export const columns: ColumnDef<User>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem  onClick={() => handleUpdateRole(user.id, "ADMIN")}>Make as Admin</DropdownMenuItem>
-            <DropdownMenuItem onClick={() => handleUpdateRole(user.id, "FM")}>Make as Floor Manager</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => handleUpdateRole(user.id, "ADMIN")}
+            >
+              Make as Admin
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleUpdateRole(user.id, "FM")}>
+              Make as Floor Manager
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleUpdateRole(user.id, "USER")}>
+              Make as User
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

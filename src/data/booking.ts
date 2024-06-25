@@ -47,16 +47,51 @@ export const getBookingsCount = async () => {
   }
 };
 
-export const getBookingsCountById = async (id:string) => {
+export const getBookingsCountById = async (id: string) => {
   try {
     const bookings = await db.booking.count({
-      where:{
-        id
-      }
-    })
-    return bookings
+      where: {
+        id,
+      },
+    });
+    return bookings;
   } catch (error) {
-    return null
+    return null;
   }
-  
-}
+};
+
+export const bookingDataTable = async () => {
+  try {
+    const data = await db.booking.findMany({
+      include: {
+        desk: {
+          select: {
+            deskName: true,
+          },
+        },
+        user: {
+          select: {
+            firstName: true,
+            lastName: true,
+            email: true,
+            image: true
+          },
+        },
+      },
+    });
+
+    const bookingList = data.map((booking) => ({
+      id: booking.id,
+      userFullName: `${booking.user.firstName} ${booking.user.lastName}`,
+      userEmail: booking.user.email,
+      userImage: booking.user.image,
+      deskName: booking.desk.deskName,
+      bookingDate: booking.date,
+      bookingStatus: booking.status,
+    }));
+
+    return bookingList
+  } catch (error) {
+    return null;
+  }
+};

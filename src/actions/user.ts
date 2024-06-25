@@ -3,6 +3,7 @@
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/prisma";
 import { editProfileSchema } from "@/schemas/userSchema";
+import { revalidatePath } from "next/cache";
 import * as z from "zod";
 
 export const updateUser = async (values: z.infer<typeof editProfileSchema>) => {
@@ -61,5 +62,7 @@ export const updateRole = async ({
     },
   });
 
+  revalidatePath('/dashboard/users')
   return { success : "Updated Succesfully"}
+
 };
